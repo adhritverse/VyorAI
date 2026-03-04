@@ -47,7 +47,7 @@ export function ApiPlatform() {
                         <div className="p-8 rounded-3xl bg-gradient-to-br from-purple-500/10 via-transparent to-transparent border border-purple-500/20 shadow-2xl relative overflow-hidden group">
                             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:rotate-12 transition-transform capitalize font-black text-6xl select-none">Scale</div>
                             <h3 className="font-bold text-white mb-2 text-xl">First 10 Credits Free</h3>
-                            <p className="text-purple-200/60 mb-6 text-base max-w-sm">Start building immediately without any credit card. Professional usage-based pricing starting at <span className="text-white font-bold">$0.05 per 1k requests</span>.</p>
+                            <p className="text-purple-200/60 mb-6 text-base max-w-sm">Start building immediately without any credit card. Professional usage-based pricing starting at <span className="text-white font-bold">₹5 per 1k requests</span>.</p>
                             <button className="px-8 py-3 bg-white text-black text-sm font-bold rounded-xl hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all">
                                 Deploy Now
                             </button>
