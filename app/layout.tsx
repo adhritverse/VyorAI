@@ -80,8 +80,8 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className="dark">
-            <body className={`${inter.className} min-h-screen antialiased bg-[#0B0F19] text-white selection:bg-purple-500/30 overflow-x-hidden`}>
+        <html lang="en" className="dark" suppressHydrationWarning>
+            <body className={`${inter.className} min-h-screen antialiased bg-[#0B0F19] text-white selection:bg-purple-500/30 overflow-x-hidden`} suppressHydrationWarning>
                 <StructuredData />
                 {children}
             </body>

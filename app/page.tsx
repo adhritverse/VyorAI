@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/Navbar";
-import { Hero } from "@/components/Hero";
+// import { Hero } from "@/components/Hero";          // replaced by HeroGSAP
+import { HeroGSAP } from "@/components/HeroGSAP";
 import { Marquee } from "@/components/Marquee";
 import { Products } from "@/components/Products";
 import { ApiPlatform } from "@/components/ApiPlatform";
@@ -14,7 +15,7 @@ export default function Home() {
         <>
             <Navbar />
             <main className="bg-[#0B0F19] selection:bg-purple-500/30">
-                <Hero />
+                <HeroGSAP />
                 <Marquee />
                 <Products />
                 <Features />

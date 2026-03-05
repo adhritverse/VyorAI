@@ -1,0 +1,474 @@
+"use client";
+
+import { useRef, useLayoutEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register once at module scope — safe in Next.js App Router client components
+gsap.registerPlugin(ScrollTrigger);
+
+/**
+ * HeroGSAP — Scroll-driven logo animation
+ *
+ * Phase 0  (page load)    : Logo scales + fades into centre
+ * Phase 1  (scroll start) : Logo glides LEFT  |  text reveals from RIGHT
+ * Phase 2  (hold)         : Both elements stay in position briefly
+ * Phase 3  (next scroll)  : Text disappears   |  logo returns to CENTRE
+ * Phase 4  (final scroll) : Logo ZOOMS to fill entire screen → next section
+ */
+export function HeroGSAP() {
+    /* ─── Refs ──────────────────────────────────────────────────────── */
+    const wrapperRef = useRef<HTMLDivElement>(null);   // 400vh scroll driver
+    const logoWrapRef = useRef<HTMLDivElement>(null);   // GSAP controls all transforms
+    const textRef = useRef<HTMLDivElement>(null);   // right-side content block
+    const hintRef = useRef<HTMLDivElement>(null);   // "scroll" indicator
+    const descRef = useRef<HTMLDivElement>(null);   // pitch card below logo
+    const topLeftTextRef = useRef<HTMLDivElement>(null); // top left badge/headline
+
+    /* ─── Animation setup ───────────────────────────────────────────── */
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+
+            /* ──────────────────────────────────────────────────────────────
+               INITIAL STATES  — GSAP owns every transform on logoWrap
+               (avoids CSS transform conflicts with scroll animations)
+            ────────────────────────────────────────────────────────────── */
+            gsap.set(logoWrapRef.current, {
+                xPercent: -50,   // centres element: left:50% + xPercent:-50 = true centre
+                yPercent: -50,
+                scale: 0.6,
+                opacity: 0,
+            });
+            gsap.set(textRef.current, { opacity: 0, x: 90 });
+            gsap.set(hintRef.current, { opacity: 0 });
+            gsap.set(descRef.current, { opacity: 0, yPercent: -50, y: 30 }); // Start 30px lower than vertical center
+            gsap.set(topLeftTextRef.current, { opacity: 0, x: -40 });
+
+            /* ──────────────────────────────────────────────────────────────
+               PHASE 0 — Entry animation (page load)
+               Logo blooms into view, scroll hint fades in after
+            ────────────────────────────────────────────────────────────── */
+            const entryTl = gsap.timeline({ delay: 0.35 });
+
+            entryTl
+                .to(logoWrapRef.current, {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 1.4,
+                    ease: "expo.out",
+                })
+                // top-left text block slides in
+                .to(topLeftTextRef.current, {
+                    opacity: 1,
+                    x: 0,
+                    duration: 1.2,
+                    ease: "power3.out",
+                }, "-=1.2")
+                // pitch card rises up under the logo
+                .to(descRef.current, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.9,
+                    ease: "power3.out",
+                }, "-=0.8")
+                .to(hintRef.current, {
+                    opacity: 1,
+                    duration: 0.8,
+                    ease: "power2.out",
+                }, "-=0.5");
+
+            /* ──────────────────────────────────────────────────────────────
+               SCROLL TIMELINE  (scrub: pinless sticky + ScrollTrigger)
+               Total timeline duration: 4.0 units
+               Scroll driver: 400vh → sticky 100vh = 300vh of scroll travel
+            ────────────────────────────────────────────────────────────── */
+            const scrollTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: wrapperRef.current,
+                    start: "top top",
+                    end: "bottom bottom",   // 300vh of scroll distance
+                    scrub: 1.2,             // 1.2 lag feels more solid and less rubber-bandy than 1.8
+                    invalidateOnRefresh: true,
+                },
+            });
+
+            /* — Phase 1 (0 → 1.0): Logo LEFT  +  Text RIGHT ─────────── */
+            scrollTl
+                // hint, desc card, and top-left text fade out immediately on scroll
+                .to(hintRef.current,
+                    { opacity: 0, duration: 0.3, ease: "power1.in" },
+                    0
+                )
+                .to(descRef.current,
+                    { opacity: 0, y: -20, duration: 0.35, ease: "power2.in" },
+                    0
+                )
+                .to(topLeftTextRef.current,
+                    { opacity: 0, x: -30, duration: 0.35, ease: "power2.in" },
+                    0
+                )
+                // logo glides to left third of screen
+                .to(logoWrapRef.current,
+                    {
+                        x: () => -window.innerWidth * 0.22,
+                        duration: 1.0,
+                        ease: "power3.inOut",  // smoother s-curve than power2
+                    },
+                    0
+                )
+                // text sweeps in from the right
+                .to(textRef.current,
+                    {
+                        opacity: 1,
+                        x: 0,
+                        duration: 0.9,
+                        ease: "power3.out",
+                    },
+                    0.15   // slight delay so logo starts moving first
+                );
+
+            /* — Phase 2 (1.0 → 1.8): HOLD — nothing moves ────────────── */
+            scrollTl.to({}, { duration: 0.8 });
+
+            /* — Phase 3 (1.8 → 2.8): Text out  +  Logo back to centre ── */
+            scrollTl
+                .to(textRef.current,
+                    { opacity: 0, x: -70, duration: 0.5, ease: "power2.in" },
+                    1.8
+                )
+                .to(logoWrapRef.current,
+                    { x: 0, duration: 0.8, ease: "power3.inOut" }, // matches Phase 1 power3 smoothness
+                    2.0
+                );
+
+            /* — Phase 4 (2.8 → 4.0): Logo ZOOMS in for the finale ── */
+            scrollTl.to(logoWrapRef.current,
+                {
+                    scale: 2.5,          // Controlled zoom (instead of 35x)
+                    duration: 1.2,
+                    ease: "sine.inOut",
+                },
+                2.8
+            );
+
+        }, wrapperRef);
+
+        return () => ctx.revert();   // cleanup — React 18 Strict Mode safe
+    }, []);
+
+    /* ─── JSX ───────────────────────────────────────────────────────── */
+    return (
+        <div className="hero-gsap-root">
+
+            {/*
+        ┌──────────────────────────────────────────────────────────────┐
+        │  SCROLL DRIVER — 400vh tall                                  │
+        │  Inner sticky panel locks to viewport while parent scrolls   │
+        └──────────────────────────────────────────────────────────────┘
+      */}
+            <div ref={wrapperRef} style={{ height: "400vh", position: "relative" }}>
+
+                {/* ── Sticky canvas ─────────────────────────────────────── */}
+                <div
+                    style={{
+                        position: "sticky",
+                        top: 0,
+                        height: "100vh",
+                        overflow: "hidden",
+                        background: "#030712",
+                    }}
+                >
+
+                    {/* Ambient radial glow */}
+                    <div
+                        className="absolute inset-0 pointer-events-none"
+                        style={{
+                            background:
+                                "radial-gradient(ellipse 80% 65% at 50% 50%, rgba(99,102,241,0.13), transparent)",
+                        }}
+                    />
+
+                    {/* Subtle grid lines */}
+                    <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#80808009_1px,transparent_1px),linear-gradient(to_bottom,#80808009_1px,transparent_1px)] bg-[size:44px_44px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_40%,transparent_100%)]" />
+
+                    {/* ── TOP LEFT TEXT (visible on initial load) ──────────── */}
+                    <div
+                        ref={topLeftTextRef}
+                        style={{
+                            position: "absolute",
+                            left: "5%",
+                            top: "14%",
+                            zIndex: 18,
+                            opacity: 0,   // GSAP reveals this
+                            pointerEvents: "none",
+                            maxWidth: "45vw",
+                        }}
+                    >
+                        {/* Interactive Badge */}
+                        <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-white/10 bg-[#030712]/50 backdrop-blur-xl mb-8 shadow-2xl">
+                            <svg className="w-4 h-4 text-[#c084fc]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L12 10M12 14L12 22M2 12L10 12M14 12L22 12M10.5 4.5L13.5 7.5M10.5 19.5L13.5 16.5M4.5 10.5L7.5 13.5M19.5 10.5L16.5 13.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M12 12L12.01 12" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                            <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[0.3em] text-white/90">
+                                VyorAI Neural Interface
+                            </span>
+                        </div>
+
+                        {/* OS Version Subtitle */}
+                        <h3 className="text-[#a855f7] text-[12px] sm:text-[13px] font-bold tracking-[0.45em] uppercase mb-4 ml-1">
+                            Autonomous OS v4.0
+                        </h3>
+
+                        {/* Main Headline */}
+                        <h1 className="text-5xl sm:text-6xl lg:text-[5rem] font-black leading-[0.98] tracking-[-0.04em] text-white/95 whitespace-nowrap">
+                            AI That{" "}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#c084fc] via-[#a855f7] to-[#818cf8]">
+                                Understands,
+                            </span><br />
+                            <span className="text-transparent bg-clip-text bg-[#a855f7]">
+                                Decides
+                            </span><br />
+                            <span className="text-transparent bg-clip-text bg-[#818cf8]">
+                                &amp; Executes
+                            </span>
+                        </h1>
+                    </div>
+
+                    {/* ── LOGO (GSAP owns all transforms) ─────────────────── */}
+                    <div
+                        ref={logoWrapRef}
+                        style={{
+                            position: "absolute",
+                            left: "50%",
+                            top: "50%",
+                            zIndex: 20,
+                            opacity: 0,   // GSAP animates this in; avoids SSR flash
+                            willChange: "transform, opacity", // Forces hardware acceleration
+                        }}
+                    >
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                            src="/LOGO.png"
+                            alt="VyorAI Logo"
+                            style={{
+                                display: "block",
+                                width: "clamp(110px, 13vw, 200px)",
+                                height: "auto",
+                                background: "white",
+                                borderRadius: "22px",
+                                padding: "14px",
+                                boxShadow:
+                                    "0 0 0 1px rgba(255,255,255,0.08), 0 0 80px rgba(139,92,246,0.55), 0 8px 40px rgba(0,0,0,0.5)",
+                            }}
+                        />
+                    </div>
+
+                    {/* ── PITCH CARD (visible on initial load) ── */}
+                    <div
+                        ref={descRef}
+                        style={{
+                            position: "absolute",
+                            right: "5%",
+                            top: "50%",
+                            width: "clamp(300px, 32vw, 480px)",
+                            zIndex: 18,
+                            opacity: 0,
+                            pointerEvents: "none",
+                            textAlign: "center",
+                        }}
+                    >
+                        {/* Glassmorphism card */}
+                        <div
+                            style={{
+                                background: "rgba(8, 8, 18, 0.75)",
+                                backdropFilter: "blur(22px)",
+                                WebkitBackdropFilter: "blur(22px)",
+                                border: "1px solid rgba(255,255,255,0.07)",
+                                borderRadius: "22px",
+                                padding: "clamp(18px, 2.5vw, 30px) clamp(22px, 3.5vw, 42px)",
+                                marginBottom: "20px",
+                                boxShadow: "0 8px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05)",
+                            }}
+                        >
+                            <p
+                                style={{
+                                    color: "rgba(205,205,225,0.88)",
+                                    fontSize: "clamp(14px, 1.4vw, 18px)",
+                                    fontWeight: 500,
+                                    lineHeight: 1.7,
+                                    letterSpacing: "-0.01em",
+                                    margin: 0,
+                                }}
+                            >
+                                Deploy high-performance{" "}
+                                <strong style={{ color: "#fff", fontWeight: 800 }}>AI agents</strong>{" "}
+                                and autonomous pipelines with{" "}
+                                <strong
+                                    style={{
+                                        fontWeight: 800,
+                                        color: "transparent",
+                                        backgroundImage: "linear-gradient(90deg,#a855f7,#6366f1)",
+                                        WebkitBackgroundClip: "text",
+                                        backgroundClip: "text",
+                                        textDecoration: "underline",
+                                        textDecorationColor: "rgba(168,85,247,0.35)",
+                                        textUnderlineOffset: "4px",
+                                    }}
+                                >
+                                    millisecond-scale
+                                </strong>{" "}
+                                latency.
+                            </p>
+                        </div>
+
+                        {/* CTA row */}
+                        <div style={{ display: "flex", gap: "12px", justifyContent: "center", pointerEvents: "auto" }}>
+                            <button
+                                style={{
+                                    padding: "13px 30px",
+                                    borderRadius: "14px",
+                                    background: "#fff",
+                                    color: "#000",
+                                    fontWeight: 800,
+                                    fontSize: "14px",
+                                    border: "none",
+                                    cursor: "pointer",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "7px",
+                                    boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
+                                }}
+                                onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.05)")}
+                                onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
+                            >
+                                Access API <span>→</span>
+                            </button>
+                            <button
+                                style={{
+                                    padding: "13px 30px",
+                                    borderRadius: "14px",
+                                    background: "rgba(255,255,255,0.04)",
+                                    color: "#e2e2e2",
+                                    fontWeight: 700,
+                                    fontSize: "14px",
+                                    border: "1px solid rgba(255,255,255,0.12)",
+                                    cursor: "pointer",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "7px",
+                                    backdropFilter: "blur(10px)",
+                                }}
+                                onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.09)")}
+                                onMouseLeave={e => (e.currentTarget.style.background = "rgba(255,255,255,0.04)")}
+                            >
+                                <span style={{ fontFamily: "monospace", fontSize: "12px", color: "#a78bfa" }}>&lt;/&gt;</span>
+                                Library
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* ── RIGHT TEXT BLOCK ─────────────────────────────────── */}
+                    <div
+                        ref={textRef}
+                        style={{
+                            position: "absolute",
+                            right: "7%",
+                            top: 0,
+                            bottom: 0,
+                            display: "flex",
+                            alignItems: "center",
+                            width: "clamp(260px, 36vw, 540px)",
+                            zIndex: 15,
+                            pointerEvents: "none",
+                            opacity: 0,   // GSAP reveals this
+                        }}
+                    >
+                        <div>
+                            {/* Eyebrow */}
+                            <span
+                                className="block font-mono text-[11px] uppercase tracking-[0.45em] text-purple-400/70 font-bold mb-5"
+                            >
+                                Autonomous Intelligence
+                            </span>
+
+                            {/* Main heading */}
+                            <h2
+                                className="text-4xl md:text-[3.4rem] font-black tracking-tighter text-white leading-[1.06] mb-5"
+                            >
+                                AI That{" "}
+                                <span className="text-transparent bg-clip-text bg-gradient-to-br from-purple-400 via-violet-400 to-indigo-400">
+                                    Thinks.
+                                    <br />Decides.
+                                    <br />Acts.
+                                </span>
+                            </h2>
+
+                            {/* Divider */}
+                            <div className="w-16 h-px bg-white/15 mb-5" />
+
+                            {/* Description */}
+                            <p className="text-neutral-400 text-base md:text-[1.05rem] leading-relaxed mb-8 max-w-[420px]">
+                                Deploy autonomous AI agents and pipelines with{" "}
+                                <span className="text-white font-semibold">millisecond-scale</span>{" "}
+                                latency. Scale from prototype to production in minutes —
+                                built for the teams that move fast.
+                            </p>
+
+                            {/* CTAs */}
+                            <div className="flex items-center gap-4 flex-wrap">
+                                <button className="px-7 py-3.5 rounded-2xl bg-white text-black font-black text-sm hover:scale-105 active:scale-95 transition-all shadow-[0_16px_48px_-12px_rgba(255,255,255,0.25)]">
+                                    Get Started →
+                                </button>
+                                <button className="px-7 py-3.5 rounded-2xl border border-white/10 bg-white/[0.03] text-white font-bold text-sm backdrop-blur-xl hover:bg-white/[0.07] hover:border-white/20 transition-all">
+                                    View Docs
+                                </button>
+                            </div>
+
+                            {/* Stats row */}
+                            <div className="flex items-center gap-8 mt-10 pt-8 border-t border-white/[0.06]">
+                                {[
+                                    { val: "< 40ms", label: "Inference" },
+                                    { val: "99.9%", label: "Uptime" },
+                                    { val: "10k+", label: "Agents" },
+                                ].map((s) => (
+                                    <div key={s.label}>
+                                        <div className="text-xl font-black text-white tracking-tight">{s.val}</div>
+                                        <div className="text-[11px] text-neutral-500 uppercase tracking-widest font-mono mt-0.5">{s.label}</div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* ── SCROLL HINT ──────────────────────────────────────── */}
+                    <div
+                        ref={hintRef}
+                        style={{
+                            position: "absolute",
+                            bottom: "8%",
+                            left: "50%",
+                            transform: "translateX(-50%)",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            gap: "10px",
+                            opacity: 0,
+                            zIndex: 10,
+                            pointerEvents: "none",
+                        }}
+                    >
+                        <span className="text-[9px] font-bold uppercase tracking-[0.55em] text-neutral-500">
+                            Scroll to explore
+                        </span>
+                        <div
+                            className="w-px h-10 bg-gradient-to-b from-purple-500/50 to-transparent animate-pulse"
+                        />
+                    </div>
+
+                </div>{/* /sticky */}
+            </div>{/* /scroll driver */}
+
+        </div>
+    );
+}

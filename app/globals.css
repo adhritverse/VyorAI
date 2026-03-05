@@ -177,3 +177,39 @@
     stroke-dashoffset: -1900;
   }
 }
+
+/* ───── GSAP Hero Component ───── */
+
+/* Parallax images — GSAP owns the transform property entirely.
+   transform-origin is set inline per-element.
+   Only non-transform props are set here. */
+.parallax-layer img {
+  will-change: transform, opacity;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Hero GSAP root — no extra margin, ensures scroll height is correct */
+.hero-gsap-root {
+  position: relative;
+  width: 100%;
+  background: #030712;
+}
+
+/* Heading gradient animation on page load */
+@keyframes heroHeadingReveal {
+  from {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Section reveal items get a smooth transition base */
+.reveal-item {
+  will-change: transform, opacity;
+}
