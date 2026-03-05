@@ -107,10 +107,12 @@ export function HeroGSAP() {
                     { opacity: 0, x: -30, duration: 0.35, ease: "power2.in" },
                     0
                 )
-                // logo glides to left third of screen
+                // logo glides to left third of screen (or top-right blank space on mobile)
                 .to(logoWrapRef.current,
                     {
-                        x: () => -window.innerWidth * 0.22,
+                        x: () => window.innerWidth < 768 ? window.innerWidth * 0.28 : -window.innerWidth * 0.22,
+                        y: () => window.innerWidth < 768 ? -window.innerHeight * 0.18 : 0,
+                        scale: () => window.innerWidth < 768 ? 0.75 : 1, // Shrink slightly on mobile
                         duration: 1.0,
                         ease: "power3.inOut",  // smoother s-curve than power2
                     },
@@ -137,7 +139,7 @@ export function HeroGSAP() {
                     1.8
                 )
                 .to(logoWrapRef.current,
-                    { x: 0, duration: 0.8, ease: "power3.inOut" }, // matches Phase 1 power3 smoothness
+                    { x: 0, y: 0, scale: 1, duration: 0.8, ease: "power3.inOut" }, // Revert positions & scale
                     2.0
                 );
 
@@ -194,7 +196,7 @@ export function HeroGSAP() {
                     {/* ── Animated Infinity Background ── */}
                     <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center overflow-hidden">
                         {/* Wrapper for positioning and massive scale to fill the blank spaces */}
-                        <div className="absolute w-[200vw] sm:w-[160vw] md:w-[130vw] h-auto rotate-[30deg] md:rotate-[-15deg] opacity-80 mix-blend-screen left-[-30vw] md:left-[-15vw] top-[5vh] md:top-[-10vh]">
+                        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[250vw] sm:w-[180vw] md:w-[130vw] min-w-[800px] h-auto rotate-[75deg] md:rotate-[-15deg] opacity-40 md:opacity-80 mix-blend-screen">
                             <svg
                                 viewBox="0 0 1000 500"
                                 className="w-full h-full text-white/5"
@@ -274,46 +276,37 @@ export function HeroGSAP() {
                     {/* ── TOP LEFT TEXT (visible on initial load) ──────────── */}
                     <div
                         ref={topLeftTextRef}
-                        style={{
-                            position: "absolute",
-                            left: "5%",
-                            top: "14%",
-                            zIndex: 18,
-                            opacity: 0,   // GSAP reveals this
-                            pointerEvents: "none",
-                            maxWidth: "40vw",
-                        }}
+                        className="absolute z-[18] opacity-0 pointer-events-none left-[4%] md:left-[5%] top-[140px] md:top-[14%] w-[92vw] sm:w-auto md:max-w-[40vw]"
                     >
                         {/* Glassmorphism wrapper container */}
                         <div
+                            className="p-5 sm:p-[clamp(20px,4vw,40px)] rounded-[20px] md:rounded-[24px]"
                             style={{
                                 background: "rgba(8, 8, 18, 0.65)",
                                 backdropFilter: "blur(20px)",
                                 WebkitBackdropFilter: "blur(20px)",
                                 border: "1px solid rgba(255,255,255,0.08)",
-                                borderRadius: "24px",
-                                padding: "clamp(24px, 3vw, 40px)",
                                 boxShadow: "0 12px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05)",
                             }}
                         >
                             {/* Interactive Badge */}
-                            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-white/10 bg-[#030712]/50 backdrop-blur-xl mb-6 shadow-xl">
-                                <svg className="w-3.5 h-3.5 text-[#c084fc]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <div className="inline-flex items-center gap-2.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-white/10 bg-[#030712]/50 backdrop-blur-xl mb-4 sm:mb-6 shadow-xl">
+                                <svg className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-[#c084fc]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M12 2L12 10M12 14L12 22M2 12L10 12M14 12L22 12M10.5 4.5L13.5 7.5M10.5 19.5L13.5 16.5M4.5 10.5L7.5 13.5M19.5 10.5L16.5 13.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                     <path d="M12 12L12.01 12" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                <span className="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-[0.25em] text-white/90">
+                                <span className="text-[8px] sm:text-[10px] font-extrabold uppercase tracking-[0.25em] text-white/90">
                                     VyorAI Neural Interface
                                 </span>
                             </div>
 
                             {/* OS Version Subtitle */}
-                            <h3 className="text-[#a855f7] text-[11px] sm:text-[12px] font-bold tracking-[0.4em] uppercase mb-4 ml-1">
+                            <h3 className="text-[#a855f7] text-[9px] sm:text-[12px] font-bold tracking-[0.4em] uppercase mb-2 sm:mb-4 ml-1">
                                 Autonomous OS v4.0
                             </h3>
 
-                            {/* Main Headline (Reduced Size) */}
-                            <h1 className="text-3xl sm:text-4xl lg:text-[3.2rem] font-black leading-[1.05] tracking-[-0.03em] text-white/95">
+                            {/* Main Headline */}
+                            <h1 className="text-[1.35rem] leading-[1.1] sm:text-4xl lg:text-[3.2rem] font-black sm:leading-[1.05] tracking-[-0.03em] text-white/95">
                                 AI That{" "}
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#c084fc] via-[#a855f7] to-[#818cf8]">
                                     Understands,
@@ -360,27 +353,16 @@ export function HeroGSAP() {
                     {/* ── PITCH CARD (visible on initial load) ── */}
                     <div
                         ref={descRef}
-                        style={{
-                            position: "absolute",
-                            right: "6%",
-                            bottom: "8%",
-                            width: "clamp(300px, 32vw, 480px)",
-                            zIndex: 18,
-                            opacity: 0,
-                            pointerEvents: "none",
-                            textAlign: "center",
-                        }}
+                        className="absolute z-[18] opacity-0 pointer-events-none text-center left-[4%] sm:left-auto right-[4%] md:right-[6%] bottom-[4%] md:bottom-[8%] w-[92vw] sm:w-[clamp(300px,32vw,480px)]"
                     >
                         {/* Glassmorphism card */}
                         <div
+                            className="p-[clamp(16px,4vw,30px)_clamp(16px,4vw,42px)] rounded-[20px] md:rounded-[22px] mb-3 md:mb-5"
                             style={{
                                 background: "rgba(8, 8, 18, 0.75)",
                                 backdropFilter: "blur(22px)",
                                 WebkitBackdropFilter: "blur(22px)",
                                 border: "1px solid rgba(255,255,255,0.07)",
-                                borderRadius: "22px",
-                                padding: "clamp(18px, 2.5vw, 30px) clamp(22px, 3.5vw, 42px)",
-                                marginBottom: "20px",
                                 boxShadow: "0 8px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05)",
                             }}
                         >
@@ -464,18 +446,7 @@ export function HeroGSAP() {
                     {/* ── RIGHT TEXT BLOCK ─────────────────────────────────── */}
                     <div
                         ref={textRef}
-                        style={{
-                            position: "absolute",
-                            right: "7%",
-                            top: 0,
-                            bottom: 0,
-                            display: "flex",
-                            alignItems: "center",
-                            width: "clamp(260px, 36vw, 540px)",
-                            zIndex: 15,
-                            pointerEvents: "none",
-                            opacity: 0,   // GSAP reveals this
-                        }}
+                        className="absolute top-0 bottom-0 flex items-center z-[15] pointer-events-none opacity-0 right-[4%] md:right-[7%] left-[4%] sm:left-auto w-[92vw] sm:w-[clamp(260px,36vw,540px)]"
                     >
                         <div>
                             {/* Eyebrow */}

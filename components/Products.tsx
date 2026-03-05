@@ -86,7 +86,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
                 rotateY,
                 transformStyle: "preserve-3d",
             }}
-            className={`group relative p-8 rounded-[2.5rem] bg-white/[0.03] border border-white/5 backdrop-blur-3xl transition-all duration-500 ${product.border} hover:bg-white/[0.06] overflow-hidden flex flex-col ${product.span} min-h-[400px] shadow-2xl`}
+            className={`group relative p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] bg-white/[0.03] border border-white/5 backdrop-blur-3xl transition-all duration-500 ${product.border} hover:bg-white/[0.06] overflow-hidden flex flex-col ${product.span} min-h-[320px] md:min-h-[400px] shadow-2xl`}
         >
             <div className={`absolute inset-0 bg-gradient-to-br ${product.color} opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-[40px] -z-10 scale-90 group-hover:scale-100`} />
 
@@ -103,17 +103,17 @@ function ProductCard({ product }: { product: typeof products[0] }) {
                 </div>
             )}
 
-            <div className="w-16 h-16 rounded-2xl bg-white/[0.05] border border-white/10 flex items-center justify-center mb-10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-xl" style={{ transform: "translateZ(50px)" }}>
-                <product.icon className="w-8 h-8 text-white group-hover:text-purple-400 transition-colors" />
+            <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-white/[0.05] border border-white/10 flex items-center justify-center mb-6 md:mb-10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-xl" style={{ transform: "translateZ(50px)" }}>
+                <product.icon className="w-6 h-6 md:w-8 md:h-8 text-white group-hover:text-purple-400 transition-colors" />
             </div>
 
             <div style={{ transform: "translateZ(40px)" }}>
-                <h3 className="text-3xl font-black mb-4 tracking-tight">{product.title}</h3>
-                <p className="text-gray-400 leading-relaxed mb-8 max-w-sm">{product.description}</p>
+                <h3 className="text-2xl md:text-3xl font-black mb-3 md:mb-4 tracking-tight">{product.title}</h3>
+                <p className="text-sm md:text-base text-gray-400 leading-relaxed mb-6 md:mb-8 max-w-sm">{product.description}</p>
             </div>
 
             {product.features && (
-                <ul className="space-y-4 mb-10 mt-auto" style={{ transform: "translateZ(30px)" }}>
+                <ul className="space-y-3 md:space-y-4 mb-8 md:mb-10 mt-auto" style={{ transform: "translateZ(30px)" }}>
                     {product.features.map((feature, idx) => (
                         <li key={idx} className="flex items-center gap-3 text-sm font-medium text-neutral-300">
                             <div className="w-2 h-2 rounded-full bg-purple-500 shadow-[0_0_12px_rgba(168,85,247,0.6)]" />
@@ -136,7 +136,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
 
 export function Products() {
     return (
-        <section id="products" className="py-40 relative z-10 overflow-hidden">
+        <section id="products" className="py-24 md:py-40 relative z-10 overflow-hidden">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-purple-500/5 blur-[160px] pointer-events-none rounded-full" />
 
             <div className="container mx-auto px-6">
@@ -144,19 +144,19 @@ export function Products() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8"
+                    className="flex flex-col md:flex-row md:items-end justify-between mb-16 md:mb-24 gap-8"
                 >
                     <div className="max-w-3xl">
-                        <div className="flex items-center gap-2 mb-6">
-                            <div className="h-0.5 w-12 bg-purple-500" />
-                            <span className="text-sm font-black uppercase tracking-[0.4em] text-purple-400/80">Intelligence Layer</span>
+                        <div className="flex items-center gap-2 mb-4 md:mb-6">
+                            <div className="h-0.5 w-8 md:w-12 bg-purple-500" />
+                            <span className="text-[10px] md:text-sm font-black uppercase tracking-[0.25em] md:tracking-[0.4em] text-purple-400/80">Intelligence Layer</span>
                         </div>
-                        <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/50">
-                            Engineered for <br />
+                        <h2 className="text-[2rem] leading-[1.1] sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter mb-4 md:mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/50">
+                            Engineered for <br className="hidden md:block" />
                             <span className="text-white">Radical Autonomy.</span>
                         </h2>
                     </div>
-                    <p className="text-gray-400 max-w-sm text-lg leading-relaxed mb-4">
+                    <p className="text-gray-400 w-full md:max-w-sm text-sm md:text-lg leading-relaxed mb-0 md:mb-4">
                         We don't just build wrappers. We build deep neural architectures that command complex workflows with millisecond precision.
                     </p>
                 </motion.div>
