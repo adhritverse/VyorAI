@@ -1,95 +1,169 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Camera, HeartPulse, Zap } from "lucide-react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { Camera, HeartPulse, Zap, Sparkles, Terminal, Activity } from "lucide-react";
+import React, { useRef, useEffect } from "react";
 
 const products = [
     {
         icon: Camera,
         title: "AI Virtual Try-On",
-        description: "A state-of-the-art AI solution for realistic garment visualization. Get started with 10 free credits—allowing up to 100 virtual try-ons—to test the experience in your workflow.",
+        description: "A state-of-the-art AI solution for realistic garment visualization. Get started with 10 free credits.",
         features: ["Realistic Rendering", "Body-aware Fitting", "Instant Style Switching"],
         color: "from-blue-500/20 to-purple-500/20",
-        border: "group-hover:border-blue-500/50",
-        delay: 0.2,
+        border: "group-hover:border-blue-500/30",
+        span: "md:col-span-2",
+        delay: 0.1,
     },
     {
         icon: HeartPulse,
-        title: "Stress Detection AI",
-        description: "An advanced emotional pattern recognition system designed to monitor, detect, and provide dynamic mental wellness support through real-time biometrics.",
-        features: ["Pattern Recognition", "Dynamic Wellness", "Real-time Support"],
+        title: "Stress Detection",
+        description: "Emotional pattern recognition through real-time biometrics.",
+        features: ["Pattern Recognition", "Dynamic Wellness"],
         color: "from-purple-500/20 to-pink-500/20",
-        border: "group-hover:border-pink-500/50",
-        delay: 0.3,
+        border: "group-hover:border-pink-500/30",
+        span: "md:col-span-1",
+        delay: 0.2,
     },
     {
         icon: Zap,
         title: "Vyor Omni-Engine",
-        description: "The flagship AI automation engine. A powerful logic and reasoning backbone for enterprise-scale autonomous execution across distributed systems.",
+        description: "The flagship AI automation engine for enterprise-scale autonomous execution.",
         features: ["Logical Reasoning", "Enterprise Scale", "Autonomous Execution"],
-        color: "from-pink-500/20 to-orange-500/20",
-        border: "group-hover:border-orange-500/50",
-        delay: 0.4,
+        color: "from-orange-500/20 to-pink-500/20",
+        border: "group-hover:border-orange-500/30",
         isComingSoon: true,
+        span: "md:col-span-1",
+        delay: 0.3,
+    },
+    {
+        icon: Terminal,
+        title: "Developer API",
+        description: "Integrate high-speed AI capabilities into your stack with a few lines of code.",
+        features: ["Sub-50ms Latency", "Fully Typed SDK"],
+        color: "from-emerald-500/20 to-cyan-500/20",
+        border: "group-hover:border-emerald-500/30",
+        span: "md:col-span-2",
+        delay: 0.4,
     }
 ];
 
+function ProductCard({ product }: { product: typeof products[0] }) {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [10, -10]), { stiffness: 150, damping: 20 });
+    const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-10, 10]), { stiffness: 150, damping: 20 });
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!cardRef.current) return;
+        const rect = cardRef.current.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+        const mouseXRelative = (e.clientX - rect.left) / width - 0.5;
+        const mouseYRelative = (e.clientY - rect.top) / height - 0.5;
+        mouseX.set(mouseXRelative);
+        mouseY.set(mouseYRelative);
+    };
+
+    const handleMouseLeave = () => {
+        mouseX.set(0);
+        mouseY.set(0);
+    };
+
+    return (
+        <motion.div
+            ref={cardRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: product.delay, duration: 0.6 }}
+            style={{
+                rotateX,
+                rotateY,
+                transformStyle: "preserve-3d",
+            }}
+            className={`group relative p-8 rounded-[2.5rem] bg-white/[0.03] border border-white/5 backdrop-blur-3xl transition-all duration-500 ${product.border} hover:bg-white/[0.06] overflow-hidden flex flex-col ${product.span} min-h-[400px] shadow-2xl`}
+        >
+            <div className={`absolute inset-0 bg-gradient-to-br ${product.color} opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-[40px] -z-10 scale-90 group-hover:scale-100`} />
+
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_var(--mouse-x)_var(--mouse-y),rgba(255,255,255,0.06),transparent_80%)] pointer-events-none"
+                style={{
+                    "--mouse-x": `${(mouseX.get() + 0.5) * 100}%`,
+                    "--mouse-y": `${(mouseY.get() + 0.5) * 100}%`
+                } as any}
+            />
+
+            {product.isComingSoon && (
+                <div className="absolute top-8 right-8 px-4 py-1.5 rounded-full bg-purple-500/10 text-purple-400 text-xs font-bold border border-purple-500/20 backdrop-blur-md animate-pulse">
+                    Coming Soon
+                </div>
+            )}
+
+            <div className="w-16 h-16 rounded-2xl bg-white/[0.05] border border-white/10 flex items-center justify-center mb-10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-xl" style={{ transform: "translateZ(50px)" }}>
+                <product.icon className="w-8 h-8 text-white group-hover:text-purple-400 transition-colors" />
+            </div>
+
+            <div style={{ transform: "translateZ(40px)" }}>
+                <h3 className="text-3xl font-black mb-4 tracking-tight">{product.title}</h3>
+                <p className="text-gray-400 leading-relaxed mb-8 max-w-sm">{product.description}</p>
+            </div>
+
+            {product.features && (
+                <ul className="space-y-4 mb-10 mt-auto" style={{ transform: "translateZ(30px)" }}>
+                    {product.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-center gap-3 text-sm font-medium text-neutral-300">
+                            <div className="w-2 h-2 rounded-full bg-purple-500 shadow-[0_0_12px_rgba(168,85,247,0.6)]" />
+                            {feature}
+                        </li>
+                    ))}
+                </ul>
+            )}
+
+            <div className="pt-8 border-t border-white/5 flex items-center gap-3 text-sm font-bold text-gray-300 group-hover:text-white transition-all cursor-pointer w-fit group/btn" style={{ transform: "translateZ(20px)" }}>
+                <span className="relative">
+                    Explore Engine
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover/btn:w-full" />
+                </span>
+                <span className="text-purple-400 group-hover:translate-x-2 transition-transform duration-300">→</span>
+            </div>
+        </motion.div>
+    );
+}
+
 export function Products() {
     return (
-        <section id="products" className="py-32 relative z-10">
+        <section id="products" className="py-40 relative z-10 overflow-hidden">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-purple-500/5 blur-[160px] pointer-events-none rounded-full" />
+
             <div className="container mx-auto px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-20"
+                    className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6">Core Intelligence Suite</h2>
-                    <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-                        Purpose-built AI models designed to solve complex business problems through our scalable infrastructure.
+                    <div className="max-w-3xl">
+                        <div className="flex items-center gap-2 mb-6">
+                            <div className="h-0.5 w-12 bg-purple-500" />
+                            <span className="text-sm font-black uppercase tracking-[0.4em] text-purple-400/80">Intelligence Layer</span>
+                        </div>
+                        <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/50">
+                            Engineered for <br />
+                            <span className="text-white">Radical Autonomy.</span>
+                        </h2>
+                    </div>
+                    <p className="text-gray-400 max-w-sm text-lg leading-relaxed mb-4">
+                        We don't just build wrappers. We build deep neural architectures that command complex workflows with millisecond precision.
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto [perspective:2000px]">
                     {products.map((product, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: product.delay, duration: 0.5 }}
-                            className={`group relative p-8 rounded-3xl bg-white/[0.02] border border-white/5 backdrop-blur-xl transition-all duration-500 ${product.border} hover:bg-white/[0.04] overflow-hidden flex flex-col`}
-                        >
-                            <div className={`absolute inset-0 bg-gradient-to-br ${product.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-
-                            {product.isComingSoon && (
-                                <div className="absolute top-6 right-6 px-3 py-1 rounded-full bg-white/10 text-xs font-medium border border-white/10 backdrop-blur-md">
-                                    Coming Soon
-                                </div>
-                            )}
-
-                            <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
-                                <product.icon className="w-6 h-6 text-white" />
-                            </div>
-
-                            <h3 className="text-2xl font-bold mb-4">{product.title}</h3>
-                            <p className="text-gray-400 leading-relaxed mb-6">{product.description}</p>
-
-                            {product.features && (
-                                <ul className="space-y-3 mb-8">
-                                    {product.features.map((feature, idx) => (
-                                        <li key={idx} className="flex items-center gap-3 text-sm text-neutral-300">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.5)]" />
-                                            {feature}
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-
-                            <div className="mt-auto pt-6 border-t border-white/5 flex items-center gap-2 text-sm text-gray-300 group-hover:text-white transition-colors cursor-pointer w-fit">
-                                Explore Demo <span className="text-purple-400 group-hover:translate-x-1 transition-transform">→</span>
-                            </div>
-                        </motion.div>
+                        <ProductCard key={i} product={product as any} />
                     ))}
                 </div>
             </div>
