@@ -41,7 +41,7 @@ export function HeroGSAP() {
             });
             gsap.set(textRef.current, { opacity: 0, x: 90 });
             gsap.set(hintRef.current, { opacity: 0 });
-            gsap.set(descRef.current, { opacity: 0, yPercent: -50, y: 30 }); // Start 30px lower than vertical center
+            gsap.set(descRef.current, { opacity: 0, y: 30 }); // Start slightly lower, anchored bottom
             gsap.set(topLeftTextRef.current, { opacity: 0, x: -40 });
 
             /* ──────────────────────────────────────────────────────────────
@@ -87,7 +87,7 @@ export function HeroGSAP() {
                     trigger: wrapperRef.current,
                     start: "top top",
                     end: "bottom bottom",   // 300vh of scroll distance
-                    scrub: 1.2,             // 1.2 lag feels more solid and less rubber-bandy than 1.8
+                    scrub: 2.5,             // Increased scrub lag to 2.5 for incredibly smooth, floating animation (fixes "atak raha hai")
                     invalidateOnRefresh: true,
                 },
             });
@@ -201,38 +201,51 @@ export function HeroGSAP() {
                             zIndex: 18,
                             opacity: 0,   // GSAP reveals this
                             pointerEvents: "none",
-                            maxWidth: "45vw",
+                            maxWidth: "40vw",
                         }}
                     >
-                        {/* Interactive Badge */}
-                        <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-white/10 bg-[#030712]/50 backdrop-blur-xl mb-8 shadow-2xl">
-                            <svg className="w-4 h-4 text-[#c084fc]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2L12 10M12 14L12 22M2 12L10 12M14 12L22 12M10.5 4.5L13.5 7.5M10.5 19.5L13.5 16.5M4.5 10.5L7.5 13.5M19.5 10.5L16.5 13.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M12 12L12.01 12" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                            <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[0.3em] text-white/90">
-                                VyorAI Neural Interface
-                            </span>
+                        {/* Glassmorphism wrapper container */}
+                        <div
+                            style={{
+                                background: "rgba(8, 8, 18, 0.65)",
+                                backdropFilter: "blur(20px)",
+                                WebkitBackdropFilter: "blur(20px)",
+                                border: "1px solid rgba(255,255,255,0.08)",
+                                borderRadius: "24px",
+                                padding: "clamp(24px, 3vw, 40px)",
+                                boxShadow: "0 12px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05)",
+                            }}
+                        >
+                            {/* Interactive Badge */}
+                            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-white/10 bg-[#030712]/50 backdrop-blur-xl mb-6 shadow-xl">
+                                <svg className="w-3.5 h-3.5 text-[#c084fc]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L12 10M12 14L12 22M2 12L10 12M14 12L22 12M10.5 4.5L13.5 7.5M10.5 19.5L13.5 16.5M4.5 10.5L7.5 13.5M19.5 10.5L16.5 13.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M12 12L12.01 12" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                                <span className="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-[0.25em] text-white/90">
+                                    VyorAI Neural Interface
+                                </span>
+                            </div>
+
+                            {/* OS Version Subtitle */}
+                            <h3 className="text-[#a855f7] text-[11px] sm:text-[12px] font-bold tracking-[0.4em] uppercase mb-4 ml-1">
+                                Autonomous OS v4.0
+                            </h3>
+
+                            {/* Main Headline (Reduced Size) */}
+                            <h1 className="text-3xl sm:text-4xl lg:text-[3.2rem] font-black leading-[1.05] tracking-[-0.03em] text-white/95">
+                                AI That{" "}
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#c084fc] via-[#a855f7] to-[#818cf8]">
+                                    Understands,
+                                </span><br />
+                                <span className="text-transparent bg-clip-text bg-[#a855f7]">
+                                    Decides
+                                </span><br />
+                                <span className="text-transparent bg-clip-text bg-[#818cf8]">
+                                    &amp; Executes
+                                </span>
+                            </h1>
                         </div>
-
-                        {/* OS Version Subtitle */}
-                        <h3 className="text-[#a855f7] text-[12px] sm:text-[13px] font-bold tracking-[0.45em] uppercase mb-4 ml-1">
-                            Autonomous OS v4.0
-                        </h3>
-
-                        {/* Main Headline */}
-                        <h1 className="text-5xl sm:text-6xl lg:text-[5rem] font-black leading-[0.98] tracking-[-0.04em] text-white/95 whitespace-nowrap">
-                            AI That{" "}
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#c084fc] via-[#a855f7] to-[#818cf8]">
-                                Understands,
-                            </span><br />
-                            <span className="text-transparent bg-clip-text bg-[#a855f7]">
-                                Decides
-                            </span><br />
-                            <span className="text-transparent bg-clip-text bg-[#818cf8]">
-                                &amp; Executes
-                            </span>
-                        </h1>
                     </div>
 
                     {/* ── LOGO (GSAP owns all transforms) ─────────────────── */}
@@ -269,8 +282,8 @@ export function HeroGSAP() {
                         ref={descRef}
                         style={{
                             position: "absolute",
-                            right: "5%",
-                            top: "50%",
+                            right: "6%",
+                            bottom: "8%",
                             width: "clamp(300px, 32vw, 480px)",
                             zIndex: 18,
                             opacity: 0,
