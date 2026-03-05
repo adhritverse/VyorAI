@@ -191,6 +191,86 @@ export function HeroGSAP() {
                     {/* Subtle grid lines */}
                     <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#80808009_1px,transparent_1px),linear-gradient(to_bottom,#80808009_1px,transparent_1px)] bg-[size:44px_44px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_40%,transparent_100%)]" />
 
+                    {/* ── Animated Infinity Background ── */}
+                    <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center overflow-hidden">
+                        {/* Wrapper for positioning and massive scale to fill the blank spaces */}
+                        <div className="absolute w-[200vw] sm:w-[160vw] md:w-[130vw] h-auto rotate-[30deg] md:rotate-[-15deg] opacity-80 mix-blend-screen left-[-30vw] md:left-[-15vw] top-[5vh] md:top-[-10vh]">
+                            <svg
+                                viewBox="0 0 1000 500"
+                                className="w-full h-full text-white/5"
+                                xmlns="http://www.w3.org/2000/svg"
+                                preserveAspectRatio="xMidYMid meet"
+                            >
+                                <defs>
+                                    <linearGradient id="infGradSlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stopColor="#818cf8" stopOpacity="0" />
+                                        <stop offset="50%" stopColor="#c084fc" stopOpacity="1" />
+                                        <stop offset="100%" stopColor="#e879f9" stopOpacity="0" />
+                                    </linearGradient>
+                                    <linearGradient id="infGradFast" x1="100%" y1="100%" x2="0%" y2="0%">
+                                        <stop offset="0%" stopColor="#38bdf8" stopOpacity="0" />
+                                        <stop offset="50%" stopColor="#818cf8" stopOpacity="1" />
+                                        <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
+                                    </linearGradient>
+                                    <linearGradient id="infGradBase" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stopColor="#6366f1" stopOpacity="0.25" />
+                                        <stop offset="50%" stopColor="#a855f7" stopOpacity="0.15" />
+                                        <stop offset="100%" stopColor="#c084fc" stopOpacity="0.25" />
+                                    </linearGradient>
+                                    <filter id="glowLight">
+                                        <feGaussianBlur stdDeviation="8" result="coloredBlur" />
+                                        <feMerge>
+                                            <feMergeNode in="coloredBlur" />
+                                            <feMergeNode in="SourceGraphic" />
+                                        </feMerge>
+                                    </filter>
+                                    <filter id="glowHeavy">
+                                        <feGaussianBlur stdDeviation="16" result="coloredBlur" />
+                                        <feMerge>
+                                            <feMergeNode in="coloredBlur" />
+                                            <feMergeNode in="SourceGraphic" />
+                                        </feMerge>
+                                    </filter>
+                                </defs>
+
+                                {/* Base thick track */}
+                                <path
+                                    d="M 500 250 C 400 150, 250 100, 150 150 C 50 200, 50 300, 150 350 C 250 400, 400 350, 500 250 C 600 150, 750 100, 850 150 C 950 200, 950 300, 850 350 C 750 400, 600 350, 500 250 Z"
+                                    fill="none"
+                                    stroke="url(#infGradBase)"
+                                    strokeWidth="35"
+                                    strokeLinecap="round"
+                                />
+
+                                {/* Glowing trail 1 (Slow, Purple) */}
+                                <path
+                                    d="M 500 250 C 400 150, 250 100, 150 150 C 50 200, 50 300, 150 350 C 250 400, 400 350, 500 250 C 600 150, 750 100, 850 150 C 950 200, 950 300, 850 350 C 750 400, 600 350, 500 250 Z"
+                                    fill="none"
+                                    stroke="url(#infGradSlow)"
+                                    strokeWidth="14"
+                                    strokeLinecap="round"
+                                    pathLength="100"
+                                    strokeDasharray="30 70"
+                                    className="infinity-draw-slow"
+                                    filter="url(#glowLight)"
+                                />
+
+                                {/* Glowing trail 2 (Fast, Blue/Indigo) */}
+                                <path
+                                    d="M 500 250 C 400 150, 250 100, 150 150 C 50 200, 50 300, 150 350 C 250 400, 400 350, 500 250 C 600 150, 750 100, 850 150 C 950 200, 950 300, 850 350 C 750 400, 600 350, 500 250 Z"
+                                    fill="none"
+                                    stroke="url(#infGradFast)"
+                                    strokeWidth="8"
+                                    strokeLinecap="round"
+                                    pathLength="100"
+                                    strokeDasharray="15 85"
+                                    className="infinity-draw-fast"
+                                    filter="url(#glowHeavy)"
+                                />
+                            </svg>
+                        </div>
+                    </div>
+
                     {/* ── TOP LEFT TEXT (visible on initial load) ──────────── */}
                     <div
                         ref={topLeftTextRef}
@@ -262,7 +342,7 @@ export function HeroGSAP() {
                     >
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
-                            src="/LOGO.png"
+                            src="/LOGO-1.jpeg"
                             alt="VyorAI Logo"
                             style={{
                                 display: "block",

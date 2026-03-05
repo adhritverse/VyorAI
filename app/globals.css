@@ -168,14 +168,32 @@
 }
 
 /* ───── Animated Infinity Symbol ───── */
-@keyframes infinityOrbit {
+@keyframes infinityDrawSlow {
   0% {
-    stroke-dashoffset: 0;
+    stroke-dashoffset: 100;
   }
 
   100% {
-    stroke-dashoffset: -1900;
+    stroke-dashoffset: 0;
   }
+}
+
+@keyframes infinityDrawFast {
+  0% {
+    stroke-dashoffset: 100;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.infinity-draw-slow {
+  animation: infinityDrawSlow 15s linear infinite;
+}
+
+.infinity-draw-fast {
+  animation: infinityDrawFast 8s linear infinite;
 }
 
 /* ───── GSAP Hero Component ───── */
