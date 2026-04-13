@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Github, Twitter, Linkedin, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -46,9 +47,11 @@ export function Footer() {
                         >
                             <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-b from-white/10 to-transparent p-[1px] group-hover:scale-105 transition-transform duration-500">
                                 <div className="w-full h-full rounded-xl sm:rounded-2xl bg-[#0A0A0A] border border-white/10 group-hover:border-emerald-500/30 overflow-hidden flex items-center justify-center p-1.5 sm:p-2 transition-colors">
-                                    <img
+                                    <Image
                                         src="/LOGO.png"
                                         alt="VyorAI Logo"
+                                        width={48}
+                                        height={48}
                                         className="w-full h-full object-contain group-hover:brightness-110 transition-all"
                                     />
                                 </div>
@@ -58,7 +61,7 @@ export function Footer() {
                             </span>
                         </Link>
                         <p className="text-emerald-100/60 leading-relaxed font-light text-sm sm:text-base lg:text-lg max-w-sm">
-                            The global AI infrastructure platform for building intelligent
+                            The AI infrastructure platform for building intelligent
                             applications and automating complex workflows.
                         </p>
                     </motion.div>
@@ -163,10 +166,6 @@ export function Footer() {
                 >
                     <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-xs sm:text-sm text-gray-500 font-medium text-center sm:text-left">
                         <p>© {new Date().getFullYear()} VyorAI. All rights reserved.</p>
-                        <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-emerald-500/30" />
-                        <p className="flex items-center gap-2">
-                            Built with <span className="text-emerald-500">♥</span> in <span className="text-white">India</span>
-                        </p>
                     </div>
 
                     <div className="flex gap-4">

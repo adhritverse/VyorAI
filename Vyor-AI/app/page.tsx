@@ -1,10 +1,24 @@
 import { Navbar } from "@/components/Navbar";
 import { HeroGSAP } from "@/components/HeroGSAP";
 import { Marquee } from "@/components/Marquee";
-import { Products } from "@/components/Products";
-import { ApiPlatform } from "@/components/ApiPlatform";
-import { About } from "@/components/About";
-import { Footer } from "@/components/Footer";
+import dynamic from "next/dynamic";
+
+// Lazy-load below-fold components — they won't block initial paint
+const Products = dynamic(() => import("@/components/Products").then(m => ({ default: m.Products })), {
+    loading: () => <div className="min-h-screen bg-[#030712]" />,
+});
+const ApiPlatform = dynamic(() => import("@/components/ApiPlatform").then(m => ({ default: m.ApiPlatform })), {
+    loading: () => <div className="min-h-[60vh] bg-[#030712]" />,
+});
+const About = dynamic(() => import("@/components/About").then(m => ({ default: m.About })), {
+    loading: () => <div className="min-h-[60vh] bg-[#030712]" />,
+});
+const Footer = dynamic(() => import("@/components/Footer").then(m => ({ default: m.Footer })), {
+    loading: () => <div className="h-96 bg-[#030712]" />,
+});
+const FAQ = dynamic(() => import("@/components/FAQ").then(m => ({ default: m.FAQ })), {
+    loading: () => <div className="min-h-[40vh] bg-[#030712]" />,
+});
 
 export default function Home() {
     return (
@@ -16,6 +30,7 @@ export default function Home() {
                 <Products />
                 <ApiPlatform />
                 <About />
+                <FAQ />
             </main>
             <Footer />
         </>

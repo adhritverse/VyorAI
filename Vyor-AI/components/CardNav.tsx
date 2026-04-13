@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 interface NavLink {
@@ -60,7 +61,7 @@ export default function CardNav({
           <Link href="/" className="z-50 flex items-center shrink-0">
             {logo ? (
               <div className="bg-white/5 p-2 rounded-xl flex items-center justify-center hover:bg-white/10 transition-colors border border-white/5">
-                <img src={logo} alt={logoAlt} className="h-7 md:h-9 w-auto object-contain" />
+                <Image src={logo} alt={logoAlt} width={120} height={36} className="h-7 md:h-9 w-auto object-contain" priority />
               </div>
             ) : (
               <span className="font-extrabold text-xl md:text-2xl tracking-tight" style={{ color: baseColor }}>

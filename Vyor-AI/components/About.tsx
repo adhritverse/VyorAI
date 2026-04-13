@@ -38,12 +38,11 @@ const staggerContainer = {
 };
 
 const slideUpBlur = {
-    hidden: { opacity: 0, y: 60, filter: "blur(12px)" },
+    hidden: { opacity: 0, y: 30 },
     show: {
         opacity: 1,
         y: 0,
-        filter: "blur(0px)",
-        transition: { duration: 1, ease: smoothEase },
+        transition: { duration: 0.4, ease: "easeOut" },
     },
 };
 
@@ -139,10 +138,10 @@ export function About() {
                         {team.map((member, i) => (
                             <motion.div
                                 key={i}
-                                initial={{ opacity: 0, y: 60, filter: "blur(12px)" }}
-                                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-50px" }}
-                                transition={{ duration: 1, ease: smoothEase, delay: i * 0.15 }}
+                                transition={{ duration: 0.5, ease: "easeOut", delay: i * 0.1 }}
                                 className="group relative"
                             >
                                 {/* Premium Glow effect */}

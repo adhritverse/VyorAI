@@ -103,7 +103,7 @@ export function ApiPlatform() {
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
+                        transition={{ duration: 0.4 }}
                         className="lg:w-5/12 w-full"
                     >
                         <div className="flex items-center gap-2 sm:gap-3 mb-5 sm:mb-8">
@@ -179,7 +179,7 @@ export function ApiPlatform() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
+                        transition={{ duration: 0.4 }}
                         className="lg:w-7/12 w-full perspective-[2000px]"
                     >
                         <div className="relative group">
@@ -253,7 +253,7 @@ export function ApiPlatform() {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
+                    transition={{ duration: 0.4 }}
                     className="mt-10 sm:mt-16 md:mt-20 w-full relative group p-6 sm:p-8 md:p-12 rounded-2xl sm:rounded-[32px] bg-[#0C0C0C] border border-emerald-500/10 backdrop-blur-3xl overflow-hidden hover:border-emerald-500/20 transition-colors shadow-[0_0_40px_rgba(16,185,129,0.05)] flex flex-col items-center md:flex-row justify-between gap-6 sm:gap-8"
                 >
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-emerald-500/5 blur-[120px] -z-10 group-hover:bg-emerald-500/10 transition-all duration-700" />

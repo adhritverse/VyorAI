@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import React from "react";
 
 const reviews = [
@@ -65,7 +66,7 @@ const ReviewCard = ({
       )}
     >
       <div className="flex flex-row items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
-        <img className="rounded-full border border-white/10 w-10 h-10 sm:w-12 sm:h-12" width="48" height="48" alt={name} src={img} />
+        <Image className="rounded-full border border-white/10 w-10 h-10 sm:w-12 sm:h-12" width={48} height={48} alt={name} src={img} />
         <div className="flex flex-col">
           <figcaption className="text-[13px] sm:text-sm font-semibold text-white tracking-wide">
             {name}

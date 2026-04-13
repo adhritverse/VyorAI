@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Camera, HeartPulse, Zap, Sparkles, Terminal, Activity, CheckCircle2, Puzzle, Shirt, BoxSelect, Fingerprint } from "lucide-react";
+import Image from "next/image";
 import React, { useRef, useState } from "react";
 
 const products = [
@@ -207,9 +208,11 @@ function TryOnDemo() {
 
             <div className="relative w-48 h-64 sm:w-56 sm:h-72 rounded-xl overflow-hidden border border-white/10 shadow-2xl group">
                 {/* Photorealistic Model Base Image */}
-                <img
+                <Image
                     src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=600"
                     alt="Fashion Model"
+                    width={600}
+                    height={800}
                     className="w-full h-full object-cover object-center"
                 />
 
@@ -545,7 +548,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: product.delay, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: product.delay * 0.5, duration: 0.4, ease: "easeOut" }}
             className={`group relative rounded-2xl md:rounded-[20px] bg-[#080808] overflow-hidden flex flex-col ${isWide ? 'md:flex-row' : ''} ${product.span} ${isFullWidth ? 'md:h-[460px]' : isWide ? 'md:h-[380px]' : ''} transition-all duration-500 hover:border-white/10 hover:shadow-emerald-500/10 ${theme.border} ${theme.glow} border md:border-white/5 md:shadow-2xl`}
         >
             {/* Interactive Spotlight Glow — desktop only */}
