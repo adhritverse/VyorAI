@@ -1,0 +1,14 @@
+Hi, we’re launching our SaaS product tomorrow. We currently have a basic version of the website ready, but we’re planning to upgrade it.
+
+Our inspiration is landing pages like Supabase and Render—modern, premium SaaS design with card-based layouts and Lucide React icons. We want the overall feel to be polished and high-end.
+
+We already have an existing GitHub repository from our previous version, which includes an “Infinity component” that is central to our product. I’d like you to first review and understand that component, as it’s a key part of what we’re building.
+
+Project name: VyorAI
+Website: https://vyorai.com/
+
+Repository: https://github.com/deepanshu076/Vyor-AI.git
+
+Please go through the repo and the site, understand the product, and then tell me what you think the product does and how it is positioned.
+
+next js is our tech stack 
