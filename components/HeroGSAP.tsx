@@ -180,23 +180,6 @@ export function HeroGSAP() {
                 </motion.div>
             </div>
 
-            {/* Scroll Indicator — Desktop visual anchor */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.4, duration: 1 }}
-                className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
-            >
-                <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.4em] text-vyor-violet/50 font-bold">
-                    Explore
-                </span>
-                <motion.div
-                    animate={{ y: [0, 6, 0] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                >
-                    <ChevronDown className="w-4 h-4 text-vyor-violet/50" />
-                </motion.div>
-            </motion.div>
         </section>
     );
 }
