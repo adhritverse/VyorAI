@@ -84,7 +84,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className="dark" suppressHydrationWarning>
-            <body className={`${inter.className} min-h-screen antialiased bg-[#0B0F19] text-white selection:bg-purple-500/30 overflow-x-hidden`} suppressHydrationWarning>
+            <body className={`${inter.className} min-h-screen antialiased bg-vyor-gradient text-white selection:bg-vyor-purple/30 overflow-x-hidden`} suppressHydrationWarning>
                 <StructuredData />
                 {children}
             </body>

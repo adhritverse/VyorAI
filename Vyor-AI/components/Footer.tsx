@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Github, Twitter, Linkedin, ArrowUpRight } from "lucide-react";
+import { Linkedin, Instagram, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 const containerVariants = {
@@ -27,9 +27,9 @@ const itemVariants = {
 
 export function Footer() {
     return (
-        <footer className="relative bg-[#030712] pt-20 sm:pt-32 pb-8 sm:pb-12 overflow-hidden border-t border-white/[0.05]">
+        <footer className="relative bg-[#0D1B2A] pt-20 sm:pt-32 pb-8 sm:pb-12 overflow-hidden border-t border-white/[0.05]">
             {/* Ambient Background Glow */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] sm:w-[800px] h-[300px] sm:h-[400px] bg-emerald-600/10 blur-[120px] pointer-events-none rounded-full" />
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] sm:w-[800px] h-[300px] sm:h-[400px] bg-vyor-navy/10 blur-[120px] pointer-events-none rounded-full" />
 
             <div className="container mx-auto px-4 sm:px-6 relative z-10">
                 <motion.div
@@ -46,7 +46,7 @@ export function Footer() {
                             className="inline-flex items-center gap-3 mb-5 sm:mb-8 group"
                         >
                             <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-b from-white/10 to-transparent p-[1px] group-hover:scale-105 transition-transform duration-500">
-                                <div className="w-full h-full rounded-xl sm:rounded-2xl bg-[#0A0A0A] border border-white/10 group-hover:border-emerald-500/30 overflow-hidden flex items-center justify-center p-1.5 sm:p-2 transition-colors">
+                                <div className="w-full h-full rounded-xl sm:rounded-2xl bg-[#0F1A2E] border border-white/10 group-hover:border-vyor-purple/30 overflow-hidden flex items-center justify-center p-1.5 sm:p-2 transition-colors">
                                     <Image
                                         src="/LOGO.png"
                                         alt="VyorAI Logo"
@@ -56,11 +56,11 @@ export function Footer() {
                                     />
                                 </div>
                             </div>
-                            <span className="text-xl sm:text-3xl font-black tracking-tight text-white group-hover:text-emerald-400 transition-colors duration-500">
+                            <span className="text-xl sm:text-3xl font-black tracking-tight text-white group-hover:text-vyor-violet transition-colors duration-500">
                                 VyorAI
                             </span>
                         </Link>
-                        <p className="text-emerald-100/60 leading-relaxed font-light text-sm sm:text-base lg:text-lg max-w-sm">
+                        <p className="text-vyor-silver/60 leading-relaxed font-light text-sm sm:text-base lg:text-lg max-w-sm">
                             The AI infrastructure platform for building intelligent
                             applications and automating complex workflows.
                         </p>
@@ -73,22 +73,22 @@ export function Footer() {
                         </h3>
                         <ul className="flex flex-col gap-3 sm:gap-4">
                             {[
-                                "Virtual Try-On",
-                                "AI Studio Catalog",
-                                "Stress Detection AI",
-                                "Omni-Engine",
+                                { name: "Virtual Try-On", href: "#products" },
+                                { name: "Catalog Gen", href: "#products" },
+                                { name: "Model Swaps", href: "#products" },
+                                { name: "Integrations", href: "#products" },
                             ].map((item) => (
-                                <li key={item}>
+                                <li key={item.name}>
                                     <Link
-                                        href="#"
-                                        className="group text-emerald-100/50 hover:text-white transition-colors duration-300 font-light text-[13px] sm:text-base"
+                                        href={item.href}
+                                        className="group text-vyor-silver/50 hover:text-white transition-colors duration-300 font-light text-[13px] sm:text-base"
                                     >
                                         <span className="relative overflow-hidden inline-block">
                                             <span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">
-                                                {item}
+                                                {item.name}
                                             </span>
-                                            <span className="absolute left-0 top-0 inline-block transition-transform duration-300 translate-y-full group-hover:translate-y-0 text-emerald-400">
-                                                {item}
+                                            <span className="absolute left-0 top-0 inline-block transition-transform duration-300 translate-y-full group-hover:translate-y-0 text-vyor-violet">
+                                                {item.name}
                                             </span>
                                         </span>
                                     </Link>
@@ -103,25 +103,28 @@ export function Footer() {
                             Developers
                         </h3>
                         <ul className="flex flex-col gap-3 sm:gap-4">
-                            {["API Platform", "Documentation", "SDKs", "Pricing"].map(
-                                (item) => (
-                                    <li key={item}>
-                                        <Link
-                                            href="#"
-                                            className="group text-emerald-100/50 hover:text-white transition-colors duration-300 font-light text-[13px] sm:text-base"
-                                        >
-                                            <span className="relative overflow-hidden inline-block">
-                                                <span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">
-                                                    {item}
-                                                </span>
-                                                <span className="absolute left-0 top-0 inline-block transition-transform duration-300 translate-y-full group-hover:translate-y-0 text-emerald-400">
-                                                    {item}
-                                                </span>
+                            {[
+                                { name: "API Platform", href: "#api" },
+                                { name: "Documentation", href: "#api" },
+                                { name: "SDKs", href: "#api" },
+                                { name: "Pricing", href: "#api" },
+                            ].map((item) => (
+                                <li key={item.name}>
+                                    <Link
+                                        href={item.href}
+                                        className="group text-vyor-silver/50 hover:text-white transition-colors duration-300 font-light text-[13px] sm:text-base"
+                                    >
+                                        <span className="relative overflow-hidden inline-block">
+                                            <span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">
+                                                {item.name}
                                             </span>
-                                        </Link>
-                                    </li>
-                                ),
-                            )}
+                                            <span className="absolute left-0 top-0 inline-block transition-transform duration-300 translate-y-full group-hover:translate-y-0 text-vyor-violet">
+                                                {item.name}
+                                            </span>
+                                        </span>
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </motion.div>
 
@@ -132,21 +135,21 @@ export function Footer() {
                         </h3>
                         <ul className="grid grid-cols-2 sm:flex sm:flex-col gap-3 sm:gap-4">
                             {[
-                                { name: "About Us", href: "#about" },
+                                { name: "About Us", href: "/team" },
                                 { name: "Careers", href: "#careers" },
-                                { name: "Contact", href: "#" },
-                                { name: "Privacy Policy", href: "#" },
+                                { name: "Contact", href: "#faq" },
+                                { name: "Privacy Policy", href: "#faq" },
                             ].map((item) => (
                                 <li key={item.name}>
                                     <Link
                                         href={item.href}
-                                        className="group text-emerald-100/50 hover:text-white transition-colors duration-300 font-light text-[13px] sm:text-base"
+                                        className="group text-vyor-silver/50 hover:text-white transition-colors duration-300 font-light text-[13px] sm:text-base"
                                     >
                                         <span className="relative overflow-hidden inline-block">
                                             <span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">
                                                 {item.name}
                                             </span>
-                                            <span className="absolute left-0 top-0 inline-block transition-transform duration-300 translate-y-full group-hover:translate-y-0 text-emerald-400">
+                                            <span className="absolute left-0 top-0 inline-block transition-transform duration-300 translate-y-full group-hover:translate-y-0 text-vyor-violet">
                                                 {item.name}
                                             </span>
                                         </span>
@@ -170,12 +173,15 @@ export function Footer() {
 
                     <div className="flex gap-4">
                         {[
-                            { icon: Github, href: "#", label: "GitHub" },
-                            { icon: Twitter, href: "#", label: "Twitter" },
                             {
                                 icon: Linkedin,
                                 href: "https://www.linkedin.com/company/vyorai/",
                                 label: "LinkedIn",
+                            },
+                            {
+                                icon: Instagram,
+                                href: "https://www.instagram.com/vyor.ai?igsh=bmhvdmZveGhub2Qw",
+                                label: "Instagram",
                             },
                         ].map((social, i) => (
                             <Link
@@ -188,7 +194,7 @@ export function Footer() {
                                         : undefined
                                 }
                                 aria-label={social.label}
-                                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-gray-400 hover:bg-white/[0.06] hover:text-emerald-400 hover:border-emerald-500/30 transition-all duration-300"
+                                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-gray-400 hover:bg-white/[0.06] hover:text-vyor-violet hover:border-vyor-purple/30 transition-all duration-300"
                             >
                                 <social.icon className="w-4 h-4" />
                             </Link>
@@ -199,3 +205,4 @@ export function Footer() {
         </footer>
     );
 }
+

@@ -43,8 +43,8 @@ const products = [
         icon: Activity,
         span: "md:col-span-1",
         delay: 0.3,
-        theme: "emerald",
-        glowColor: "rgba(16,185,129,0.15)"
+        theme: "vyor",
+        glowColor: "rgba(71,84,106,0.15)"
     },
     {
         id: "omni",
@@ -127,23 +127,23 @@ function InfinityDemo() {
     }, []);
 
     return (
-        <div className="relative w-full h-full flex flex-col items-center justify-center bg-[#09090b] overflow-hidden p-3 sm:p-6">
+        <div className="relative w-full h-full flex flex-col items-center justify-center bg-[#0D1729] overflow-hidden p-3 sm:p-6">
             {/* Background dashboard — hidden on mobile for cleanliness */}
             <div className="absolute inset-x-4 lg:inset-x-8 inset-y-8 border border-white/5 rounded-xl bg-white/[0.01] flex-col overflow-hidden opacity-40 pointer-events-none filter blur-[2px] hidden sm:flex">
                 <div className="w-full h-12 border-b border-white/5 flex items-center px-6 gap-4 bg-white/[0.01]">
                     <div className="w-24 h-4 bg-white/10 rounded-full" />
                     <div className="w-16 h-2 bg-white/5 rounded-full" />
                 </div>
-                <div className="p-6 grid grid-cols-2 md:grid-cols-3 gap-6 flex-1 opacity-50">
+                <div className="p-6 grid grid-cols-2 md:grid-cols-3 gap-6 flex-1 opacity-80">
                     <div className="bg-white/5 rounded-xl w-full h-32 md:h-40" />
                     <div className="bg-white/5 rounded-xl w-full h-32 md:h-40 hidden sm:block" />
                     <div className="bg-white/5 rounded-xl w-full h-32 md:h-40 hidden md:block" />
                 </div>
             </div>
 
-            <div className="relative w-full max-w-[290px] sm:max-w-[320px] md:max-w-[420px] lg:max-w-md bg-[#0A0A0A] border border-emerald-500/20 rounded-2xl md:rounded-[24px] shadow-[0_0_50px_rgba(16,185,129,0.1)] flex flex-col z-10 overflow-hidden">
-                <div className="px-3 py-2 sm:p-3 md:p-4 border-b border-white/5 bg-[#0A0A0A] bg-gradient-to-r from-emerald-500/10 to-transparent flex items-center gap-2 sm:gap-3 relative z-20 shrink-0">
-                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_15px_rgba(52,211,153,1)]" />
+            <div className="relative w-full max-w-[290px] sm:max-w-[320px] md:max-w-[420px] lg:max-w-md bg-[#0F1A2E] border border-vyor-purple/20 rounded-2xl md:rounded-[24px] shadow-[0_0_50px_rgba(71,84,106,0.1)] flex flex-col z-10 overflow-hidden">
+                <div className="px-3 py-2 sm:p-3 md:p-4 border-b border-white/5 bg-[#0F1A2E] bg-gradient-to-r from-vyor-purple/10 to-transparent flex items-center gap-2 sm:gap-3 relative z-20 shrink-0">
+                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-vyor-violet animate-pulse shadow-[0_0_15px_rgba(124,92,252,1)]" />
                     <span className="text-white font-medium text-xs sm:text-sm tracking-tight opacity-90">VyorAI Assistant</span>
                 </div>
 
@@ -162,20 +162,20 @@ function InfinityDemo() {
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            className="bg-emerald-500/10 border border-emerald-500/20 rounded-xl sm:rounded-2xl rounded-bl-none p-2.5 sm:p-3.5 md:p-4 self-start max-w-[92%] text-white shadow-lg backdrop-blur-md font-light leading-relaxed"
+                            className="bg-vyor-purple/15 border border-vyor-purple/20 rounded-xl sm:rounded-2xl rounded-bl-none p-2.5 sm:p-3.5 md:p-4 self-start max-w-[92%] text-white shadow-lg backdrop-blur-md font-light leading-relaxed"
                         >
                             <div className="flex gap-2 sm:gap-3 items-start">
-                                <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-emerald-400 mt-0.5 shrink-0" />
+                                <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-vyor-violet mt-0.5 shrink-0" />
                                 <div className="leading-relaxed">
                                     {assistantTyped}
-                                    <span className={`inline-block w-1 sm:w-1.5 h-3 sm:h-3.5 md:h-4 ml-0.5 sm:ml-1 bg-emerald-400 align-middle ${step === 3 ? "animate-pulse" : "hidden"}`} />
+                                    <span className={`inline-block w-1 sm:w-1.5 h-3 sm:h-3.5 md:h-4 ml-0.5 sm:ml-1 bg-vyor-violet align-middle ${step === 3 ? "animate-pulse" : "hidden"}`} />
                                 </div>
                             </div>
                         </motion.div>
                     )}
                 </div>
 
-                <div className="px-2.5 py-2 sm:p-3 md:p-4 border-t border-white/5 flex gap-2 items-center bg-[#0A0A0A] relative z-20 shrink-0">
+                <div className="px-2.5 py-2 sm:p-3 md:p-4 border-t border-white/5 flex gap-2 items-center bg-[#0F1A2E] relative z-20 shrink-0">
                     <div className="flex-1 bg-white/5 border border-white/10 rounded-full h-8 sm:h-10 md:h-12 px-3 sm:px-4 flex items-center relative overflow-hidden">
                         {(step === 0 || step === 1) && (
                             <span className="text-white/80 text-[11px] sm:text-sm tracking-wide truncate">
@@ -192,7 +192,7 @@ function InfinityDemo() {
                             <span className="text-white/30 text-[11px] sm:text-sm tracking-wide">Type your request...</span>
                         )}
                     </div>
-                    <div className={`w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${step === 1 ? 'bg-emerald-500 text-white shadow-[0_0_15px_rgba(16,185,129,0.5)]' : 'bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500 hover:text-white'}`}>
+                    <div className={`w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${step === 1 ? 'bg-vyor-purple text-white shadow-[0_0_15px_rgba(71,84,106,0.5)]' : 'bg-vyor-purple/20 text-vyor-violet hover:bg-vyor-purple hover:text-white'}`}>
                         <span className="text-xs sm:text-sm font-bold">↵</span>
                     </div>
                 </div>
@@ -203,7 +203,7 @@ function InfinityDemo() {
 
 function TryOnDemo() {
     return (
-        <div className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden bg-[#09090b]">
+        <div className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden bg-[#0D1729]">
             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,black,transparent)]" />
 
             <div className="relative w-48 h-64 sm:w-56 sm:h-72 rounded-xl overflow-hidden border border-white/10 shadow-2xl group">
@@ -217,10 +217,10 @@ function TryOnDemo() {
                 />
 
                 {/* AI Mesh Overlay overlay (simulating garment recognition) */}
-                <div className="absolute inset-0 bg-emerald-500/10 mix-blend-color-dodge opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+                <div className="absolute inset-0 bg-vyor-purple/15 mix-blend-color-dodge opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
 
                 <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black,transparent)]">
-                    <svg viewBox="0 0 100 100" className="w-full h-full opacity-30 stroke-emerald-400 stroke-[0.5] fill-none" preserveAspectRatio="none">
+                    <svg viewBox="0 0 100 100" className="w-full h-full opacity-30 stroke-vyor-purple stroke-[0.5] fill-none" preserveAspectRatio="none">
                         {Array.from({ length: 15 }).map((_, i) => (
                             <line key={`h-${i}`} x1="0" y1={i * 10} x2="100" y2={i * 10} className="hidden group-hover:block" />
                         ))}
@@ -232,37 +232,37 @@ function TryOnDemo() {
 
                 {/* Animated Scanner Laser */}
                 <motion.div
-                    className="absolute left-0 right-0 h-0.5 bg-emerald-400 shadow-[0_0_15px_3px_rgba(52,211,153,0.8)] z-20"
+                    className="absolute left-0 right-0 h-0.5 bg-vyor-violet shadow-[0_0_15px_3px_rgba(124,92,252,0.8)] z-20"
                     animate={{ top: ['0%', '100%', '0%'] }}
                     transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
                 />
 
                 {/* Gradient tracking behind laser */}
                 <motion.div
-                    className="absolute inset-x-0 h-24 bg-gradient-to-t from-emerald-500/30 to-transparent z-10 pointers-events-none mix-blend-overlay"
+                    className="absolute inset-x-0 h-24 bg-gradient-to-t from-vyor-purple/30 to-transparent z-10 pointers-events-none mix-blend-overlay"
                     animate={{ top: ['-24%', '100%', '-24%'] }}
                     transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
                 />
 
                 {/* Scanning points highlighting features */}
-                <motion.div className="absolute top-[35%] left-[40%] w-2 h-2 rounded-full border border-emerald-400 bg-emerald-400/20 shadow-[0_0_10px_rgba(52,211,153,0.8)]" animate={{ scale: [1, 1.5, 1], opacity: [0, 1, 0] }} transition={{ duration: 2, repeat: Infinity, delay: 0.5 }} />
-                <motion.div className="absolute top-[60%] right-[30%] w-2 h-2 rounded-full border border-emerald-400 bg-emerald-400/20 shadow-[0_0_10px_rgba(52,211,153,0.8)]" animate={{ scale: [1, 1.5, 1], opacity: [0, 1, 0] }} transition={{ duration: 2.5, repeat: Infinity, delay: 1 }} />
+                <motion.div className="absolute top-[35%] left-[40%] w-2 h-2 rounded-full border border-vyor-purple bg-vyor-purple/15 shadow-[0_0_10px_rgba(124,92,252,0.8)]" animate={{ scale: [1, 1.5, 1], opacity: [0, 1, 0] }} transition={{ duration: 2, repeat: Infinity, delay: 0.5 }} />
+                <motion.div className="absolute top-[60%] right-[30%] w-2 h-2 rounded-full border border-vyor-purple bg-vyor-purple/15 shadow-[0_0_10px_rgba(124,92,252,0.8)]" animate={{ scale: [1, 1.5, 1], opacity: [0, 1, 0] }} transition={{ duration: 2.5, repeat: Infinity, delay: 1 }} />
             </div>
 
             <motion.div
-                className="absolute top-6 right-6 bg-[#050505]/80 backdrop-blur-md border border-emerald-500/20 rounded px-2.5 py-1.5 flex items-center gap-2 shadow-[0_0_20px_rgba(16,185,129,0.15)] z-30"
+                className="absolute top-6 right-6 bg-[#0B1525]/80 backdrop-blur-md border border-vyor-purple/20 rounded px-2.5 py-1.5 flex items-center gap-2 shadow-[0_0_20px_rgba(71,84,106,0.15)] z-30"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: [0.8, 1, 1, 0.8], scale: [0.95, 1, 1, 0.95] }}
                 transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
             >
-                <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_5px_rgba(52,211,153,0.8)]" />
-                <span className="text-[10px] uppercase text-emerald-400 font-mono tracking-wider font-bold">Scanning Fabric</span>
+                <div className="w-1.5 h-1.5 bg-vyor-violet rounded-full animate-pulse shadow-[0_0_5px_rgba(124,92,252,0.8)]" />
+                <span className="text-[10px] uppercase text-vyor-violet font-mono tracking-wider font-bold">Scanning Fabric</span>
             </motion.div>
 
             {/* Bottom floating data bar */}
             <div className="absolute bottom-6 left-6 right-6 flex justify-between gap-2 overflow-hidden px-1">
-                <motion.div className="bg-[#050505]/60 backdrop-blur-md px-2 py-1 rounded text-[8px] sm:text-[9px] border border-white/5 font-mono text-neutral-400" animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 3, repeat: Infinity, delay: 0 }}>MATCH: 98.4%</motion.div>
-                <motion.div className="bg-[#050505]/60 backdrop-blur-md px-2 py-1 rounded text-[8px] sm:text-[9px] border border-white/5 font-mono text-emerald-400/80" animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 3, repeat: Infinity, delay: 1 }}>[GARMENT_ID_X7]</motion.div>
+                <motion.div className="bg-[#0B1525]/60 backdrop-blur-md px-2 py-1 rounded text-[8px] sm:text-[9px] border border-white/5 font-mono text-neutral-200" animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 3, repeat: Infinity, delay: 0 }}>MATCH: 98.4%</motion.div>
+                <motion.div className="bg-[#0B1525]/60 backdrop-blur-md px-2 py-1 rounded text-[8px] sm:text-[9px] border border-white/5 font-mono text-vyor-violet/80" animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 3, repeat: Infinity, delay: 1 }}>[GARMENT_ID_X7]</motion.div>
             </div>
         </div>
     );
@@ -282,39 +282,39 @@ function StressDemo() {
     }, []);
 
     return (
-        <div className="relative w-full h-full flex flex-col items-center justify-center p-6 gap-4 bg-[#09090b]">
-            <div className="w-full flex justify-between px-2 text-[10px] md:text-xs uppercase text-neutral-500 font-mono items-center">
+        <div className="relative w-full h-full flex flex-col items-center justify-center p-6 gap-4 bg-[#0D1729]">
+            <div className="w-full flex justify-between px-2 text-[10px] md:text-xs uppercase text-neutral-300 font-mono items-center">
                 <span className="flex items-center gap-2">
-                    <HeartPulse className="w-3.5 h-3.5 text-teal-500" />
+                    <HeartPulse className="w-3.5 h-3.5 text-vyor-purple" />
                     Live Biometrics
                 </span>
-                <span className="text-teal-400 font-bold bg-teal-500/10 px-2 py-0.5 rounded border border-teal-500/20">
+                <span className="text-vyor-violet font-bold bg-vyor-purple/15 px-2 py-0.5 rounded border border-vyor-purple/20">
                     <motion.span key={bpm} initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }}>{bpm}</motion.span> BPM
                 </span>
             </div>
-            <div className="w-full h-24 border border-white/5 bg-[#050505] rounded-[16px] flex items-center overflow-hidden relative shadow-inner">
+            <div className="w-full h-24 border border-white/5 bg-[#0B1525] rounded-[16px] flex items-center overflow-hidden relative shadow-inner">
                 <motion.div
                     className="absolute inset-y-0 w-[200%] flex"
                     animate={{ x: ["0%", "-50%"] }}
                     transition={{ ease: "linear", duration: 2, repeat: Infinity }}
                 >
                     <svg viewBox="0 0 200 50" className="w-[50%] h-full" preserveAspectRatio="none">
-                        <path d="M 0 25 L 40 25 L 50 10 L 60 40 L 70 25 L 120 25 L 130 15 L 140 35 L 150 25 L 200 25" fill="none" stroke="currentColor" strokeWidth="2" className="text-teal-500 shadow-[0_0_8px_rgba(20,184,166,0.6)]" />
+                        <path d="M 0 25 L 40 25 L 50 10 L 60 40 L 70 25 L 120 25 L 130 15 L 140 35 L 150 25 L 200 25" fill="none" stroke="currentColor" strokeWidth="2" className="text-vyor-purple shadow-[0_0_8px_rgba(20,184,166,0.6)]" />
                     </svg>
                     <svg viewBox="0 0 200 50" className="w-[50%] h-full" preserveAspectRatio="none">
-                        <path d="M 0 25 L 40 25 L 50 10 L 60 40 L 70 25 L 120 25 L 130 15 L 140 35 L 150 25 L 200 25" fill="none" stroke="currentColor" strokeWidth="2" className="text-teal-500 shadow-[0_0_8px_rgba(20,184,166,0.6)]" />
+                        <path d="M 0 25 L 40 25 L 50 10 L 60 40 L 70 25 L 120 25 L 130 15 L 140 35 L 150 25 L 200 25" fill="none" stroke="currentColor" strokeWidth="2" className="text-vyor-purple shadow-[0_0_8px_rgba(20,184,166,0.6)]" />
                     </svg>
                 </motion.div>
 
-                <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-transparent to-[#050505] pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0D1729] via-transparent to-[#0D1729] pointer-events-none" />
 
-                <div className="absolute bottom-2 left-4 flex gap-1.5 items-center z-10 bg-[#050505]/50 px-2 py-1 rounded backdrop-blur-sm">
+                <div className="absolute bottom-2 left-4 flex gap-1.5 items-center z-10 bg-[#0B1525]/50 px-2 py-1 rounded backdrop-blur-sm">
                     <div className="flex gap-1">
-                        <motion.div className="w-1.5 h-3 bg-teal-500/30 rounded-sm" animate={{ height: [12, 16, 12] }} transition={{ duration: 1, repeat: Infinity }} />
-                        <motion.div className="w-1.5 h-4 bg-teal-500/50 rounded-sm" animate={{ height: [16, 24, 16] }} transition={{ duration: 1.2, repeat: Infinity }} />
-                        <motion.div className="w-1.5 h-2 bg-teal-400 rounded-sm shadow-[0_0_8px_rgba(45,212,191,0.8)]" animate={{ height: [8, 12, 8] }} transition={{ duration: 0.8, repeat: Infinity }} />
+                        <motion.div className="w-1.5 h-3 bg-vyor-purple/30 rounded-sm" animate={{ height: [12, 16, 12] }} transition={{ duration: 1, repeat: Infinity }} />
+                        <motion.div className="w-1.5 h-4 bg-vyor-purple/50 rounded-sm" animate={{ height: [16, 24, 16] }} transition={{ duration: 1.2, repeat: Infinity }} />
+                        <motion.div className="w-1.5 h-2 bg-vyor-violet rounded-sm shadow-[0_0_8px_rgba(124,92,252,0.8)]" animate={{ height: [8, 12, 8] }} transition={{ duration: 0.8, repeat: Infinity }} />
                     </div>
-                    <span className="text-[9px] uppercase tracking-widest text-teal-400 ml-1">Optimal</span>
+                    <span className="text-[9px] uppercase tracking-widest text-vyor-violet ml-1">Optimal</span>
                 </div>
             </div>
         </div>
@@ -331,9 +331,9 @@ function OmniDemo() {
     ];
 
     return (
-        <div className="relative w-full h-full flex items-center justify-center group overflow-hidden bg-[#050505]">
+        <div className="relative w-full h-full flex items-center justify-center group overflow-hidden bg-[#0B1525]">
             {/* Ambient Background Glow */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08)_0%,transparent_100%)] opacity-50" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(124,92,252,0.3)_0%,transparent_100%)] opacity-80" />
             
             {/* Circuit Traces Layer */}
             <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
@@ -395,7 +395,7 @@ function OmniDemo() {
 
             {/* Central Command Module (Engine Core) */}
             <motion.div 
-                className="relative w-16 h-16 sm:w-20 sm:h-20 bg-[#080808]/80 backdrop-blur-xl border border-blue-500/30 rounded-2xl flex items-center justify-center z-20 shadow-[0_0_50px_rgba(59,130,246,0.3)]"
+                className="relative w-16 h-16 sm:w-20 sm:h-20 bg-[#0D1729]/80 backdrop-blur-xl border border-blue-500/30 rounded-2xl flex items-center justify-center z-20 shadow-[0_0_50px_rgba(59,130,246,0.3)]"
                 animate={{ 
                     y: [0, -4, 0],
                     boxShadow: [
@@ -447,24 +447,24 @@ function ApiDemo() {
     }, []);
 
     return (
-        <div className="relative w-full h-full flex flex-col items-center justify-center bg-[#050505] overflow-hidden p-6 gap-6">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.05)_0%,transparent_70%)]" />
+        <div className="relative w-full h-full flex flex-col items-center justify-center bg-[#0B1525] overflow-hidden p-6 gap-6">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(71,84,106,0.05)_0%,transparent_70%)]" />
 
-            <div className="w-full max-w-[280px] bg-[#0A0A0A] border border-white/10 rounded-xl overflow-hidden font-mono text-[10px] shadow-2xl z-20 hover:border-white/20 transition-colors relative">
+            <div className="w-full max-w-[280px] bg-[#0F1A2E] border border-white/10 rounded-xl overflow-hidden font-mono text-[10px] shadow-2xl z-20 hover:border-white/20 transition-colors relative">
                 <div className="flex items-center justify-between px-3 py-2 border-b border-white/5 bg-white/[0.02]">
                     <div className="flex gap-1.5">
                         <div className="w-2 h-2 rounded-full bg-red-500/70" />
                         <div className="w-2 h-2 rounded-full bg-yellow-500/70" />
-                        <div className="w-2 h-2 rounded-full bg-green-500/70" />
+                        <div className="w-2 h-2 rounded-full bg-vyor-purple/70" />
                     </div>
-                    <div className="text-neutral-500 flex items-center gap-1.5 sm:gap-2">
+                    <div className="text-neutral-300 flex items-center gap-1.5 sm:gap-2">
                         <Terminal className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                         vyor-api.js
                     </div>
                 </div>
-                <div className="p-4 sm:p-5 text-neutral-400 leading-relaxed min-h-[140px] sm:min-h-[160px] relative">
+                <div className="p-4 sm:p-5 text-neutral-200 leading-relaxed min-h-[140px] sm:min-h-[160px] relative">
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-2">
-                        <span className="text-indigo-400">import</span> {'{ Vyor }'} <span className="text-indigo-400">from</span> <span className="text-emerald-400">'@vyor/sdk'</span>;
+                        <span className="text-indigo-400">import</span> {'{ Vyor }'} <span className="text-indigo-400">from</span> <span className="text-vyor-violet">'@vyor/sdk'</span>;
                     </motion.div>
 
                     {line >= 1 && (
@@ -475,14 +475,14 @@ function ApiDemo() {
 
                     {line >= 2 && (
                         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-2 hidden sm:block">
-                            <span className="text-neutral-500">// Initialize instant execution</span>
+                            <span className="text-neutral-300">// Initialize instant execution</span>
                         </motion.div>
                     )}
 
                     {line >= 3 && (
                         <motion.div initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }}>
                             <div><span className="text-indigo-400">const</span> result = <span className="text-indigo-400">await</span> vyor.<span className="text-blue-400">run</span>({'{'}</div>
-                            <div className="pl-4">model: <span className="text-emerald-400">'vision-v2'</span>,</div>
+                            <div className="pl-4">model: <span className="text-vyor-violet">'vision-v2'</span>,</div>
                             <div className="pl-4">image: imgBuffer</div>
                             <div>{'}'});</div>
                         </motion.div>
@@ -518,8 +518,8 @@ function ProductVisual({ id }: { id: string }) {
 const themeColors: Record<string, { border: string, glow: string, accent: string }> = {
     indigo: { border: 'border-indigo-500/20', glow: 'shadow-[0_0_20px_rgba(99,102,241,0.08)]', accent: 'text-indigo-400' },
     pink: { border: 'border-pink-500/20', glow: 'shadow-[0_0_20px_rgba(236,72,153,0.08)]', accent: 'text-pink-400' },
-    emerald: { border: 'border-emerald-500/20', glow: 'shadow-[0_0_20px_rgba(16,185,129,0.08)]', accent: 'text-emerald-400' },
-    blue: { border: 'border-blue-500/20', glow: 'shadow-[0_0_20px_rgba(59,130,246,0.08)]', accent: 'text-blue-400' },
+    vyor: { border: 'border-vyor-purple/20', glow: 'shadow-[0_0_20px_rgba(71,84,106,0.08)]', accent: 'text-vyor-violet' },
+    blue: { border: 'border-blue-500/20', glow: 'shadow-[0_0_20px_rgba(124,92,252,0.3)]', accent: 'text-blue-400' },
     yellow: { border: 'border-yellow-500/20', glow: 'shadow-[0_0_20px_rgba(234,179,8,0.08)]', accent: 'text-yellow-400' },
 };
 
@@ -530,7 +530,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
     const isWide = product.span === "md:col-span-2" || product.span === "md:col-span-3";
     const isFullWidth = product.span === "md:col-span-3";
     const isCompact = product.span === "md:col-span-1";
-    const theme = themeColors[(product as any).theme] || themeColors.emerald;
+    const theme = themeColors[(product as any).theme] || themeColors.vyor;
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!cardRef.current) return;
@@ -549,7 +549,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ delay: product.delay * 0.5, duration: 0.4, ease: "easeOut" }}
-            className={`group relative rounded-2xl md:rounded-[20px] bg-[#080808] overflow-hidden flex flex-col ${isWide ? 'md:flex-row' : ''} ${product.span} ${isFullWidth ? 'md:h-[460px]' : isWide ? 'md:h-[380px]' : ''} transition-all duration-500 hover:border-white/10 hover:shadow-emerald-500/10 ${theme.border} ${theme.glow} border md:border-white/5 md:shadow-2xl`}
+            className={`group relative rounded-2xl md:rounded-[20px] bg-[#0D1729] overflow-hidden flex flex-col ${isWide ? 'md:flex-row' : ''} ${product.span} ${isFullWidth ? 'md:h-[460px]' : isWide ? 'md:h-[380px]' : ''} transition-all duration-500 hover:border-white/10 hover:shadow-vyor-purple/10 ${theme.border} ${theme.glow} border md:border-white/5 md:shadow-2xl`}
         >
             {/* Interactive Spotlight Glow — desktop only */}
             <div
@@ -560,7 +560,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
             />
 
             {product.isComingSoon && (
-                <div className="absolute top-4 right-4 md:top-6 md:right-6 px-2.5 py-0.5 md:px-3 md:py-1 rounded-full bg-[#1c1c1c]/90 backdrop-blur-md text-white text-[9px] md:text-[10px] font-bold border border-white/10 z-20 uppercase tracking-widest shadow-xl">
+                <div className="absolute top-4 right-4 md:top-6 md:right-6 px-2.5 py-0.5 md:px-3 md:py-1 rounded-full bg-[#1B2A4A]/90 backdrop-blur-md text-white text-[9px] md:text-[10px] font-bold border border-white/10 z-20 uppercase tracking-widest shadow-xl">
                     Coming Soon
                 </div>
             )}
@@ -569,19 +569,19 @@ function ProductCard({ product }: { product: typeof products[0] }) {
             <div className={`p-5 md:p-8 flex flex-col z-10 flex-1 ${isWide ? 'md:w-[45%] md:flex-none' : 'w-full'} justify-start relative`}>
                 <div className="flex flex-col h-full justify-start">
                     <div className="flex items-center gap-2.5 md:gap-3 mb-3 md:mb-4">
-                        <div className={`p-2 md:p-2.5 rounded-lg md:rounded-xl bg-white/[0.03] border border-white/5 shadow-inner group-hover:bg-emerald-500/10 group-hover:border-emerald-500/20 transition-all duration-500`}>
-                            <product.icon className={`w-4 h-4 md:w-7 md:h-7 ${theme.accent} md:text-neutral-400 group-hover:text-emerald-400 transition-colors duration-500`} />
+                        <div className={`p-2 md:p-2.5 rounded-lg md:rounded-xl bg-white/[0.03] border border-white/5 shadow-inner group-hover:bg-vyor-purple/15 group-hover:border-vyor-purple/20 transition-all duration-500`}>
+                            <product.icon className={`w-4 h-4 md:w-7 md:h-7 ${theme.accent} md:text-neutral-200 group-hover:text-vyor-violet transition-colors duration-500`} />
                         </div>
                         <h3 className={`${isFullWidth ? 'text-lg sm:text-xl md:text-3xl' : isWide ? 'text-lg sm:text-xl md:text-[26px]' : 'text-lg md:text-2xl'} font-bold tracking-tight text-white`}>{product.title}</h3>
                     </div>
-                    <p className={`${isFullWidth ? 'text-[13px] sm:text-[14px] md:text-base' : 'text-[13px] md:text-[14px]'} text-neutral-400 leading-relaxed font-light mb-4 md:mb-6 ${isFullWidth ? 'max-w-xl' : 'max-w-sm'}`}>{product.description}</p>
+                    <p className={`${isFullWidth ? 'text-[13px] sm:text-[14px] md:text-base' : 'text-[13px] md:text-[14px]'} text-neutral-200 leading-relaxed font-light mb-4 md:mb-6 ${isFullWidth ? 'max-w-xl' : 'max-w-sm'}`}>{product.description}</p>
                 </div>
 
                 {product.features && (
                     <ul className="space-y-2 md:space-y-2.5 mt-auto mb-1">
                         {product.features.map((feature, idx) => (
-                            <li key={idx} className={`flex items-center gap-2 md:gap-2.5 text-[12px] sm:text-[13px] md:text-[14px] font-normal text-neutral-500 md:group-hover:text-neutral-300 transition-colors duration-300`}>
-                                <span className={`rounded-full bg-emerald-500/50 group-hover:bg-emerald-400 transition-colors duration-300 shrink-0 w-1 h-1 md:w-1.5 md:h-1.5`} />
+                            <li key={idx} className={`flex items-center gap-2 md:gap-2.5 text-[12px] sm:text-[13px] md:text-[14px] font-normal text-neutral-300 md:group-hover:text-neutral-300 transition-colors duration-300`}>
+                                <span className={`rounded-full bg-vyor-purple/50 group-hover:bg-vyor-violet transition-colors duration-300 shrink-0 w-1 h-1 md:w-1.5 md:h-1.5`} />
                                 {feature}
                             </li>
                         ))}
@@ -590,12 +590,12 @@ function ProductCard({ product }: { product: typeof products[0] }) {
             </div>
 
             {/* Visual Container — hidden on mobile for compact cards; constrained height for fullWidth */}
-            <div className={`relative flex items-center justify-center bg-[#050505] overflow-hidden transition-colors duration-500 ${isWide
+            <div className={`relative flex items-center justify-center bg-[#0B1525] overflow-hidden transition-colors duration-500 ${isWide
                     ? `w-full md:w-[55%] border-t md:border-t-0 md:border-l border-white/5 md:flex-none ${isFullWidth ? 'h-[300px] sm:h-[320px] md:h-auto md:flex-1' : 'flex-1 min-h-[220px] md:min-h-[260px]'}`
                     : `w-full h-[200px] md:h-auto md:min-h-[220px] border-t border-white/5`
                 }`}>
                 <ProductVisual id={product.id} />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#050505]/80 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0B1525]/80 pointer-events-none" />
             </div>
         </motion.div>
     );
@@ -603,9 +603,9 @@ function ProductCard({ product }: { product: typeof products[0] }) {
 
 export function Products() {
     return (
-        <section id="products" className="py-16 sm:py-24 md:py-40 relative z-10 overflow-hidden bg-black">
+        <section id="products" className="py-16 sm:py-24 md:py-40 relative z-10 overflow-hidden bg-[#0D1B2A]">
             {/* Ambient Background Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[800px] h-[600px] md:h-[800px] bg-emerald-500/5 blur-[150px] pointer-events-none rounded-full" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[800px] h-[600px] md:h-[800px] bg-vyor-purple/5 blur-[150px] pointer-events-none rounded-full" />
 
             <div className="container mx-auto px-4 sm:px-6 relative z-10">
                 <motion.div
@@ -616,13 +616,13 @@ export function Products() {
                 >
                     <div className="max-w-2xl">
                         <div className="flex items-center gap-2.5 md:gap-3 mb-4 md:mb-6">
-                            <div className="h-px w-6 md:w-8 bg-emerald-500" />
-                            <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-emerald-400">Intelligence Ecosystem</span>
+                            <div className="h-px w-6 md:w-8 bg-vyor-purple" />
+                            <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-vyor-violet">Intelligence Ecosystem</span>
                         </div>
                         <h2 className="text-2xl sm:text-3xl md:text-5xl font-semibold tracking-tighter text-white mb-3 sm:mb-6 leading-tight">
                             Build scalable modular applications with Vyor AI Engine.
                         </h2>
-                        <p className="text-sm sm:text-base text-neutral-400 md:text-lg leading-relaxed max-w-lg">
+                        <p className="text-sm sm:text-base text-neutral-200 md:text-lg leading-relaxed max-w-lg">
                             We deliver highly optimized vector algorithms and neural architectures that command complex workflows directly on the edge.
                         </p>
                     </div>

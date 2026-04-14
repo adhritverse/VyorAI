@@ -25,7 +25,7 @@ export function StructuredData() {
         "logo": "https://vyorai.com/LOGO.png",
         "sameAs": [
             "https://www.linkedin.com/company/vyorai",
-            // Add other social links here
+            "https://www.instagram.com/vyor.ai"
         ]
     };
 

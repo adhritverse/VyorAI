@@ -18,8 +18,8 @@ export function Navbar() {
       bgColor: "#170D27",
       textColor: "#fff",
       links: [
-        { label: "Documentation", ariaLabel: "Documentation", href: "#docs" },
-        { label: "Status", ariaLabel: "System Status" }
+        { label: "Documentation", ariaLabel: "Documentation", href: "/docs" },
+        { label: "API Status", ariaLabel: "System Status", href: "#api" }
       ]
     },
     {
@@ -27,7 +27,7 @@ export function Navbar() {
       bgColor: "#271E37", 
       textColor: "#fff",
       links: [
-        { label: "Company", ariaLabel: "About Company", href: "#about" },
+        { label: "Team", ariaLabel: "Our Team", href: "/team" },
         { label: "Careers", ariaLabel: "Careers", href: "#careers" }
       ]
     }
@@ -40,7 +40,7 @@ export function Navbar() {
       items={items}
       baseColor="#fff"
       menuColor="rgba(10, 10, 10, 0.4)"
-      buttonBgColor="#10b981"
+      buttonBgColor="#B0B4BC"
       buttonTextColor="#000"
       ease="power3.out"
       theme="dark"

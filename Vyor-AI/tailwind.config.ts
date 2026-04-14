@@ -12,6 +12,7 @@ const config: Config = {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
                 "gradient-conic":
                     "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+                "vyor-gradient": "linear-gradient(135deg, #0D1B2A, #1B2A4A, #2D1B69)",
             },
             colors: {
                 border: "hsl(var(--border))",
@@ -19,6 +20,16 @@ const config: Config = {
                 ring: "hsl(var(--ring))",
                 background: "hsl(var(--background))",
                 foreground: "hsl(var(--foreground))",
+                vyor: {
+                    navy: "#0D1B2A",
+                    steel: "#1B2A4A",
+                    gray: "#818897",
+                    light: "#B0B4BC",
+                    silver: "#DDDFE1",
+                    purple: "#7C5CFC",
+                    violet: "#A78BFA",
+                    indigo: "#6366F1",
+                },
                 primary: {
                     DEFAULT: "hsl(var(--primary))",
                     foreground: "hsl(var(--primary-foreground))",

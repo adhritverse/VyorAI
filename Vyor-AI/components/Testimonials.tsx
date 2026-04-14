@@ -71,7 +71,7 @@ const ReviewCard = ({
           <figcaption className="text-[13px] sm:text-sm font-semibold text-white tracking-wide">
             {name}
           </figcaption>
-          <p className="text-[11px] sm:text-xs font-medium text-emerald-400/80">{username}</p>
+          <p className="text-[11px] sm:text-xs font-medium text-vyor-violet/80">{username}</p>
         </div>
       </div>
       <blockquote className="text-[12px] sm:text-sm text-gray-300 leading-relaxed font-light">{body}</blockquote>
@@ -149,9 +149,10 @@ export function Testimonials() {
         </TestimonialMarquee>
 
         {/* Gradient Fades for Marquee Borders */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-[#030712] to-transparent z-10"></div>
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-[#030712] to-transparent z-10"></div>
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-[#0D1B2A] to-transparent z-10"></div>
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-[#0D1B2A] to-transparent z-10"></div>
       </div>
     </div>
   );
 }
+
