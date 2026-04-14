@@ -19,7 +19,7 @@ export function HeroGSAP() {
                 }}
             />
             {/* Grid overlay */}
-            <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#7C5CFC08_1px,transparent_1px),linear-gradient(to_bottom,#7C5CFC08_1px,transparent_1px)] bg-[size:44px_44px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_50%,transparent_100%)]" />
+            <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#7C5CFC1A_1px,transparent_1px),linear-gradient(to_bottom,#7C5CFC1A_1px,transparent_1px)] bg-[size:44px_44px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_50%,transparent_100%)]" />
 
             <Noise opacity={0.04} />
 
@@ -41,7 +41,7 @@ export function HeroGSAP() {
                                 y2="100%"
                             >
                                 <stop offset="0%" stopColor="#A78BFA" stopOpacity="0" />
-                                <stop offset="50%" stopColor="#7C5CFC" stopOpacity="0.9" />
+                                <stop offset="50%" stopColor="#7C5CFC" stopOpacity="0.35" />
                                 <stop offset="100%" stopColor="#6366F1" stopOpacity="0" />
                             </linearGradient>
                             <linearGradient
@@ -52,7 +52,7 @@ export function HeroGSAP() {
                                 y2="0%"
                             >
                                 <stop offset="0%" stopColor="#A78BFA" stopOpacity="0" />
-                                <stop offset="50%" stopColor="#DDDFE1" stopOpacity="0.9" />
+                                <stop offset="50%" stopColor="#DDDFE1" stopOpacity="0.3" />
                                 <stop offset="100%" stopColor="#7C5CFC" stopOpacity="0" />
                             </linearGradient>
                             <linearGradient
@@ -62,20 +62,20 @@ export function HeroGSAP() {
                                 x2="100%"
                                 y2="0%"
                             >
-                                <stop offset="0%" stopColor="#6366F1" stopOpacity="0.4" />
-                                <stop offset="50%" stopColor="#7C5CFC" stopOpacity="0.25" />
-                                <stop offset="100%" stopColor="#A78BFA" stopOpacity="0.4" />
+                                <stop offset="0%" stopColor="#6366F1" stopOpacity="0.2" />
+                                <stop offset="50%" stopColor="#7C5CFC" stopOpacity="0.12" />
+                                <stop offset="100%" stopColor="#A78BFA" stopOpacity="0.2" />
                             </linearGradient>
                             <filter id="glowLight">
-                                <feGaussianBlur stdDeviation="6" result="coloredBlur" />
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur" />
                                 <feMerge>
                                     <feMergeNode in="coloredBlur" />
                                     <feMergeNode in="SourceGraphic" />
                                 </feMerge>
                             </filter>
                             <filter id="glowHeavy">
-                                <feGaussianBlur stdDeviation="12" result="coloredBlur" />
-                                <feColorMatrix type="saturate" values="2" />
+                                <feGaussianBlur stdDeviation="5" result="coloredBlur" />
+                                <feColorMatrix type="saturate" values="1.2" />
                                 <feMerge>
                                     <feMergeNode in="coloredBlur" />
                                     <feMergeNode in="SourceGraphic" />
@@ -87,14 +87,14 @@ export function HeroGSAP() {
                             d="M 500 250 C 400 150, 250 100, 150 150 C 50 200, 50 300, 150 350 C 250 400, 400 350, 500 250 C 600 150, 750 100, 850 150 C 950 200, 950 300, 850 350 C 750 400, 600 350, 500 250 Z"
                             fill="none"
                             stroke="url(#infGradBase)"
-                            strokeWidth="35"
+                            strokeWidth="25"
                             strokeLinecap="round"
                         />
                         <path
                             d="M 500 250 C 400 150, 250 100, 150 150 C 50 200, 50 300, 150 350 C 250 400, 400 350, 500 250 C 600 150, 750 100, 850 150 C 950 200, 950 300, 850 350 C 750 400, 600 350, 500 250 Z"
                             fill="none"
                             stroke="url(#infGradSlow)"
-                            strokeWidth="14"
+                            strokeWidth="8"
                             strokeLinecap="round"
                             pathLength="100"
                             strokeDasharray="30 70"
@@ -105,7 +105,7 @@ export function HeroGSAP() {
                             d="M 500 250 C 400 150, 250 100, 150 150 C 50 200, 50 300, 150 350 C 250 400, 400 350, 500 250 C 600 150, 750 100, 850 150 C 950 200, 950 300, 850 350 C 750 400, 600 350, 500 250 Z"
                             fill="none"
                             stroke="url(#infGradFast)"
-                            strokeWidth="8"
+                            strokeWidth="4"
                             strokeLinecap="round"
                             pathLength="100"
                             strokeDasharray="15 85"
