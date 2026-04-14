@@ -57,7 +57,7 @@ export default function CardNav({
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-          className="pointer-events-auto rounded-[3rem] px-8 py-4 md:px-12 md:py-5 flex items-center justify-between w-full max-w-[1440px] shadow-[0_8px_40px_rgba(0,0,0,0.6)] border border-white/[0.08] relative backdrop-blur-2xl"
+          className="pointer-events-auto rounded-[3rem] px-8 py-3 md:px-12 md:py-3.5 flex items-center justify-between w-full max-w-[1440px] shadow-[0_8px_40px_rgba(0,0,0,0.6)] border border-white/[0.08] relative backdrop-blur-2xl"
           style={{ backgroundColor: menuColor }}
         >
           {/* Subtle top highlight */}
@@ -66,8 +66,8 @@ export default function CardNav({
           {/* LOGO */}
           <Link href="/" className="z-50 flex items-center shrink-0 group">
             {logo ? (
-              <div className="bg-white/5 p-2 rounded-xl flex items-center justify-center hover:bg-white/10 transition-all duration-200 border border-white/5 group-hover:border-white/10 group-hover:shadow-[0_0_20px_rgba(124,92,252,0.15)]">
-                <Image src={logo} alt={logoAlt} width={120} height={36} className="h-7 md:h-9 w-auto object-contain" priority />
+              <div className="bg-white/5 p-1.5 rounded-xl flex items-center justify-center hover:bg-white/10 transition-all duration-200 border border-white/5 group-hover:border-white/10 group-hover:shadow-[0_0_20px_rgba(124,92,252,0.15)]">
+                <Image src={logo} alt={logoAlt} width={120} height={36} className="h-6 md:h-8 w-auto object-contain" priority />
               </div>
             ) : (
               <span className="font-extrabold text-xl md:text-2xl tracking-tight" style={{ color: baseColor }}>
@@ -83,7 +83,7 @@ export default function CardNav({
                 key={item.label}
                 onMouseEnter={() => handleMouseEnter(idx)}
                 onMouseLeave={handleMouseLeave}
-                className="relative px-5 py-3 cursor-pointer"
+                className="relative px-4 py-2 cursor-pointer"
               >
                 {/* Hover pill background */}
                 <AnimatePresence>
@@ -149,7 +149,7 @@ export default function CardNav({
           <div className="flex items-center gap-4 z-50 relative pointer-events-auto">
             <Link
               href="#"
-              className="hidden md:flex items-center gap-2 relative px-7 py-3 rounded-full font-bold text-sm tracking-wider uppercase overflow-hidden hover:scale-[1.03] active:scale-[0.97] transition-all duration-200 bg-gradient-to-r from-vyor-purple to-vyor-indigo text-white shadow-[0_0_25px_rgba(124,92,252,0.35)] hover:shadow-[0_0_35px_rgba(124,92,252,0.5)]"
+              className="hidden md:flex items-center gap-2 relative px-6 py-2.5 rounded-full font-bold text-[13px] tracking-wider uppercase overflow-hidden hover:scale-[1.03] active:scale-[0.97] transition-all duration-200 bg-gradient-to-r from-vyor-purple to-vyor-indigo text-white shadow-[0_0_25px_rgba(124,92,252,0.35)] hover:shadow-[0_0_35px_rgba(124,92,252,0.5)]"
             >
               <span className="relative z-10">Get Access</span>
             </Link>
