@@ -525,7 +525,7 @@ const themeColors: Record<string, { border: string, glow: string, accent: string
 
 function ProductCard({ product }: { product: typeof products[0] }) {
     const cardRef = useRef<HTMLDivElement>(null);
-    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+    const glowRef = useRef<HTMLDivElement>(null);
 
     const isWide = product.span === "md:col-span-2" || product.span === "md:col-span-3";
     const isFullWidth = product.span === "md:col-span-3";
@@ -533,12 +533,11 @@ function ProductCard({ product }: { product: typeof products[0] }) {
     const theme = themeColors[(product as any).theme] || themeColors.vyor;
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!cardRef.current) return;
+        if (!cardRef.current || !glowRef.current) return;
         const rect = cardRef.current.getBoundingClientRect();
-        setMousePos({
-            x: e.clientX - rect.left,
-            y: e.clientY - rect.top,
-        });
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        glowRef.current.style.background = `radial-gradient(500px circle at ${x}px ${y}px, ${(product as any).glowColor || 'rgba(255,255,255,0.03)'}, transparent 40%)`;
     };
 
     return (
@@ -547,16 +546,14 @@ function ProductCard({ product }: { product: typeof products[0] }) {
             onMouseMove={handleMouseMove}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: product.delay * 0.5, duration: 0.4, ease: "easeOut" }}
-            className={`group relative rounded-2xl md:rounded-[20px] bg-[#0D1729] overflow-hidden flex flex-col ${isWide ? 'md:flex-row' : ''} ${product.span} ${isFullWidth ? 'md:h-[460px]' : isWide ? 'md:h-[380px]' : ''} transition-all duration-500 hover:border-white/10 hover:shadow-vyor-purple/10 ${theme.border} ${theme.glow} border md:border-white/5 md:shadow-2xl`}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ delay: product.delay * 0.3, duration: 0.4, ease: "easeOut" }}
+            className={`group relative rounded-2xl md:rounded-[20px] bg-[#0D1729] overflow-hidden flex flex-col ${isWide ? 'md:flex-row' : ''} ${product.span} ${isFullWidth ? 'md:h-[460px]' : isWide ? 'md:h-[380px]' : ''} transition-shadow duration-500 hover:border-white/10 hover:shadow-vyor-purple/10 ${theme.border} ${theme.glow} border md:border-white/5 md:shadow-2xl`}
         >
             {/* Interactive Spotlight Glow — desktop only */}
             <div
-                className="pointer-events-none absolute -inset-px opacity-0 transition duration-500 md:group-hover:opacity-100 z-20 rounded-[20px] hidden md:block"
-                style={{
-                    background: `radial-gradient(500px circle at ${mousePos.x}px ${mousePos.y}px, ${(product as any).glowColor || 'rgba(255,255,255,0.03)'}, transparent 40%)`,
-                }}
+                ref={glowRef}
+                className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-500 md:group-hover:opacity-100 z-20 rounded-[20px] hidden md:block"
             />
 
             {product.isComingSoon && (
@@ -569,8 +566,8 @@ function ProductCard({ product }: { product: typeof products[0] }) {
             <div className={`p-5 md:p-8 flex flex-col z-10 flex-1 ${isWide ? 'md:w-[45%] md:flex-none' : 'w-full'} justify-start relative`}>
                 <div className="flex flex-col h-full justify-start">
                     <div className="flex items-center gap-2.5 md:gap-3 mb-3 md:mb-4">
-                        <div className={`p-2 md:p-2.5 rounded-lg md:rounded-xl bg-white/[0.03] border border-white/5 shadow-inner group-hover:bg-vyor-purple/15 group-hover:border-vyor-purple/20 transition-all duration-500`}>
-                            <product.icon className={`w-4 h-4 md:w-7 md:h-7 ${theme.accent} md:text-neutral-200 group-hover:text-vyor-violet transition-colors duration-500`} />
+                        <div className={`p-2 md:p-2.5 rounded-lg md:rounded-xl bg-white/[0.03] border border-white/5 shadow-inner group-hover:bg-vyor-purple/15 group-hover:border-vyor-purple/20 transition-all duration-300`}>
+                            <product.icon className={`w-4 h-4 md:w-7 md:h-7 ${theme.accent} md:text-neutral-200 group-hover:text-vyor-violet transition-colors duration-300`} />
                         </div>
                         <h3 className={`${isFullWidth ? 'text-lg sm:text-xl md:text-3xl' : isWide ? 'text-lg sm:text-xl md:text-[26px]' : 'text-lg md:text-2xl'} font-bold tracking-tight text-white`}>{product.title}</h3>
                     </div>
