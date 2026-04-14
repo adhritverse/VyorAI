@@ -32,8 +32,8 @@ export function About() {
                         <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-vyor-purple/60 to-transparent" />
                         
                         {/* Ambient background glow */}
-                        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-vyor-purple/[0.04] blur-[100px] rounded-full pointer-events-none group-hover:bg-vyor-purple/[0.08] transition-all duration-1000" />
-                        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-vyor-purple/[0.03] blur-[80px] rounded-full pointer-events-none" />
+                        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[radial-gradient(ellipse_at_center,rgba(124,92,252,0.06)_0%,transparent_70%)] pointer-events-none group-hover:opacity-100 opacity-50 transition-all duration-1000" />
+                        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[radial-gradient(ellipse_at_center,rgba(124,92,252,0.04)_0%,transparent_70%)] pointer-events-none" />
 
                         <div className="relative p-5 sm:p-8 md:p-12 z-10">
                             {/* Top row — tag + status */}

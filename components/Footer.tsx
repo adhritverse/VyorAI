@@ -137,7 +137,7 @@ export function Footer() {
                             {[
                                 { name: "About Us", href: "/team" },
                                 { name: "Careers", href: "#careers" },
-                                { name: "Contact", href: "#faq" },
+                                { name: "Contact", href: "https://wa.me/918462802086" },
                                 { name: "Privacy Policy", href: "/privacy" },
                             ].map((item) => (
                                 <li key={item.name}>

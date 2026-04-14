@@ -156,7 +156,7 @@ export default function PrivacyPolicyPage() {
                             <section>
                                 <h2 className="text-2xl font-semibold text-white mb-4">5. Contact Us</h2>
                                 <p className="leading-relaxed mb-2">If you have any questions about this privacy policy or our privacy practices, please contact us at:</p>
-                                <a href="mailto:privacy@vyorai.com" className="text-vyor-violet hover:text-white transition-colors">privacy@vyorai.com</a>
+                                <a href="https://wa.me/918462802086" target="_blank" rel="noopener noreferrer" className="text-vyor-violet hover:text-white transition-colors">+91 84628 02086 (WhatsApp)</a>
                             </section>
                         </div>
                     </motion.div>

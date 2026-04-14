@@ -94,8 +94,8 @@ export function ApiPlatform() {
             className="py-20 sm:py-28 md:py-40 relative overflow-hidden bg-[#0D1B2A]"
         >
             {/* Background Elements - Shifted securely to Emerald/Teal */}
-            <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-vyor-purple/10 blur-[140px] rounded-full pointer-events-none" />
-            <div className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-vyor-purple/10 blur-[140px] rounded-full pointer-events-none" />
+            <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_center,rgba(124,92,252,0.1)_0%,transparent_70%)] pointer-events-none" />
+            <div className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(124,92,252,0.1)_0%,transparent_70%)] pointer-events-none" />
 
             <div className="container mx-auto px-4 sm:px-6 relative z-10">
                 <div className="flex flex-col lg:flex-row gap-10 sm:gap-16 lg:gap-24 items-center">

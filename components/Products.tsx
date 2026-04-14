@@ -602,7 +602,7 @@ export function Products() {
     return (
         <section id="products" className="py-16 sm:py-24 md:py-40 relative z-10 overflow-hidden bg-[#0D1B2A]">
             {/* Ambient Background Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[800px] h-[600px] md:h-[800px] bg-vyor-purple/5 blur-[150px] pointer-events-none rounded-full" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[800px] h-[600px] md:h-[800px] bg-[radial-gradient(ellipse_at_center,rgba(124,92,252,0.07)_0%,transparent_70%)] pointer-events-none" />
 
             <div className="container mx-auto px-4 sm:px-6 relative z-10">
                 <motion.div
