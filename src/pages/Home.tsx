@@ -88,7 +88,7 @@ const HeroGrid = () => {
               className="aspect-square bg-[#EEEEF0]/50 rounded-lg transition-all duration-500 hover:bg-[#DDE0F7] hover:scale-105 hover:shadow-[0_0_22px_rgba(99,102,241,0.18)] hover:z-10 flex items-center justify-center group/cell"
             >
               {hasIcon && (
-                <Icon className="w-4 h-4 text-gray-300 group-hover/cell:text-indigo-500 transition-colors" />
+                <Icon className="w-4 h-4 text-gray-400 group-hover/cell:text-indigo-500 transition-colors" />
               )}
             </div>
           );
@@ -116,7 +116,7 @@ export default function Home() {
             transition={{
               opacity: { duration: 0.6, delay: tag.delay },
             }}
-            className={`absolute hidden lg:block px-4 py-2 rounded-full text-sm font-medium shadow-sm z-10 ${tag.style}`}
+            className={`absolute px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[10px] sm:text-sm font-medium shadow-sm z-10 ${tag.style}`}
           >
             {tag.text}
           </motion.div>
@@ -131,9 +131,9 @@ export default function Home() {
               transition={{
                 opacity: { duration: 0.6, delay: item.delay },
               }}
-              className={`absolute hidden lg:block z-10 ${item.style}`}
+              className={`absolute z-10 ${item.style}`}
             >
-              <IconComp className="w-5 h-5" />
+              <IconComp className="w-4 h-4 sm:w-5 sm:h-5" />
             </motion.div>
           );
         })}
