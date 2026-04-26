@@ -14,6 +14,7 @@ import About from '@/pages/About';
 import Careers from '@/pages/Careers';
 import AccountCenter from '@/pages/AccountCenter';
 import Infinity from '@/pages/Infinity';
+import VirtualTryOn from '@/pages/VirtualTryOn';
 import BlogPostDetail from '@/pages/BlogPostDetail';
 import ScrollToTop from '@/components/ScrollToTop';
 import InfinityFAB from '@/components/InfinityFAB';
@@ -32,6 +33,7 @@ export default function App() {
         <Route path="/automation-library" element={<AutomationLibrary />} />
         <Route path="/product" element={<Product />} />
         <Route path="/products/infinity" element={<Infinity />} />
+        <Route path="/products/virtual-try-on" element={<VirtualTryOn />} />
         <Route path="/digital-employee/customer-support" element={<CustomerSupport />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogPostDetail />} />

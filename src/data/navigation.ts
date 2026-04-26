@@ -5,6 +5,7 @@ export const navLinks = [
     dropdown: [
       { label: 'The Console', href: '/product' },
       { label: 'Infinity SDK', href: '/products/infinity' },
+      { label: 'Virtual Try On', href: '/products/virtual-try-on' },
       { label: 'Automation Library', href: '/automation-library' },
       { label: 'Platform Features', href: '/features' },
     ],
