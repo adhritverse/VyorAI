@@ -89,7 +89,7 @@ export default function Auth() {
         >
           {/* Logo */}
           <div className="flex justify-center mb-6">
-            <img src="/LOGO.png" alt="Vyor AI" className="h-16 w-auto object-contain" />
+            <img src="/logo.webp" alt="Vyor AI" className="h-16 w-auto object-contain" />
           </div>
 
           {/* Tabs */}

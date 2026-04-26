@@ -85,13 +85,8 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-end justify-between gap-8">
             <div className="flex flex-col gap-6">
-              <Link to="/" className="flex items-center gap-3">
-                {/* Custom Zangoh-like Logo with slashes */}
-                <div className="flex gap-1 text-gray-400">
-                  <div className="w-1.5 h-6 bg-gray-400 transform -skew-x-12" />
-                  <div className="w-1.5 h-6 bg-gray-400 transform -skew-x-12" />
-                </div>
-                <span className="text-2xl font-light tracking-[0.3em] text-gray-300">V Y O R AI</span>
+              <Link to="/" className="flex items-center group">
+                <img src="/logo.webp" alt="Vyor AI Logo" className="h-12 w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity" />
               </Link>
               <p className="text-gray-400 text-sm">
                 © 2026 Vyor AI. All rights reserved.

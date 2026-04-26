@@ -40,7 +40,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link to="/" className="inline-flex items-center group">
-              <img src="/LOGO.png" alt="Vyor AI Logo" className="h-[60px] md:h-[80px] w-auto object-contain" />
+              <img src="/logo.webp" alt="Vyor AI Logo" className="h-[80px] md:h-[110px] w-auto object-contain" />
             </Link>
 
             {/* Desktop Nav & CTA */}

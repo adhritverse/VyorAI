@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zangoh — Digital Employees, Tailored to Your Workflow</title>
+  <meta name="description" content="Autonomous AI workers that resolve tasks end-to-end and show you the impact in real time." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cols: 8;
+      --gap: 8px;
+      --bg: #E3E4E8;
+      --cell-bg: #EEEEF0;
+      --cell-hover: #DDE0F7;
+      --border: rgba(0,0,0,0.06);
+      --text-primary: #0D0D0F;
+      --text-muted: #6B6B7A;
+      /* Cell size = (100vw - (cols+1)*gap) / cols */
+      --cell-size: calc((100vw - (var(--cols) + 1) * var(--gap)) / var(--cols));
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+
+    /* ═══════════════════════════════════════
+       HERO WRAPPER
+    ═══════════════════════════════════════ */
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    /* ═══════════════════════════════════════
+       GRID BACKGROUND
+       1fr columns fill full viewport width;
+       row height = cell width for perfect squares
+    ═══════════════════════════════════════ */
+    .grid-bg {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(var(--cols), 1fr);
+      /* Row height equals the computed cell width → perfect squares */
+      grid-auto-rows: var(--cell-size);
+      gap: var(--gap);
+      padding: var(--gap);
+      z-index: 0;
+      align-content: start;
+    }
+
+    /* Base cell — grid-auto-rows keeps height = width = cell-size */
+    .cell {
+      background: var(--cell-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      transition:
+        background 600ms cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 600ms cubic-bezier(0.16, 1, 0.3, 1),
+        transform  600ms cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: background, box-shadow, transform;
+    }
+
+    /* Hoverable empty/icon cells → lavender */
+    .cell.hoverable:hover,
+    .cell.icon-cell:hover {
+      background: var(--cell-hover);
+      box-shadow: 0 0 22px rgba(99, 102, 241, 0.18);
+      transform: scale(1.025);
+      z-index: 5;
+    }
+    .cell.icon-cell:hover svg {
+      stroke: #6366f1;
+    }
+
+    /* Portrait cells — span 2 rows; height computed by grid */
+    .cell.portrait,
+    .cell.portrait-warm {
+      background: #c9cacf;
+      padding: 0;
+    }
+    .cell.portrait-warm { background: #e8d4ca; }
+
+    .portrait-wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .portrait-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    /* Portrait hover */
+    .cell.portrait:hover,
+    .cell.portrait-warm:hover {
+      box-shadow: 0 0 28px rgba(99, 102, 241, 0.14);
+      transform: scale(1.015);
+      z-index: 5;
+    }
+    .cell.portrait:hover .portrait-wrap img,
+    .cell.portrait-warm:hover .portrait-wrap img {
+      filter: brightness(1.05);
+      transition: filter 600ms;
+    }
+
+    /* Icon cells */
+    .cell.icon-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .cell.icon-cell svg {
+      width: 20px;
+      height: 20px;
+      stroke: #999;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Badge cells */
+    .cell.badge-cell {
+      background: transparent;
+      box-shadow: none;
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      overflow: visible; /* badges are allowed to float */
+    }
+    .cell.badge-cell:hover {
+      background: transparent;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* Pill badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.09);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #333;
+      white-space: nowrap;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 0 0 0.5px rgba(0,0,0,0.04);
+      letter-spacing: -0.01em;
+    }
+    .badge.purple {
+      background: #EEEFFE;
+      border-color: rgba(99,102,241,0.14);
+      color: #444;
+    }
+    .badge .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      flex-shrink: 0;
+    }
+
+    /* Transparent/invisible spacer cells (center area) */
+    .cell.ghost {
+      background: transparent;
+      border-radius: 0;
+      pointer-events: none;
+    }
+    .cell.ghost:hover { background: transparent; transform: none; box-shadow: none; }
+
+    /* ═══════════════════════════════════════
+       CALL BAR OVERLAY (on portraits)
+    ═══════════════════════════════════════ */
+    .call-bar {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(10, 10, 10, 0.65);
+      backdrop-filter: blur(6px);
+      border-radius: 999px;
+      padding: 5px 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .call-bar svg {
+      width: 12px; height: 12px;
+      stroke: #fff; fill: none;
+      stroke-width: 2;
+      flex-shrink: 0;
+    }
+    .call-pulse {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #4ade80;
+      animation: pulse-dot 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    /* ═══════════════════════════════════════
+       CENTER HERO CONTENT
+    ═══════════════════════════════════════ */
+    .hero-content {
+      position: relative;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: calc(var(--nav-height) + 40px) 24px 60px;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      pointer-events: all;
+      /*
+        Ghost zone = cols 3-5 (3 of 8 cols) = 3/8 * 100vw
+        minus internal gaps minus outer padding
+      */
+      max-width: calc(3 * var(--cell-size) + 2 * var(--gap));
+      width: 100%;
+    }
+
+    .hero-title {
+      font-size: clamp(22px, 2.5vw, 36px);
+      font-weight: 900;
+      line-height: 1.09;
+      letter-spacing: -1px;
+      color: var(--text-primary);
+      text-wrap: balance;
+      margin-bottom: 14px;
+    }
+
+    .hero-sub {
+      font-size: clamp(12px, 1vw, 13.5px);
+      font-weight: 400;
+      color: var(--text-muted);
+      line-height: 1.58;
+      margin: 0 auto 22px;
+      text-wrap: balance;
+    }
+
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 13px 32px;
+      border-radius: 999px;
+      letter-spacing: -0.01em;
+      transition: background 180ms, transform 140ms, box-shadow 180ms;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.22);
+    }
+    .hero-btn:hover {
+      background: #222;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.28);
+    }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media (max-width: 860px) {
+      :root { --cols: 6; }
+      .nav-links { display: none; }
+      .nav { padding: 0 20px; }
+    }
+    @media (max-width: 580px) {
+      :root { --cols: 4; }
+      .hero-title { letter-spacing: -0.8px; }
+    }
+  </style>
+</head>
+<body>
+
+
+<!-- ── HERO ──────────────────────────────── -->
+<section class="hero" id="hero">
+
+  <!--
+    GRID LAYOUT — 8 cols × 7 rows
+    Columns: 1  2  3  4  5  6  7  8
+    R1: badge  portrait-woman  empty  empty  empty  empty  badge-workflow  icon-menu
+    R2: icon-chat  [portrait spans]  empty  ghost  ghost  ghost  empty  empty
+    R3: icon-task  empty  ghost  ghost  ghost  ghost  empty  badge-autonomous
+    R4: empty  portrait-man  ghost  ghost  ghost  portrait-warm  badge-aiworkflow  icon-bolt
+    R5: icon-menu  [portrait-man spans]  empty  empty  empty  [portrait-warm spans]  badge-autonomous  empty
+    R6: icon-circle  empty  empty  empty  empty  empty  empty  empty
+  -->
+  <div class="grid-bg" aria-hidden="true">
+
+    <!-- ══ ROW 1 ══ -->
+    <!-- C1: Autonomous AI badge -->
+    <div class="cell badge-cell">
+      <span class="badge"><span class="dot"></span>Autonomous AI</span>
+    </div>
+    <!-- C2: Portrait woman -->
+    <div class="cell portrait" style="grid-column:2; grid-row: 1;">
+      <div class="portrait-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=400&fit=crop&crop=faces"
+          alt="AI Employee"
+          loading="lazy"
+        />
+        <div class="call-bar">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.06 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+          <span class="call-pulse"></span>
+        </div>
+      </div>
+    </div>
+    <!-- C3-C6: empty -->
+    <div class="cell hoverable"></div>
+    <div class="cell hoverable"></div>
+    <div class="cell hoverable"></div>
+    <div class="cell hoverable"></div>
+    <!-- C7: Workflow badge -->
+    <div class="cell badge-cell" style="justify-content: center;">
+      <span class="badge">Workflow</span>
+    </div>
+    <!-- C8: Hamburger / menu icon -->
+    <div class="cell icon-cell">
+      <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </div>
+
+    <!-- ══ ROW 2 ══ -->
+    <!-- C1: Chat bubble icon -->
+    <div class="cell icon-cell">
+      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+    </div>
+    <!-- C2: empty -->
+    <div class="cell hoverable"></div>
+    <!-- C3: empty -->
+    <div class="cell hoverable"></div>
+    <!-- C4-C6: center ghost zone -->
+    <div class="cell ghost"></div>
+    <div class="cell ghost"></div>
+    <div class="cell ghost"></div>
+    <!-- C7: empty -->
+    <div class="cell hoverable"></div>
+    <!-- C8: empty -->
+    <div class="cell hoverable"></div>
+
+    <!-- ══ ROW 3 ══ -->
+    <!-- C1: Checkbox/task icon -->
+    <div class="cell icon-cell">
+      <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+    </div>
+    <!-- C2: empty -->
+    <div class="cell hoverable"></div>
+    <!-- C3-C6: ghost zone (behind hero text) -->
+    <div class="cell ghost"></div>
+    <div class="cell ghost"></div>
+    <div class="cell ghost"></div>
+    <div class="cell ghost"></div>
+    <!-- C7: empty -->
+    <div class="cell hoverable"></div>
+    <!-- C8: Autonomous AI badge -->
+    <div class="cell badge-cell" style="justify-content: center;">
+      <span class="badge"><span class="dot"></span>Autonomous AI</span>
+    </div>
+
+    <!-- ══ ROW 4 ══ -->
+    <!-- C1: empty -->
+    <div class="cell hoverable"></div>
+    <!-- C2: Portrait man -->
+    <div class="cell portrait" style="grid-column:2; grid-row: 4;">
+      <div class="portrait-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=400&fit=crop&crop=faces"
+          alt="AI Employee"
+          loading="lazy"
+        />
+        <div class="call-bar">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.06 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+          <span class="call-pulse"></span>
+        </div>
+      </div>
+    </div>
+    <!-- C3-C5: boxes added between portraits -->
+    <div class="cell hoverable"></div>
+    <div class="cell hoverable"></div>
+    <div class="cell hoverable"></div>
+    <!-- C6: Portrait warm-toned woman -->
+    <div class="cell portrait-warm" style="grid-column:6; grid-row: 4;">
+      <div class="portrait-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=400&fit=crop&crop=faces"
+          alt="AI Employee"
+          loading="lazy"
+        />
+        <div class="call-bar">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.06 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+          <span class="call-pulse"></span>
+        </div>
+      </div>
+    </div>
+    <!-- C7: AI Workflow badge -->
+    <div class="cell badge-cell" style="justify-content: flex-end;">
+      <span class="badge purple">AI Workflow</span>
+    </div>
+    <!-- C8: Lightning / bolt icon -->
+    <div class="cell icon-cell">
+      <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+    </div>
+
+    <!-- ══ ROW 5 ══ -->
+    <!-- C1: Hamburger icon (bottom left) -->
+    <div class="cell icon-cell">
+      <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </div>
+    <!-- C2: empty -->
+    <div class="cell hoverable"></div>
+    <!-- C3–C5: empty -->
+    <div class="cell hoverable"></div>
+    <div class="cell hoverable"></div>
+    <div class="cell hoverable"></div>
+    <!-- C6: empty -->
+    <div class="cell hoverable"></div>
+    <!-- C7: Autonomous AI badge -->
+    <div class="cell badge-cell">
+      <span class="badge"><span class="dot"></span>Autonomous AI</span>
+    </div>
+    <!-- C8: empty -->
+    <div class="cell hoverable"></div>
+
+    <!-- ══ ROW 6 (bottom strip, partially visible) ══ -->
+    <!-- C1: circle/dots icon -->
+    <div class="cell icon-cell">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+    </div>
+    <div class="cell hoverable"></div>
+    <div class="cell hoverable"></div>
+    <div class="cell hoverable"></div>
+    <div class="cell hoverable"></div>
+    <div class="cell hoverable"></div>
+    <div class="cell hoverable"></div>
+    <div class="cell hoverable"></div>
+
+  </div><!-- /grid-bg -->
+
+  <!-- ── CENTER CONTENT ──────────────────── -->
+  <div class="hero-content">
+    <div class="hero-inner">
+      <h1 class="hero-title">
+        Digital Employees,<br />Tailored to Your Workflow
+      </h1>
+      <p class="hero-sub">
+        Autonomous AI workers that resolve tasks end&#8209;to&#8209;end<br>
+        and show you the impact in real time
+      </p>
+      <a href="#" class="hero-btn" id="hero-cta">
+        Live Experience
+      </a>
+    </div>
+  </div>
+
+</section>
+
+</body>
+</html>

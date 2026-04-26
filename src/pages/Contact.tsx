@@ -61,7 +61,7 @@ export default function Contact() {
             <AnimatedSection>
               <div>
                 <div className="mb-8">
-                  <img src="/LOGO.png" alt="Vyor AI" className="h-20 w-auto object-contain" />
+                  <img src="/logo.webp" alt="Vyor AI" className="h-20 w-auto object-contain" />
                 </div>
                 <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-8">
                   Contact<br />Information

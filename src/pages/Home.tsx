@@ -20,17 +20,16 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 const floatingTags = [
-  { text: "Autonomous AI", style: "top-[15%] left-[8%] bg-violet-600 text-white", delay: 0 },
-  { text: "Workflow", style: "top-[12%] right-[15%] bg-indigo-100 text-indigo-700", delay: 0.5 },
-  { text: "AI Workflow", style: "top-[45%] right-[5%] bg-purple-100 text-purple-800", delay: 1 },
-  { text: "Autonomous AI", style: "bottom-[25%] right-[8%] bg-blue-100 text-blue-700", delay: 1.5 },
+  { text: "Autonomous AI", style: "top-[10%] left-[5%] bg-violet-600 text-white", delay: 0 },
+  { text: "Workflow", style: "top-[8%] right-[10%] bg-indigo-100 text-indigo-700", delay: 0.5 },
+  { text: "AI Workflow", style: "top-[40%] right-[3%] bg-purple-100 text-purple-800", delay: 1 },
+  { text: "Autonomous AI", style: "bottom-[15%] right-[5%] bg-blue-100 text-blue-700", delay: 1.5 },
 ];
 
 const floatingIcons = [
-  { icon: MessageSquare, style: "top-[30%] left-[5%] bg-violet-100 text-violet-600 p-2 rounded-xl", delay: 0.3 },
-  { icon: Shield, style: "top-[55%] left-[12%] bg-emerald-100 text-emerald-600 p-2 rounded-xl", delay: 0.8 },
-  { icon: Zap, style: "bottom-[20%] left-[8%] bg-amber-100 text-amber-600 p-2 rounded-xl", delay: 1.2 },
-  { icon: BarChart, style: "top-[35%] right-[3%] bg-blue-100 text-blue-600 p-2 rounded-xl", delay: 0.6 },
+  { icon: MessageSquare, style: "top-[25%] left-[3%] bg-violet-100 text-violet-600 p-2 rounded-xl", delay: 0.3 },
+  { icon: Zap, style: "bottom-[10%] left-[5%] bg-amber-100 text-amber-600 p-2 rounded-xl", delay: 1.2 },
+  { icon: BarChart, style: "top-[30%] right-[2%] bg-blue-100 text-blue-600 p-2 rounded-xl", delay: 0.6 },
 ];
 
 const partners = ["Google Cloud", "AWS", "Microsoft", "NVIDIA", "Salesforce", "Slack", "Stripe", "HubSpot", "Zendesk"];
@@ -74,7 +73,7 @@ const commandTabs = [
 ];
 
 const HeroGrid = () => {
-  const icons = [MessageSquare, Shield, Zap, BarChart, Bot, Brain, Zap, MessageCircle];
+  const icons = [MessageSquare, Zap];
   
   return (
     <div className="absolute inset-0 z-0 overflow-hidden [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,black_30%,transparent_100%)]">
@@ -82,14 +81,30 @@ const HeroGrid = () => {
         {Array.from({ length: 300 }).map((_, i) => {
           const hasIcon = i % 17 === 0;
           const Icon = icons[i % icons.length];
+          
+          let cellClass = "aspect-square bg-[#EEEEF0]/50 rounded-lg transition-all duration-500 hover:bg-[#DDE0F7] hover:scale-105 hover:shadow-[0_0_22px_rgba(99,102,241,0.18)] hover:z-10 flex items-center justify-center group/cell";
+          let cellStyle = {};
+          let content = null;
+
+          if (hasIcon) {
+            if (Icon === MessageSquare) {
+              cellClass = "bg-[#F4F4F4] rounded-[6px] w-full aspect-square transition-all duration-700 ease-out transform hover:bg-[#DDE0F7] hover:shadow-[0_0_25px_rgba(99,102,241,0.2)] hover:scale-[1.02] hover:[animation:pulse_2s_ease-in-out_infinite]";
+              cellStyle = { opacity: 0.3675444679663241 };
+            } else if (Icon === Zap) {
+              cellClass = "bg-[#F4F4F4] rounded-[6px] w-full aspect-square transition-all duration-700 ease-out transform hover:bg-[#DDE0F7] hover:shadow-[0_0_25px_rgba(99,102,241,0.2)] hover:scale-[1.02] hover:[animation:pulse_2s_ease-in-out_infinite]";
+              cellStyle = { opacity: 0.552786404500042 };
+            } else {
+              content = <Icon className="w-4 h-4 text-gray-400 group-hover/cell:text-indigo-500 transition-colors" />;
+            }
+          }
+
           return (
             <div 
               key={i} 
-              className="aspect-square bg-[#EEEEF0]/50 rounded-lg transition-all duration-500 hover:bg-[#DDE0F7] hover:scale-105 hover:shadow-[0_0_22px_rgba(99,102,241,0.18)] hover:z-10 flex items-center justify-center group/cell"
+              className={cellClass}
+              style={cellStyle}
             >
-              {hasIcon && (
-                <Icon className="w-4 h-4 text-gray-400 group-hover/cell:text-indigo-500 transition-colors" />
-              )}
+              {content}
             </div>
           );
         })}
@@ -143,25 +158,25 @@ export default function Home() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="absolute top-[20%] left-[18%] hidden lg:block z-10"
+          className="absolute top-[22%] left-[15%] hidden lg:block z-10"
         >
-          <img src="https://images.unsplash.com/photo-1742981365880-698cfb84492d?w=200&h=200&auto=format&fit=crop&q=80" alt="" className="w-16 h-16 rounded-xl object-cover shadow-lg rotate-[-6deg]" />
+          <img src="https://images.unsplash.com/photo-1742981365880-698cfb84492d?w=200&h=200&auto=format&fit=crop&q=80" alt="" className="w-16 h-16 rounded-lg object-cover shadow-lg rotate-[-6deg] transition-all duration-500 hover:scale-110 hover:shadow-xl cursor-pointer" />
         </motion.div>
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="absolute bottom-[30%] left-[22%] hidden lg:block z-10"
+          className="absolute bottom-[30%] left-[15%] hidden lg:block z-10"
         >
-          <img src="https://images.unsplash.com/flagged/photo-1563713076139-d9f44e576124?w=200&h=200&auto=format&fit=crop&q=80" alt="" className="w-14 h-14 rounded-xl object-cover shadow-lg rotate-[4deg]" />
+          <img src="https://images.unsplash.com/flagged/photo-1563713076139-d9f44e576124?w=200&h=200&auto=format&fit=crop&q=80" alt="" className="w-14 h-14 rounded-lg object-cover shadow-lg rotate-[4deg] transition-all duration-500 hover:scale-110 hover:shadow-xl cursor-pointer" />
         </motion.div>
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7 }}
-          className="absolute bottom-[25%] right-[18%] hidden lg:block z-10"
+          className="absolute bottom-[20%] right-[10%] hidden lg:block z-10"
         >
-          <img src="https://plus.unsplash.com/premium_photo-1664478244612-d4b3238abd81?w=200&h=200&auto=format&fit=crop&q=80" alt="" className="w-16 h-16 rounded-xl object-cover shadow-lg rotate-[6deg]" />
+          <img src="https://plus.unsplash.com/premium_photo-1664478244612-d4b3238abd81?w=200&h=200&auto=format&fit=crop&q=80" alt="" className="w-16 h-16 rounded-lg object-cover shadow-lg rotate-[6deg] transition-all duration-500 hover:scale-110 hover:shadow-xl cursor-pointer" />
         </motion.div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20 pointer-events-none">
