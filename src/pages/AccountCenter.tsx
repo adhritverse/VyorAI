@@ -13,6 +13,10 @@ export default function AccountCenter() {
 
   useEffect(() => {
     const fetchUserAndHistory = async () => {
+      if (!supabase) {
+        navigate('/auth');
+        return;
+      }
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
         navigate('/auth');

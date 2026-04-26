@@ -14,6 +14,8 @@ export default function Navbar() {
   const location = useLocation();
 
   useEffect(() => {
+    if (!supabase) return;
+
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
     });

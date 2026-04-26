@@ -43,6 +43,9 @@ export default function Careers() {
         setError(null);
 
         try {
+            if (!supabase) {
+                throw new Error('Supabase is not configured. Please check your environment variables.');
+            }
             const { error: supabaseError } = await supabase
                 .from('job_applications')
                 .insert([{

@@ -27,6 +27,10 @@ export default function Auth() {
     setMessage(null);
 
     try {
+      if (!supabase) {
+        throw new Error('Supabase is not configured. Please check your environment variables.');
+      }
+      
       if (tab === 'login') {
         const { error } = await supabase.auth.signInWithPassword({
           email: formData.email,

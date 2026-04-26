@@ -25,6 +25,9 @@ export default function Contact() {
     setError(null);
 
     try {
+      if (!supabase) {
+        throw new Error('Supabase is not configured. Please check your environment variables.');
+      }
       const { error: supabaseError } = await supabase
         .from('contact_submissions')
         .insert([{
