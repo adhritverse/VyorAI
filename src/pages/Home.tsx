@@ -73,24 +73,40 @@ const commandTabs = [
   { num: "04", title: "Policy & Integration Hub", desc: "Centralized control for all configurations" },
 ];
 
+const HeroGrid = () => {
+  return (
+    <div className="absolute inset-0 z-0 overflow-hidden [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,black_30%,transparent_100%)]">
+      <div className="absolute inset-0 grid grid-cols-8 sm:grid-cols-12 lg:grid-cols-20 gap-1.5 sm:gap-2 p-1.5 sm:p-2">
+        {Array.from({ length: 300 }).map((_, i) => (
+          <div 
+            key={i} 
+            className="aspect-square bg-[#EEEEF0]/50 rounded-lg transition-all duration-500 hover:bg-[#DDE0F7] hover:scale-105 hover:shadow-[0_0_22px_rgba(99,102,241,0.18)] hover:z-10"
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default function Home() {
   const [activeCommandTab, setActiveCommandTab] = useState(0);
 
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-white to-gray-50 pt-32 pb-20 lg:pt-40 lg:pb-28">
+      <section className="relative overflow-hidden bg-white pt-32 pb-20 lg:pt-40 lg:pb-28">
+        <HeroGrid />
+        
         {/* Floating Decorative Elements */}
         {floatingTags.map((tag, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: [0, -8, 0] }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{
               opacity: { duration: 0.6, delay: tag.delay },
-              y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: tag.delay },
             }}
-            className={`absolute hidden lg:block px-4 py-2 rounded-full text-sm font-medium shadow-sm ${tag.style}`}
+            className={`absolute hidden lg:block px-4 py-2 rounded-full text-sm font-medium shadow-sm z-10 ${tag.style}`}
           >
             {tag.text}
           </motion.div>
@@ -101,12 +117,11 @@ export default function Home() {
             <motion.div
               key={`icon-${i}`}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: [0, -10, 0] }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{
                 opacity: { duration: 0.6, delay: item.delay },
-                y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: item.delay },
               }}
-              className={`absolute hidden lg:block ${item.style}`}
+              className={`absolute hidden lg:block z-10 ${item.style}`}
             >
               <IconComp className="w-5 h-5" />
             </motion.div>
@@ -116,30 +131,30 @@ export default function Home() {
         {/* Avatar Images */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1, y: [0, -6, 0] }}
-          transition={{ duration: 0.8, delay: 0.3, y: { duration: 4, repeat: Infinity } }}
-          className="absolute top-[20%] left-[18%] hidden lg:block"
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="absolute top-[20%] left-[18%] hidden lg:block z-10"
         >
           <img src="https://images.unsplash.com/photo-1742981365880-698cfb84492d?w=200&h=200&auto=format&fit=crop&q=80" alt="" className="w-16 h-16 rounded-xl object-cover shadow-lg rotate-[-6deg]" />
         </motion.div>
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }}
-          transition={{ duration: 0.8, delay: 0.5, y: { duration: 5, repeat: Infinity } }}
-          className="absolute bottom-[30%] left-[22%] hidden lg:block"
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="absolute bottom-[30%] left-[22%] hidden lg:block z-10"
         >
           <img src="https://images.unsplash.com/flagged/photo-1563713076139-d9f44e576124?w=200&h=200&auto=format&fit=crop&q=80" alt="" className="w-14 h-14 rounded-xl object-cover shadow-lg rotate-[4deg]" />
         </motion.div>
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1, y: [0, -7, 0] }}
-          transition={{ duration: 0.8, delay: 0.7, y: { duration: 4.5, repeat: Infinity } }}
-          className="absolute bottom-[25%] right-[18%] hidden lg:block"
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
+          className="absolute bottom-[25%] right-[18%] hidden lg:block z-10"
         >
           <img src="https://plus.unsplash.com/premium_photo-1664478244612-d4b3238abd81?w=200&h=200&auto=format&fit=crop&q=80" alt="" className="w-16 h-16 rounded-xl object-cover shadow-lg rotate-[6deg]" />
         </motion.div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20 pointer-events-none">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -165,7 +180,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 pointer-events-auto"
           >
             <Link
               to="/auth"
@@ -175,7 +190,7 @@ export default function Home() {
             </Link>
             <Link
               to="/product"
-              className="inline-flex items-center gap-2 px-7 py-3.5 border border-gray-200 text-gray-700 font-medium rounded-full hover:bg-gray-50 transition-all"
+              className="inline-flex items-center gap-2 px-7 py-3.5 border border-gray-200 text-gray-700 font-medium bg-white/50 backdrop-blur-sm rounded-full hover:bg-white transition-all"
             >
               <span className="font-mono text-sm">&lt;/&gt;</span>
               Documentation
