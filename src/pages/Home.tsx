@@ -206,6 +206,25 @@ export default function Home() {
               Documentation
             </Link>
           </motion.div>
+
+          {/* Stats - Desktop Only */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="mt-12 hidden lg:flex flex-wrap justify-center gap-6 pointer-events-auto"
+          >
+            {[
+              { value: "<50ms", label: "Avg Latency" },
+              { value: "99.9%", label: "Uptime" },
+              { value: "1M+", label: "API Calls/day" },
+            ].map((stat, i) => (
+              <div key={i} className="flex items-center gap-2 px-5 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-100 shadow-sm">
+                <span className="text-lg font-bold text-black">{stat.value}</span>
+                <span className="text-xs text-gray-500 uppercase tracking-wider">{stat.label}</span>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
