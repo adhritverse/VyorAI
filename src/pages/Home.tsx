@@ -76,7 +76,7 @@ const commandTabs = [
 const HeroGrid = () => {
   return (
     <div className="absolute inset-0 z-0 overflow-hidden [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,black_30%,transparent_100%)]">
-      <div className="absolute inset-0 grid grid-cols-8 sm:grid-cols-12 lg:grid-cols-20 gap-1.5 sm:gap-2 p-1.5 sm:p-2">
+      <div className="absolute inset-0 grid grid-cols-6 sm:grid-cols-12 lg:grid-cols-20 gap-1.5 sm:gap-2 p-1.5 sm:p-2">
         {Array.from({ length: 300 }).map((_, i) => (
           <div 
             key={i} 
@@ -195,25 +195,6 @@ export default function Home() {
               <span className="font-mono text-sm">&lt;/&gt;</span>
               Documentation
             </Link>
-          </motion.div>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="mt-12 inline-flex flex-wrap justify-center gap-6"
-          >
-            {[
-              { value: "<50ms", label: "Avg Latency" },
-              { value: "99.9%", label: "Uptime" },
-              { value: "1M+", label: "API Calls/day" },
-            ].map((stat, i) => (
-              <div key={i} className="flex items-center gap-2 px-5 py-3 bg-white rounded-xl border border-gray-100 shadow-sm">
-                <span className="text-lg font-bold text-black">{stat.value}</span>
-                <span className="text-xs text-gray-500 uppercase tracking-wider">{stat.label}</span>
-              </div>
-            ))}
           </motion.div>
         </div>
       </section>
