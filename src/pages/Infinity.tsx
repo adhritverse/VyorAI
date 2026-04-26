@@ -27,7 +27,7 @@ export default function Infinity() {
                 <Network className="w-3.5 h-3.5" />
                 Plugin SDK
               </motion.div>
-              
+
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -35,11 +35,11 @@ export default function Infinity() {
                 className="text-5xl sm:text-7xl font-bold tracking-tight text-gray-900 mb-6 leading-[1.1]"
               >
                 Infinity <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-vyor-purple to-indigo-600">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-600">
                   Architecture.
                 </span>
               </motion.h1>
-              
+
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -48,7 +48,7 @@ export default function Infinity() {
               >
                 Develop, train, and deploy custom neural architectures directly into our ecosystem. A powerful SDK built for infinite scale.
               </motion.p>
-              
+
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -149,25 +149,25 @@ export default function Infinity() {
                       <ShoppingBag className="w-5 h-5 text-gray-400" />
                     </div>
                   </div>
-                  
+
                   {/* Plugin SDK overlay demo */}
                   <div className="flex-1 rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden flex flex-col relative">
                     <div className="absolute top-4 right-4 z-10">
                       <span className="px-2 py-1 bg-vyor-purple text-white text-[9px] font-bold uppercase tracking-wider rounded">Infinity Plugin</span>
                     </div>
                     <div className="p-6 border-b border-gray-100 flex-1">
-                       <p className="text-xs text-gray-400 uppercase tracking-widest font-bold mb-4">Discover</p>
-                       <div className="space-y-4">
-                         <div className="bg-gray-50 rounded-xl p-4 text-sm font-medium text-gray-700">
-                           "Find me a waterproof jacket under $200 for my hiking trip."
-                         </div>
-                         <div className="flex gap-3 items-start">
-                           <Sparkles className="w-4 h-4 text-vyor-violet mt-1" />
-                           <div className="bg-violet-50 rounded-xl p-4 text-sm text-vyor-violet font-medium">
-                             Found 2 perfect matches using native intent resolution. They are automatically added to your comparison view.
-                           </div>
-                         </div>
-                       </div>
+                      <p className="text-xs text-gray-400 uppercase tracking-widest font-bold mb-4">Discover</p>
+                      <div className="space-y-4">
+                        <div className="bg-gray-50 rounded-xl p-4 text-sm font-medium text-gray-700">
+                          "Find me a waterproof jacket under $200 for my hiking trip."
+                        </div>
+                        <div className="flex gap-3 items-start">
+                          <Sparkles className="w-4 h-4 text-vyor-violet mt-1" />
+                          <div className="bg-violet-50 rounded-xl p-4 text-sm text-vyor-violet font-medium">
+                            Found 2 perfect matches using native intent resolution. They are automatically added to your comparison view.
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div className="p-4 bg-gray-50 flex items-center gap-3">
                       <div className="flex-1 h-10 bg-white border border-gray-200 rounded-lg flex items-center px-4">
@@ -181,7 +181,7 @@ export default function Infinity() {
                 </div>
               </div>
             </AnimatedSection>
-            
+
             <AnimatedSection className="order-1 lg:order-2">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 text-amber-600 text-xs font-bold uppercase tracking-wider mb-6">
                 Use Case
@@ -192,7 +192,7 @@ export default function Infinity() {
               <p className="text-lg text-gray-500 mb-8 leading-relaxed">
                 Embed the Infinity SDK directly into your shopping app or platform. Users can simply type what they want, and the plugin translates natural intent into instant navigation and product discovery.
               </p>
-              
+
               <ul className="space-y-6">
                 {[
                   "Drop-in UI components for React and Vue",

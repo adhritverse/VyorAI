@@ -5,7 +5,7 @@ export default function VirtualTryOn() {
   return (
     <div className="min-h-screen bg-white pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <AnimatedSection className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 text-xs font-bold uppercase tracking-wider mb-6 shadow-sm">
@@ -25,7 +25,7 @@ export default function VirtualTryOn() {
           <div className="max-w-4xl mx-auto">
             <div className="bg-gray-900 rounded-[32px] p-2 shadow-2xl border border-gray-800">
               <div className="rounded-[24px] overflow-hidden bg-[#050505] relative aspect-[9/16] sm:aspect-video flex items-center justify-center">
-                <video 
+                <video
                   className="w-full h-full object-cover"
                   autoPlay
                   loop
@@ -37,7 +37,7 @@ export default function VirtualTryOn() {
                 </video>
               </div>
             </div>
-            
+
             <div className="mt-12 grid sm:grid-cols-3 gap-8 text-center">
               <div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Photorealistic</h3>
