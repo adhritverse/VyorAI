@@ -1,17 +1,8 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { User, Mail, Calendar, MessageSquare, Briefcase, LogOut, ChevronRight, History } from 'lucide-react';
+import { User, Calendar, MessageSquare, Briefcase, LogOut, ChevronRight, History } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useNavigate } from 'react-router';
 import AnimatedSection from '@/components/AnimatedSection';
-
-interface Submission {
-  id: string;
-  created_at: string;
-  type: 'contact' | 'career';
-  title: string;
-  status: string;
-}
 
 export default function AccountCenter() {
   const [user, setUser] = useState<any>(null);
