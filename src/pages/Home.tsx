@@ -33,7 +33,7 @@ const floatingIcons = [
   { icon: BarChart, style: "top-[35%] right-[3%] bg-blue-100 text-blue-600 p-2 rounded-xl", delay: 0.6 },
 ];
 
-const partners = ["Google Cloud", "AWS", "Microsoft", "Salesforce", "Slack", "Stripe", "HubSpot", "Zendesk"];
+const partners = ["Google Cloud", "AWS", "Microsoft", "NVIDIA", "Salesforce", "Slack", "Stripe", "HubSpot", "Zendesk"];
 
 const methodSteps = [
   {
@@ -204,15 +204,26 @@ export default function Home() {
       </section>
 
       {/* Partners Section */}
-      <section className="bg-gray-900 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-white/50 text-sm uppercase tracking-wider mb-10">
+      <section className="bg-gray-900 py-16 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+          <p className="text-center text-white/50 text-sm uppercase tracking-wider">
             Our Partners and Recognitions
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-16">
-            {partners.map((partner, i) => (
-              <div key={i} className="text-white/40 font-semibold text-lg tracking-tight hover:text-white/60 transition-colors">
-                {partner}
+        </div>
+        <div className="relative">
+          {/* Gradient masks for smooth fade in/out */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-gray-900 to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-gray-900 to-transparent z-10 pointer-events-none" />
+          
+          <div className="flex animate-marquee whitespace-nowrap">
+            {/* Duplicate the list to create a seamless loop */}
+            {[...Array(2)].map((_, setIndex) => (
+              <div key={setIndex} className="flex items-center gap-12 sm:gap-20 px-6 sm:px-10">
+                {partners.map((partner, i) => (
+                  <div key={`${setIndex}-${i}`} className="text-white/40 font-semibold text-lg sm:text-2xl tracking-tight hover:text-white/60 transition-colors">
+                    {partner}
+                  </div>
+                ))}
               </div>
             ))}
           </div>
