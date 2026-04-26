@@ -16,11 +16,13 @@ import AccountCenter from '@/pages/AccountCenter';
 import Infinity from '@/pages/Infinity';
 import BlogPostDetail from '@/pages/BlogPostDetail';
 import ScrollToTop from '@/components/ScrollToTop';
+import InfinityFAB from '@/components/InfinityFAB';
 
 export default function App() {
   return (
     <>
       <ScrollToTop />
+      <InfinityFAB />
       <Routes>
       <Route element={<PageLayout />}>
         <Route path="/" element={<Home />} />
