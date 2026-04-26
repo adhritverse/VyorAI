@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
-import { HeartPulse, Terminal, Activity, CheckCircle2, Puzzle, Shirt, BoxSelect, Fingerprint } from "lucide-react";
+import { HeartPulse, Terminal, Activity, CheckCircle2, Puzzle, Shirt, BoxSelect, Fingerprint, ArrowRight } from "lucide-react";
+import { Link } from 'react-router';
 import InfinityDemo from './InfinityDemo';
 
 interface Product {
@@ -14,6 +15,7 @@ interface Product {
     theme: string;
     glowColor: string;
     isComingSoon?: boolean;
+    link?: string;
 }
 
 const products = [
@@ -30,7 +32,8 @@ const products = [
         span: "md:col-span-3",
         delay: 0.1,
         theme: "indigo",
-        glowColor: "rgba(99,102,241,0.12)"
+        glowColor: "rgba(99,102,241,0.12)",
+        link: "/products/infinity"
     },
     {
         id: "tryon",
@@ -45,7 +48,8 @@ const products = [
         span: "md:col-span-2",
         delay: 0.2,
         theme: "pink",
-        glowColor: "rgba(236,72,153,0.12)"
+        glowColor: "rgba(236,72,153,0.12)",
+        link: "/products/virtual-try-on"
     },
     {
         id: "stress",
@@ -461,6 +465,14 @@ function ProductCard({ product }: { product: Product }) {
                             </li>
                         ))}
                     </ul>
+                )}
+
+                {product.link && (
+                    <div className="mt-6 md:mt-8">
+                        <Link to={product.link} className={`inline-flex items-center gap-2 text-[13px] md:text-[14px] font-bold ${theme.accent} hover:opacity-80 transition-opacity`}>
+                            Explore <ArrowRight className="w-4 h-4" />
+                        </Link>
+                    </div>
                 )}
             </div>
 
