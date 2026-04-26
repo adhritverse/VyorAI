@@ -74,15 +74,25 @@ const commandTabs = [
 ];
 
 const HeroGrid = () => {
+  const icons = [MessageSquare, Shield, Zap, BarChart, Bot, Brain, Zap, MessageCircle];
+  
   return (
     <div className="absolute inset-0 z-0 overflow-hidden [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,black_30%,transparent_100%)]">
       <div className="absolute inset-0 grid grid-cols-6 sm:grid-cols-12 lg:grid-cols-20 gap-1.5 sm:gap-2 p-1.5 sm:p-2">
-        {Array.from({ length: 300 }).map((_, i) => (
-          <div 
-            key={i} 
-            className="aspect-square bg-[#EEEEF0]/50 rounded-lg transition-all duration-500 hover:bg-[#DDE0F7] hover:scale-105 hover:shadow-[0_0_22px_rgba(99,102,241,0.18)] hover:z-10"
-          />
-        ))}
+        {Array.from({ length: 300 }).map((_, i) => {
+          const hasIcon = i % 17 === 0;
+          const Icon = icons[i % icons.length];
+          return (
+            <div 
+              key={i} 
+              className="aspect-square bg-[#EEEEF0]/50 rounded-lg transition-all duration-500 hover:bg-[#DDE0F7] hover:scale-105 hover:shadow-[0_0_22px_rgba(99,102,241,0.18)] hover:z-10 flex items-center justify-center group/cell"
+            >
+              {hasIcon && (
+                <Icon className="w-4 h-4 text-gray-300 group-hover/cell:text-indigo-500 transition-colors" />
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
