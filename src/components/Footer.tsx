@@ -19,13 +19,13 @@ export default function Footer() {
                 <p className="text-gray-500 text-sm mt-1">Monthly insights on AI workforces — zero spam</p>
               </div>
             </div>
-            <div className="flex gap-3 w-full md:w-auto">
+            <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
               <input
                 type="email"
                 placeholder="Enter your email"
                 className="flex-1 md:w-64 px-4 py-3 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-gray-500"
               />
-              <button className="px-6 py-3 bg-black text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-colors whitespace-nowrap">
+              <button className="w-full sm:w-auto px-6 py-3 bg-black text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-colors whitespace-nowrap">
                 Subscribe
               </button>
             </div>
