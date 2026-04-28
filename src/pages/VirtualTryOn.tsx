@@ -24,9 +24,9 @@ export default function VirtualTryOn() {
         <AnimatedSection delay={0.2}>
           <div className="max-w-4xl mx-auto">
             <div className="bg-gray-900 rounded-[32px] p-2 shadow-2xl border border-gray-800">
-              <div className="rounded-[24px] overflow-hidden bg-[#050505] relative aspect-[9/16] sm:aspect-video flex items-center justify-center">
+              <div className="rounded-[24px] overflow-hidden bg-[#050505] relative flex items-center justify-center">
                 <video
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto"
                   autoPlay
                   loop
                   muted

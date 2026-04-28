@@ -195,7 +195,7 @@ export default function Solutions() {
                         <p className="text-gray-600 font-medium">"{activeSegment.problem}"</p>
                       </div>
 
-                      <div className="p-6 rounded-2xl bg-black border border-gray-800 text-white relative">
+                      <div className="p-6 rounded-2xl bg-gray-100 border border-gray-200 text-gray-900 relative shadow-sm">
                         <div className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-2">Our Solution</div>
                         <p className="font-bold">{activeSegment.solution}</p>
                       </div>
@@ -227,7 +227,7 @@ export default function Solutions() {
                     transition={{ duration: 0.4 }}
                     className="relative"
                   >
-                    <div className="relative bg-white rounded-[2rem] border border-gray-200 shadow-xl p-8 overflow-hidden flex flex-col bg-gradient-to-b from-white to-gray-50/50">
+                    <div className="relative bg-white rounded-[2rem] border border-gray-200 shadow-xl p-4 sm:p-8 overflow-hidden flex flex-col bg-gradient-to-b from-white to-gray-50/50">
                       {/* Top Bar */}
                       <div className="flex items-center justify-between mb-8">
                         <div className="flex gap-2">
@@ -243,11 +243,11 @@ export default function Solutions() {
 
                       {/* Stat Grid */}
                       <div className="grid grid-cols-2 gap-6 mb-8">
-                        <div className="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm">
+                        <div className="p-4 sm:p-6 rounded-2xl bg-white border border-gray-100 shadow-sm">
                           <div className={`text-4xl font-black mb-1 text-black`}>{activeSegment.mockup.stat1}</div>
                           <div className="text-xs font-bold text-gray-400 uppercase tracking-wider">{activeSegment.mockup.label1}</div>
                         </div>
-                        <div className="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm">
+                        <div className="p-4 sm:p-6 rounded-2xl bg-white border border-gray-100 shadow-sm">
                           <div className={`text-4xl font-black mb-1 text-vyor-purple`}>{activeSegment.mockup.stat2}</div>
                           <div className="text-xs font-bold text-gray-400 uppercase tracking-wider">{activeSegment.mockup.label2}</div>
                         </div>
@@ -262,7 +262,7 @@ export default function Solutions() {
                               initial={{ height: 0 }}
                               animate={{ height: `${h}%` }}
                               transition={{ delay: i * 0.05, duration: 0.6 }}
-                              className={`flex-1 rounded-t-lg bg-gray-200`}
+                              className={`flex-1 rounded-t-lg bg-gray-200 relative`}
                             >
                               {h > 80 && (
                                 <div className="absolute top-0 w-full h-full bg-vyor-purple rounded-t-lg" style={{ height: '100%' }} />
@@ -276,7 +276,7 @@ export default function Solutions() {
                       <motion.div
                         animate={{ y: [0, -5, 0] }}
                         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute bottom-12 right-12 bg-white rounded-xl p-4 shadow-xl border border-gray-100 flex items-center gap-3"
+                        className="absolute bottom-4 right-4 sm:bottom-12 sm:right-12 bg-white rounded-xl p-3 sm:p-4 shadow-xl border border-gray-100 hidden sm:flex items-center gap-3"
                       >
                         <div className="w-10 h-10 rounded-lg bg-gray-100 text-black flex items-center justify-center">
                           <CheckCircle2 className="w-5 h-5" />
@@ -333,13 +333,13 @@ export default function Solutions() {
             </div>
 
             {/* After Column */}
-            <div className="p-10 bg-black text-white rounded-3xl shadow-xl relative group">
+            <div className="p-6 sm:p-10 bg-slate-50 text-slate-900 rounded-3xl border border-slate-200 shadow-sm relative group">
               <div className="relative z-10">
                 <div className="flex items-center gap-4 mb-10">
                   <div className="w-12 h-12 rounded-xl bg-vyor-purple text-white flex items-center justify-center">
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
-                  <h3 className="text-2xl font-bold">AI Orchestration</h3>
+                  <h3 className="text-2xl font-bold text-slate-900">AI Orchestration</h3>
                 </div>
 
                 <ul className="space-y-6">
@@ -351,8 +351,8 @@ export default function Solutions() {
                     <li key={i} className="flex gap-4 group/item">
                       <div className="w-px h-auto bg-vyor-purple" />
                       <div>
-                        <h4 className="font-bold text-white">{item.text}</h4>
-                        <p className="text-sm text-gray-400">{item.sub}</p>
+                        <h4 className="font-bold text-slate-900">{item.text}</h4>
+                        <p className="text-sm text-gray-500">{item.sub}</p>
                       </div>
                     </li>
                   ))}
@@ -372,13 +372,13 @@ export default function Solutions() {
               { value: "<5s", label: "Response Time", desc: "Leads engaged instantly 24/7.", icon: Zap },
               { value: "$10M+", label: "Pipeline Generated", desc: "Revenue directly attributed to AI SDRs.", icon: BarChart3 }
             ].map((stat, i) => (
-              <div key={i} className="p-10 rounded-3xl bg-gray-50 border border-gray-100 group hover:bg-black hover:text-white transition-colors duration-300">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-8 bg-white border border-gray-200 text-black group-hover:bg-gray-800 group-hover:border-gray-700 group-hover:text-white transition-colors`}>
+              <div key={i} className="p-6 sm:p-10 rounded-3xl bg-gray-50 border border-gray-100 group hover:bg-white hover:border-vyor-purple/30 transition-all duration-300 hover:shadow-xl hover:shadow-gray-200/50">
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-8 bg-white border border-gray-200 text-black group-hover:bg-vyor-purple group-hover:border-vyor-purple/20 group-hover:text-white transition-colors`}>
                   <stat.icon className="w-6 h-6" />
                 </div>
-                <div className={`text-6xl font-bold mb-4 tracking-tight`}>{stat.value}</div>
-                <h4 className="text-xl font-bold mb-2">{stat.label}</h4>
-                <p className="text-gray-500 group-hover:text-gray-400 transition-colors">{stat.desc}</p>
+                <div className={`text-6xl font-bold mb-4 tracking-tight text-slate-900`}>{stat.value}</div>
+                <h4 className="text-xl font-bold mb-2 text-slate-800">{stat.label}</h4>
+                <p className="text-gray-500 transition-colors">{stat.desc}</p>
               </div>
             ))}
           </div>
@@ -413,7 +413,7 @@ export default function Solutions() {
               </div>
 
               <div className="relative">
-                <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-xl">
+                <div className="bg-white rounded-2xl p-4 sm:p-8 border border-gray-200 shadow-xl">
                   <div className="flex items-center gap-4 mb-8">
                     <div className="w-2.5 h-2.5 rounded-full bg-black animate-pulse" />
                     <span className="text-xs font-mono text-gray-500 tracking-widest uppercase">CRM Sync // Active</span>

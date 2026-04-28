@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="bg-gray-50 border-b border-gray-100 text-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start md:items-center gap-4 text-center sm:text-left">
               <div className="flex -space-x-3">
                 <img src="/images/avatar-1.jpg" alt="" className="w-10 h-10 rounded-full border-2 border-white object-cover" />
                 <img src="/images/avatar-2.jpg" alt="" className="w-10 h-10 rounded-full border-2 border-white object-cover" />
@@ -83,17 +83,18 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-end justify-between gap-8">
-            <div className="flex flex-col gap-6">
-              <Link to="/" className="flex items-center group">
-                <img src="/logo.webp" alt="Vyor AI Logo" className="h-12 w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity" />
+          <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-8 text-center md:text-left">
+            <div className="flex flex-col items-center md:items-start gap-6">
+              <Link to="/" className="flex items-center group gap-3">
+                <img src="/logo.webp" alt="Vyor AI Logo" className="h-10 w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity" />
+                <span className="text-sm md:text-base font-medium tracking-[0.25em] uppercase text-white">Vyor AI</span>
               </Link>
               <p className="text-gray-400 text-sm">
                 © 2026 Vyor AI. All rights reserved.
               </p>
             </div>
 
-            <div className="flex flex-col items-end gap-6">
+            <div className="flex flex-col items-center md:items-end gap-6">
               <div className="flex items-center gap-4">
                 <a href="https://vyorai.com/" target="_blank" rel="noreferrer" className="w-10 h-10 bg-black rounded-full flex items-center justify-center hover:bg-gray-900 transition-colors" title="Website">
                   <Globe className="w-5 h-5 text-white" />

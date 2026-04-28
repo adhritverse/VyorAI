@@ -39,8 +39,9 @@ export default function Navbar() {
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link to="/" className="inline-flex items-center group">
-              <img src="/logo.webp" alt="Vyor AI Logo" className="h-[80px] md:h-[110px] w-auto object-contain" />
+            <Link to="/" className="inline-flex items-center group gap-4">
+              <img src="/logo.webp" alt="Vyor AI Logo" className="h-[40px] md:h-[55px] w-auto object-contain" />
+              <span className="text-base md:text-lg font-medium tracking-[0.25em] uppercase text-black">Vyor AI</span>
             </Link>
 
             {/* Desktop Nav & CTA */}

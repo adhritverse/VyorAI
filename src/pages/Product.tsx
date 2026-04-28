@@ -72,7 +72,7 @@ export default function Product() {
                 <div className="w-3 h-3 rounded-full bg-red-400" />
                 <div className="w-3 h-3 rounded-full bg-amber-400" />
                 <div className="w-3 h-3 rounded-full bg-emerald-400" />
-                <div className="ml-4 text-xs font-bold text-gray-400 uppercase tracking-widest">VyorAI Dashboard — Production</div>
+                <div className="ml-4 text-xs font-bold text-gray-400 uppercase tracking-widest truncate">VyorAI Dashboard — Production</div>
               </div>
               <div className="flex bg-gray-50/30">
                 {/* Sidebar */}
@@ -87,15 +87,15 @@ export default function Product() {
                   ))}
                 </div>
                 {/* Main content */}
-                <div className="flex-1 p-8">
-                  <div className="flex items-center justify-between mb-8">
+                <div className="flex-1 p-4 sm:p-8 min-w-0">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
                     <h3 className="text-2xl font-bold text-gray-900">Overview</h3>
                     <div className="flex gap-2">
                       <span className="px-4 py-1.5 bg-emerald-50 border border-emerald-100 text-emerald-600 font-bold text-xs rounded-full uppercase tracking-wider">All Systems Online</span>
                     </div>
                   </div>
                   {/* KPI Cards */}
-                  <div className="grid grid-cols-4 gap-6 mb-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
                     {[
                       { label: "Active Agents", val: "24", change: "+12%" },
                       { label: "Tasks Today", val: "8,492", change: "+23%" },
@@ -112,8 +112,8 @@ export default function Product() {
                     ))}
                   </div>
                   {/* Charts area */}
-                  <div className="grid grid-cols-3 gap-6 mb-8">
-                    <div className="col-span-2 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm flex flex-col">
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    <div className="lg:col-span-2 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm flex flex-col">
                       <p className="text-gray-500 text-xs font-bold uppercase tracking-wider mb-6">Task Volume (24h)</p>
                       <div className="flex-1 flex items-end gap-1">
                         {CHART_BAR_HEIGHTS.map((h, i) => (
@@ -156,9 +156,9 @@ export default function Product() {
                         { task: "Lead scoring update", status: "Running", time: "5m ago" },
                         { task: "Monthly report generation", status: "Queued", time: "12m ago" },
                       ].map((row, i) => (
-                        <div key={i} className="flex items-center justify-between py-3 border-b border-gray-50 last:border-0 hover:bg-gray-50 rounded-lg px-2 -mx-2 transition-colors">
-                          <span className="text-sm font-medium text-gray-800">{row.task}</span>
-                          <div className="flex items-center gap-4">
+                        <div key={i} className="flex flex-col sm:flex-row sm:items-center justify-between py-3 border-b border-gray-50 last:border-0 hover:bg-gray-50 rounded-lg px-2 -mx-2 transition-colors gap-2 sm:gap-0">
+                          <span className="text-sm font-medium text-gray-800 truncate">{row.task}</span>
+                          <div className="flex items-center gap-4 justify-between sm:justify-end">
                              <span className={`text-xs px-3 py-1 font-bold rounded-full uppercase tracking-wider ${
                                row.status === 'Completed' ? 'bg-vyor-purple/10 text-vyor-purple' :
                                row.status === 'Running' ? 'bg-amber-50 text-amber-600' :
