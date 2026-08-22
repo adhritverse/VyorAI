@@ -61,8 +61,9 @@ export default function Careers() {
 
             if (supabaseError) throw supabaseError;
             setSubmitted(true);
-        } catch (err: any) {
-            setError(err.message || 'Failed to submit application. Please try again.');
+        } catch (err: unknown) {
+            const errorMsg = err instanceof Error ? err.message : 'Failed to submit application. Please try again.';
+            setError(errorMsg);
         } finally {
             setLoading(false);
         }

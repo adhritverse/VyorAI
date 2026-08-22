@@ -5,7 +5,7 @@ import AnimatedSection from '@/components/AnimatedSection';
 import SharedSections from '@/components/SharedSections';
 import InfinityDemo, { SCENARIOS } from '@/components/InfinityDemo';
 
-export default function Infinity() {
+export default function InfinityPage() {
   return (
     <div className="bg-white">
       {/* ── SECTION 1: Flagship Hero (Audio & Wireless Tech) ── */}
@@ -51,10 +51,10 @@ export default function Infinity() {
               className="flex flex-wrap items-center justify-center gap-4"
             >
               <Link
-                to="/auth"
+                to="/waitlist"
                 className="px-8 py-4 bg-vyor-purple text-white font-bold rounded-full hover:bg-vyor-violet transition-all flex items-center gap-2 group shadow-xl shadow-vyor-purple/20 hover:scale-105"
               >
-                Get API Keys
+                Join Waitlist
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link

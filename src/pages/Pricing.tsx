@@ -110,13 +110,13 @@ export default function Pricing() {
                   </ul>
 
                   <Link
-                    to="/auth"
+                    to={tier.cta.toLowerCase().includes('contact') || tier.cta.toLowerCase().includes('demo') ? '/contact' : '/waitlist'}
                     className={`block w-full text-center py-3 rounded-full font-medium text-sm transition-all hover:scale-105 active:scale-95 ${tier.highlighted
                         ? 'bg-white text-black'
                         : 'bg-black text-white hover:bg-gray-800'
                       }`}
                   >
-                    {tier.cta}
+                    {tier.cta === 'Get Started Free' || tier.cta === 'Start 14-Day Trial' ? 'Join Waitlist' : tier.cta}
                   </Link>
                 </div>
               </AnimatedSection>

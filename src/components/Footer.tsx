@@ -4,35 +4,6 @@ import { Linkedin, Globe, Instagram } from 'lucide-react';
 export default function Footer() {
   return (
     <footer className="bg-[#141414] text-white">
-      {/* Newsletter Section - Keeping it above the dark footer but maintaining its light theme */}
-      <div className="bg-gray-50 border-b border-gray-100 text-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex flex-col sm:flex-row items-center sm:items-start md:items-center gap-4 text-center sm:text-left">
-              <div className="flex -space-x-3">
-                <img src="/images/avatar-1.jpg" alt="" className="w-10 h-10 rounded-full border-2 border-white object-cover" />
-                <img src="/images/avatar-2.jpg" alt="" className="w-10 h-10 rounded-full border-2 border-white object-cover" />
-                <img src="/images/avatar-3.jpg" alt="" className="w-10 h-10 rounded-full border-2 border-white object-cover" />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold">Stay Ahead of the Workforce Shift</h3>
-                <p className="text-gray-500 text-sm mt-1">Monthly insights on AI workforces — zero spam</p>
-              </div>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 md:w-64 px-4 py-3 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-gray-500"
-              />
-              <button className="w-full sm:w-auto px-6 py-3 bg-black text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-colors whitespace-nowrap">
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Links Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-32">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 lg:gap-12">
@@ -49,8 +20,8 @@ export default function Footer() {
           <div>
             <h4 className="italic text-gray-400 text-sm mb-6">AI Agents</h4>
             <ul className="space-y-4">
-              <li><Link to="/digital-employee/customer-support" className="text-white font-semibold text-sm hover:text-gray-300 transition-colors">Customer Support</Link></li>
               <li><Link to="/solutions" className="text-white font-semibold text-sm hover:text-gray-300 transition-colors">Sales Representative</Link></li>
+              <li><Link to="/automation-library" className="text-white font-semibold text-sm hover:text-gray-300 transition-colors">Automation Library</Link></li>
             </ul>
           </div>
 
@@ -86,7 +57,7 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-8 text-center md:text-left">
             <div className="flex flex-col items-center md:items-start gap-6">
               <Link to="/" className="flex items-center group gap-3">
-                <img src="/logo.webp" alt="Vyor AI Logo" className="h-10 w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity" />
+                <img src="/logo.webp" alt="Vyor AI Logo" className="h-7 md:h-8 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
                 <span className="text-sm md:text-base font-medium tracking-[0.25em] uppercase text-white">Vyor AI</span>
               </Link>
               <p className="text-gray-400 text-sm">

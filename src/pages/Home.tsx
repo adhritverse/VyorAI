@@ -32,7 +32,25 @@ const floatingIcons = [
   { icon: BarChart, style: "top-[30%] right-[2%] bg-blue-100 text-blue-600 p-2 rounded-xl", delay: 0.6 },
 ];
 
-const partners = ["Google Cloud", "AWS", "Microsoft", "NVIDIA", "Salesforce", "Slack", "Stripe", "HubSpot", "Zendesk"];
+const partners = [
+  "Unify",
+  "Seekr",
+  "Inflect",
+  "Adhritverse Technologies",
+  "Upstep Solutions",
+  "Talentic Softwares",
+  "Trayatechnologies",
+  "Codearoma Tech",
+  "Google Cloud",
+  "AWS",
+  "Microsoft",
+  "NVIDIA",
+  "Salesforce",
+  "Slack",
+  "Stripe",
+  "HubSpot",
+  "Zendesk"
+];
 
 const methodSteps = [
   {
@@ -153,7 +171,8 @@ export default function Home() {
           );
         })}
 
-        {/* Avatar Images */}
+        {/* Avatar Images (Commented Out) */}
+        {/*
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -178,6 +197,7 @@ export default function Home() {
         >
           <img src="https://plus.unsplash.com/premium_photo-1664478244612-d4b3238abd81?w=200&h=200&auto=format&fit=crop&q=80" alt="" className="w-16 h-16 rounded-lg object-cover shadow-lg rotate-[6deg] transition-all duration-500 hover:scale-110 hover:shadow-xl cursor-pointer" />
         </motion.div>
+        */}
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20 pointer-events-none">
           <motion.h1
@@ -208,10 +228,10 @@ export default function Home() {
             className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 pointer-events-auto"
           >
             <Link
-              to="/auth"
-              className="inline-flex items-center px-7 py-3.5 bg-black text-white font-medium rounded-full hover:bg-gray-800 transition-all hover:scale-105 active:scale-95"
+              to="/waitlist"
+              className="inline-flex items-center px-7 py-3.5 bg-black text-white font-bold rounded-full hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 shadow-md shadow-black/10"
             >
-              Get Started
+              Join Waitlist
             </Link>
             <Link
               to="/product"

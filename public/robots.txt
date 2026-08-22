@@ -1,0 +1,26 @@
+# Vyor AI Robots.txt
+# https://vyorai.com
+
+User-agent: *
+Allow: /
+Disallow: /account
+Disallow: /auth
+
+# AI Crawlers & LLM Agents (GEO Optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Sitemap Location
+Sitemap: https://vyorai.com/sitemap.xml

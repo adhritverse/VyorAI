@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
-import { HeartPulse, Terminal, Activity, CheckCircle2, Puzzle, Shirt, BoxSelect, Fingerprint, ArrowRight } from "lucide-react";
+import { HeartPulse, Terminal, Activity, CheckCircle2, Puzzle, Shirt, BoxSelect, Fingerprint, ArrowRight, Users, Sparkles } from "lucide-react";
 import { Link } from 'react-router';
 import InfinityDemo from './InfinityDemo';
 
@@ -62,6 +62,21 @@ const products = [
         glowColor: "rgba(124,58,237,0.12)"
     },
     {
+        id: "crm",
+        title: "Vyor CRM",
+        description: "Autonomous customer relationship management with real-time deal scoring and auto-enrichment.",
+        features: [
+            "Autonomous pipeline triage & lead enrichment",
+            "360° unified customer journey intelligence",
+            "Predictive deal forecasting & agent follow-ups"
+        ],
+        icon: Users,
+        span: "md:col-span-2",
+        delay: 0.35,
+        theme: "emerald",
+        glowColor: "rgba(16,185,129,0.12)"
+    },
+    {
         id: "omni",
         title: "Omni-Engine",
         description: "A centralized command module for asynchronous orchestration.",
@@ -81,7 +96,7 @@ const products = [
             "Edge caching and global CDN",
         ],
         icon: Fingerprint,
-        span: "md:col-span-2",
+        span: "md:col-span-3",
         delay: 0.5,
         theme: "yellow",
         glowColor: "rgba(234,179,8,0.12)"
@@ -391,10 +406,142 @@ function ApiDemo() {
     );
 }
 
+function CrmDemo() {
+    const crmPaths = [
+        "M 50 50 L 25 30 L 10 30",
+        "M 50 50 L 75 30 L 90 30",
+        "M 50 50 L 25 70 L 10 70",
+        "M 50 50 L 75 70 L 90 70",
+    ];
+
+    return (
+        <div className="relative w-full h-full flex flex-col items-center justify-center p-6 bg-gray-50 overflow-hidden group">
+            {/* Ambient Radial Gradient & Subtle Tech Grid */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.08)_0%,transparent_75%)] opacity-90" />
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:28px_28px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,black,transparent)]" />
+
+            {/* SVG Connecting Flow Lines & Glowing Pulses */}
+            <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
+                <defs>
+                    <linearGradient id="crmPulseGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="transparent" />
+                        <stop offset="50%" stopColor="#10b981" stopOpacity="0.9" />
+                        <stop offset="100%" stopColor="transparent" />
+                    </linearGradient>
+                </defs>
+
+                {crmPaths.map((path, i) => (
+                    <g key={i}>
+                        <path
+                            d={path}
+                            stroke="rgba(16, 185, 129, 0.2)"
+                            strokeWidth="0.6"
+                            fill="none"
+                        />
+
+                        <motion.path
+                            d={path}
+                            stroke="url(#crmPulseGradient)"
+                            strokeWidth="1.2"
+                            fill="none"
+                            strokeDasharray="18 82"
+                            animate={{ strokeDashoffset: [100, 0] }}
+                            transition={{
+                                duration: 2.8 + i * 0.4,
+                                repeat: Infinity,
+                                ease: "linear"
+                            }}
+                        />
+
+                        <motion.circle
+                            cx={path.split(' ')[4]}
+                            cy={path.split(' ')[5]}
+                            r="1"
+                            fill="#10b981"
+                            initial={{ opacity: 0.2 }}
+                            animate={{ opacity: [0.2, 1, 0.2], scale: [1, 1.4, 1] }}
+                            transition={{ duration: 2, repeat: Infinity, delay: i * 0.4 }}
+                        />
+                    </g>
+                ))}
+            </svg>
+
+            {/* Ambient Rotating Ring */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-25">
+                <motion.div
+                    className="w-48 h-48 border border-emerald-500/20 rounded-full border-dashed"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                />
+            </div>
+
+            {/* Central Intelligence Node */}
+            <motion.div
+                className="relative w-16 h-16 sm:w-20 sm:h-20 bg-white/95 backdrop-blur-xl border border-emerald-200 rounded-2xl flex items-center justify-center z-20 shadow-[0_8px_30px_rgba(16,185,129,0.15)]"
+                animate={{
+                    y: [0, -4, 0],
+                    boxShadow: [
+                        "0 8px 25px rgba(16,185,129,0.12)",
+                        "0 12px 35px rgba(16,185,129,0.22)",
+                        "0 8px 25px rgba(16,185,129,0.12)"
+                    ]
+                }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            >
+                <div className="absolute inset-0 bg-emerald-50 rounded-2xl blur-sm" />
+                <Users className="w-8 h-8 sm:w-10 sm:h-10 text-emerald-600 relative z-10" />
+
+                <motion.div
+                    className="absolute inset-0 border-2 border-emerald-300/80 rounded-2xl"
+                    animate={{ scale: [1, 1.18, 1], opacity: [1, 0, 1] }}
+                    transition={{ duration: 2.2, repeat: Infinity }}
+                />
+
+                <motion.div
+                    className="absolute inset-2 bg-emerald-100/50 rounded-lg"
+                    animate={{ opacity: [0.2, 0.7, 0.2] }}
+                    transition={{ duration: 2.2, repeat: Infinity }}
+                />
+            </motion.div>
+
+            {/* Floating Top-Right Status Badge */}
+            <div className="absolute top-4 right-4 flex flex-col items-end gap-1 font-mono text-[8px] sm:text-[9px] text-emerald-700 font-bold">
+                <div className="flex items-center gap-1.5 bg-white/90 backdrop-blur-md px-2 py-1 rounded border border-emerald-100 shadow-sm">
+                    <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_6px_rgba(16,185,129,0.8)]" />
+                    CRM_PIPELINE: ACTIVE
+                </div>
+                <div className="text-[7px] text-gray-400 font-mono pr-1">SYNC: 100% LIVE</div>
+            </div>
+
+            {/* Floating Micro Deal Badges */}
+            <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center gap-2 px-1">
+                <motion.div
+                    className="bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-lg text-[8px] sm:text-[9px] border border-gray-100 font-mono text-gray-700 shadow-sm flex items-center gap-1.5"
+                    animate={{ opacity: [0.7, 1, 0.7], y: [0, -1, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, delay: 0 }}
+                >
+                    <span className="w-1 h-1 rounded-full bg-emerald-500" />
+                    <span>DEALS_TRIAGED: 42</span>
+                </motion.div>
+
+                <motion.div
+                    className="bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-lg text-[8px] sm:text-[9px] border border-gray-100 font-mono text-emerald-700 shadow-sm font-bold flex items-center gap-1.5"
+                    animate={{ opacity: [0.7, 1, 0.7], y: [0, -1, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+                >
+                    <Sparkles className="w-2.5 h-2.5 text-emerald-500" />
+                    <span>FORECAST: +42%</span>
+                </motion.div>
+            </div>
+        </div>
+    );
+}
+
 function ProductVisual({ id }: { id: string }) {
-    if (id === "infinity") return <InfinityDemo />;
+    if (id === "infinity") return <InfinityDemo isCompact={true} />;
     if (id === "tryon") return <TryOnDemo />;
     if (id === "stress") return <StressDemo />;
+    if (id === "crm") return <CrmDemo />;
     if (id === "omni") return <OmniDemo />;
     if (id === "api") return <ApiDemo />;
     return null;
@@ -406,6 +553,7 @@ const themeColors: Record<string, { border: string, hoverBorder: string, glow: s
     vyor: { border: 'border-vyor-purple/10', hoverBorder: 'group-hover:border-vyor-purple', glow: 'shadow-[0_0_30px_rgba(124,58,237,0.12)]', accent: 'text-vyor-purple' },
     blue: { border: 'border-blue-100/50', hoverBorder: 'group-hover:border-blue-400', glow: 'shadow-[0_0_30px_rgba(59,130,246,0.12)]', accent: 'text-blue-600' },
     yellow: { border: 'border-yellow-100/50', hoverBorder: 'group-hover:border-yellow-400', glow: 'shadow-[0_0_30px_rgba(234,179,8,0.12)]', accent: 'text-yellow-600' },
+    emerald: { border: 'border-emerald-100/50', hoverBorder: 'group-hover:border-emerald-400', glow: 'shadow-[0_0_30px_rgba(16,185,129,0.12)]', accent: 'text-emerald-600' },
 };
 
 function ProductCard({ product }: { product: Product }) {
@@ -477,7 +625,7 @@ function ProductCard({ product }: { product: Product }) {
             </div>
 
             <div className={`relative flex items-center justify-center bg-gray-50 overflow-hidden transition-colors duration-500 ${isWide
-                ? `w-full md:w-[55%] border-t md:border-t-0 md:border-l border-gray-100 md:flex-none ${isFullWidth ? 'h-[300px] sm:h-[320px] md:h-auto md:flex-1' : 'flex-1 min-h-[220px] md:min-h-[260px]'}`
+                ? `w-full md:w-[55%] border-t md:border-t-0 md:border-l border-gray-100 md:flex-none ${isFullWidth ? 'min-h-[360px] sm:min-h-[380px] md:min-h-0 md:h-full md:flex-1' : 'flex-1 min-h-[220px] md:min-h-[260px]'}`
                 : `w-full h-[200px] md:h-auto md:min-h-[220px] border-t border-gray-100`
                 }`}>
                 <ProductVisual id={product.id} />

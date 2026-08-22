@@ -53,10 +53,10 @@ export default function Product() {
             className="mt-10"
           >
             <Link
-              to="/auth"
-              className="inline-flex items-center px-8 py-4 bg-vyor-purple text-white font-bold rounded-full hover:bg-vyor-violet transition-all shadow-xl shadow-vyor-purple/20"
+              to="/waitlist"
+              className="inline-flex items-center px-8 py-4 bg-vyor-purple text-white font-bold rounded-full hover:bg-vyor-violet transition-all shadow-xl shadow-vyor-purple/20 hover:scale-105 active:scale-95"
             >
-              Start Free Trial
+              Join Waitlist
             </Link>
           </motion.div>
         </div>

@@ -12,10 +12,10 @@ export const navLinks = [
   },
   {
     label: 'AI Agents',
-    href: '/digital-employee/customer-support',
+    href: '/solutions',
     dropdown: [
-      { label: 'Customer Support', href: '/digital-employee/customer-support' },
       { label: 'Sales Representative', href: '/solutions' },
+      { label: 'Automation Workflows', href: '/automation-library' },
     ],
   },
   {

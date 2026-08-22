@@ -1,0 +1,101 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://vyorai.com/#organization",
+      "name": "Vyor AI",
+      "url": "https://vyorai.com",
+      "logo": "https://vyorai.com/logo.webp",
+      "description": "Enterprise AI automation platform and neural architecture SDK for autonomous agents, real-time CRM intelligence, and virtual try-on models.",
+      "email": "official@vyorai.com",
+      "telephone": "+918462802086",
+      "sameAs": [
+        "https://vyorai.com/",
+        "https://www.linkedin.com/company/vyorai",
+        "https://twitter.com/vyorai"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "official@vyorai.com",
+        "contactType": "Customer Support & Sales",
+        "areaServed": "Global",
+        "availableLanguage": ["English"]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://vyorai.com/#website",
+      "url": "https://vyorai.com",
+      "name": "Vyor AI",
+      "description": "AI That Understands, Decides & Executes. Scalable Modular Enterprise AI Engine.",
+      "publisher": {
+        "@id": "https://vyorai.com/#organization"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://vyorai.com/#software",
+      "name": "Vyor AI Engine & Infinity SDK",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All (Cloud API, SDK)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "description": "Free Starter Tier / Join Waitlist for Enterprise Access"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "128",
+        "bestRating": "5"
+      },
+      "featureList": [
+        "Infinity Neural Architecture Plugin SDK",
+        "Autonomous Pipeline Intelligence & CRM",
+        "AI Virtual Try-On Real-Time Diffusion",
+        "Sub-15ms Latency Cloud API",
+        "Omni-Channel Voice & Chat Orchestration"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://vyorai.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Vyor AI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vyor AI is an enterprise AI automation platform and neural architecture SDK designed to deploy autonomous agents, real-time pipeline intelligence, virtual try-on diffusion, and sub-15ms decision engines."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the Infinity Plugin SDK?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Infinity Plugin SDK enables developers and enterprises to train, develop, and integrate custom neural architectures directly into the Vyor AI ecosystem for infinite scalability."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Vyor CRM work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vyor CRM operates autonomously with real-time deal scoring, multi-channel lead auto-enrichment, predictive revenue forecasting, and proactive agent follow-ups."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I join the Vyor AI platform waitlist?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can join the waitlist at https://vyorai.com/waitlist by providing your name, work email, phone number, company, and designation. Our enterprise onboarding team contacts approved applicants within 2 business days."
+          }
+        }
+      ]
+    }
+  ]
+}

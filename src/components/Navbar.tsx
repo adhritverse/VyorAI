@@ -1,31 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, User } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { useScrollPosition } from '@/hooks/useScrollPosition';
 import { navLinks } from '@/data/navigation';
-import { supabase } from '@/lib/supabase';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [user, setUser] = useState<any>(null);
   const scrolled = useScrollPosition();
   const location = useLocation();
-
-  useEffect(() => {
-    if (!supabase) return;
-
-    supabase.auth.getSession().then(({ data: { session } }: any) => {
-      setUser(session?.user ?? null);
-    });
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event: any, session: any) => {
-      setUser(session?.user ?? null);
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
 
   return (
     <>
@@ -39,8 +23,8 @@ export default function Navbar() {
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link to="/" className="inline-flex items-center group gap-4">
-              <img src="/logo.webp" alt="Vyor AI Logo" className="h-[40px] md:h-[55px] w-auto object-contain" />
+            <Link to="/" className="inline-flex items-center group gap-3">
+              <img src="/logo.webp" alt="Vyor AI Logo" className="h-[24px] sm:h-[28px] md:h-[32px] w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
               <span className="text-base md:text-lg font-medium tracking-[0.25em] uppercase text-black">Vyor AI</span>
             </Link>
 
@@ -87,32 +71,14 @@ export default function Navbar() {
                 ))}
               </div>
 
-              {/* Auth Buttons / Avatar */}
-              <div className="flex items-center gap-3">
-                {user ? (
-                  <Link
-                    to="/account"
-                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors border border-gray-200"
-                    title="Account Center"
-                  >
-                    <User className="w-5 h-5 text-gray-600" />
-                  </Link>
-                ) : (
-                  <>
-                    <Link
-                      to="/auth"
-                      className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold text-gray-700 hover:text-black transition-colors"
-                    >
-                      Log In
-                    </Link>
-                    <Link
-                      to="/auth"
-                      className="inline-flex items-center justify-center px-6 py-2.5 bg-black text-white text-sm font-bold rounded-xl hover:bg-gray-800 transition-colors shadow-sm"
-                    >
-                      Sign Up
-                    </Link>
-                  </>
-                )}
+              {/* Waitlist CTA Button */}
+              <div className="flex items-center">
+                <Link
+                  to="/waitlist"
+                  className="inline-flex items-center justify-center px-6 py-2.5 bg-black text-white text-sm font-bold rounded-xl hover:bg-gray-800 transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  Join Waitlist
+                </Link>
               </div>
             </div>
 
@@ -199,37 +165,15 @@ export default function Navbar() {
                   ))}
                 </div>
                 
-                {/* Auth Buttons Mobile */}
+                {/* Waitlist Button Mobile */}
                 <div className="mt-8 flex flex-col gap-3">
-                  {user ? (
-                    <Link
-                      to="/account"
-                      onClick={() => setMobileOpen(false)}
-                      className="flex items-center gap-3 w-full p-4 bg-gray-50 rounded-xl text-black font-medium transition-colors"
-                    >
-                      <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
-                        <User className="w-4 h-4 text-gray-600" />
-                      </div>
-                      <span>Account Center</span>
-                    </Link>
-                  ) : (
-                    <>
-                      <Link
-                        to="/auth"
-                        onClick={() => setMobileOpen(false)}
-                        className="block w-full text-center px-5 py-3 border border-gray-200 text-black font-medium rounded-xl hover:bg-gray-50 transition-colors"
-                      >
-                        Log In
-                      </Link>
-                      <Link
-                        to="/auth"
-                        onClick={() => setMobileOpen(false)}
-                        className="block w-full text-center px-5 py-3 bg-black text-white font-medium rounded-xl hover:bg-gray-800 transition-colors"
-                      >
-                        Sign Up
-                      </Link>
-                    </>
-                  )}
+                  <Link
+                    to="/waitlist"
+                    onClick={() => setMobileOpen(false)}
+                    className="block w-full text-center px-5 py-3.5 bg-black text-white font-bold rounded-xl hover:bg-gray-800 transition-colors shadow-sm"
+                  >
+                    Join Waitlist
+                  </Link>
                 </div>
               </div>
             </motion.div>

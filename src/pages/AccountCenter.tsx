@@ -4,22 +4,43 @@ import { supabase } from '@/lib/supabase';
 import { useNavigate } from 'react-router';
 import AnimatedSection from '@/components/AnimatedSection';
 
+interface UserData {
+  email?: string;
+  user_metadata?: {
+    full_name?: string;
+  };
+}
+
+interface ContactHistoryItem {
+  id: string;
+  company?: string;
+  message?: string;
+  designation?: string;
+  created_at: string;
+}
+
+interface CareerHistoryItem {
+  id: string;
+  role: string;
+  applied_at: string;
+}
+
 export default function AccountCenter() {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [contactHistory, setContactHistory] = useState<any[]>([]);
-  const [careerHistory, setCareerHistory] = useState<any[]>([]);
+  const [contactHistory, setContactHistory] = useState<ContactHistoryItem[]>([]);
+  const [careerHistory, setCareerHistory] = useState<CareerHistoryItem[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserAndHistory = async () => {
       if (!supabase) {
-        navigate('/auth');
+        navigate('/waitlist');
         return;
       }
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
-        navigate('/auth');
+        navigate('/waitlist');
         return;
       }
       setUser(user);
@@ -38,8 +59,8 @@ export default function AccountCenter() {
         .eq('email', user.email)
         .order('applied_at', { ascending: false });
 
-      setContactHistory(contacts || []);
-      setCareerHistory(careers || []);
+      setContactHistory((contacts as ContactHistoryItem[]) || []);
+      setCareerHistory((careers as CareerHistoryItem[]) || []);
       setLoading(false);
     };
 
@@ -47,7 +68,9 @@ export default function AccountCenter() {
   }, [navigate]);
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
+    if (supabase) {
+      await supabase.auth.signOut();
+    }
     navigate('/');
   };
 
@@ -84,7 +107,7 @@ export default function AccountCenter() {
                 </button>
                 <button 
                   onClick={handleLogout}
-                  className="w-full flex items-center gap-3 p-4 rounded-xl text-red-600 hover:bg-red-50 font-medium transition-colors"
+                  className="w-full flex items-center gap-3 p-4 rounded-xl text-red-600 hover:bg-red-50 font-medium transition-colors cursor-pointer"
                 >
                   <LogOut className="w-5 h-5" />
                   <span>Log Out</span>
@@ -117,7 +140,7 @@ export default function AccountCenter() {
                     </div>
                   ) : (
                     <div className="space-y-4">
-                      {contactHistory.map((item: any) => (
+                      {contactHistory.map((item) => (
                         <div key={item.id} className="p-6 rounded-2xl border border-gray-100 hover:border-gray-200 transition-colors">
                           <div className="flex justify-between items-start mb-2">
                             <h4 className="font-bold text-black">{item.company || 'Direct Inquiry'}</h4>
@@ -158,7 +181,7 @@ export default function AccountCenter() {
                     </div>
                   ) : (
                     <div className="space-y-4">
-                      {careerHistory.map((item: any) => (
+                      {careerHistory.map((item) => (
                         <div key={item.id} className="p-6 rounded-2xl border border-gray-100 hover:border-gray-200 transition-colors">
                           <div className="flex justify-between items-start mb-2">
                             <h4 className="font-bold text-black">{item.role}</h4>

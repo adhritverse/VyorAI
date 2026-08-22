@@ -1,0 +1,20 @@
+# Vyor AI — Enterprise Autonomous AI Automation & Neural SDK
+
+> Vyor AI is an enterprise AI automation platform and neural architecture SDK engineered to build, train, and deploy autonomous agents with sub-15ms execution latency.
+
+## Core Products & Capabilities
+
+- **Infinity Architecture (Plugin SDK)**: A developer-first neural plugin SDK enabling engineers to train and integrate custom neural architectures directly into the Vyor AI ecosystem. (`https://vyorai.com/products/infinity`)
+- **Vyor CRM**: Autonomous customer relationship management with real-time deal scoring, multi-channel lead auto-enrichment, and predictive pipeline forecasting. (`https://vyorai.com/#products`)
+- **AI Virtual Try-On**: Hyper-realistic diffusion models for e-commerce apparel and retail, providing real-time fabric drape simulation and instant garment swapping. (`https://vyorai.com/products/virtual-try-on`)
+- **Omni-Engine & Asynchronous Orchestration**: Centralized command module for low-latency workflow routing and multi-agent coordination. (`https://vyorai.com/product`)
+- **Automation Library**: Curated repository of production-ready automation workflows for sales, e-commerce, and enterprise operations. (`https://vyorai.com/automation-library`)
+
+## Platform Benchmarks
+- Execution Latency: Sub-15ms edge inference
+- Model Uptime SLA: 99.99%
+- Protocol Compatibility: REST, WebSocket, gRPC, and Python/TypeScript SDKs
+
+## Enterprise Onboarding & Waitlist
+To apply for priority enterprise access and sandbox developer credentials, visit `https://vyorai.com/waitlist`.
+Official Contact Email: official@vyorai.com

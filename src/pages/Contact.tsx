@@ -44,8 +44,9 @@ export default function Contact() {
       setSubmitted(true);
       setFormData({ name: '', email: '', phone: '', designation: '', company: '', message: '' });
       setTimeout(() => setSubmitted(false), 5000);
-    } catch (err: any) {
-      setError(err.message || 'Failed to send message. Please try again.');
+    } catch (err: unknown) {
+      const errorMsg = err instanceof Error ? err.message : 'Failed to send message. Please try again.';
+      setError(errorMsg);
     } finally {
       setLoading(false);
     }
@@ -73,8 +74,8 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="text-sm text-gray-400">Email</p>
-                      <a href="mailto:hello@vyorai.com" className="text-black hover:text-indigo-600 transition-colors">
-                        hello@vyorai.com
+                      <a href="mailto:official@vyorai.com" className="text-black hover:text-indigo-600 transition-colors">
+                        official@vyorai.com
                       </a>
                     </div>
                   </div>

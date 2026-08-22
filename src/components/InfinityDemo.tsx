@@ -1,89 +1,21 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, CheckCheck, ShoppingBag, ArrowUpRight, Search, Star, ShieldCheck } from 'lucide-react';
-
-export interface ScenarioData {
-  id?: string;
-  userText: string;
-  assistantText: string;
-  typingDurationMs?: number;
-  searchDurationMs?: number;
-  foundDurationMs?: number;
-  product: {
-    name: string;
-    price: string;
-    originalPrice: string;
-    discount: string;
-    tag: string;
-    rating: string;
-    imageBg: string;
-  };
-}
-
-export const SCENARIOS: Record<'juice' | 'fashion' | 'gadgets', ScenarioData> = {
-  juice: {
-    id: 'juice',
-    userText: 'Cold press slow juicer for fresh fruit juice under ₹2,999.',
-    assistantText: 'Top pick! Wonderchef Nutri-Blend Cold Press Slow Juicer with 100% fruit pulp extraction at ₹2,499.',
-    typingDurationMs: 4000,
-    searchDurationMs: 4000,
-    foundDurationMs: 4000,
-    product: {
-      name: 'Wonderchef Nutri-Blend Slow Juicer',
-      price: '₹2,499',
-      originalPrice: '₹5,999',
-      discount: '58% off',
-      tag: 'Cold Press • 100% Yield',
-      rating: '4.9',
-      imageBg: 'from-orange-500 to-amber-600'
-    }
-  },
-  fashion: {
-    id: 'fashion',
-    userText: 'Chikankari Anarkali Kurti in lavender under ₹1,999 for Diwali.',
-    assistantText: 'Mil gaya! Ada Lucknowi Pure Cotton Anarkali is 50% off at ₹1,499 with 1-Day delivery.',
-    typingDurationMs: 4000,
-    searchDurationMs: 4000,
-    foundDurationMs: 4000,
-    product: {
-      name: 'Ada Lucknowi Pure Cotton Anarkali',
-      price: '₹1,499',
-      originalPrice: '₹2,999',
-      discount: '50% off',
-      tag: 'Pure Cotton • Hand-Embroidered',
-      rating: '4.8',
-      imageBg: 'from-fuchsia-600 to-purple-600'
-    }
-  },
-  gadgets: {
-    id: 'gadgets',
-    userText: 'Suggest 55" 4K Smart TV and 1.5 Ton Inverter AC with fast cooling.',
-    assistantText: 'Top match! Xiaomi 55" 4K QLED at ₹29,999 and Voltas 1.5 Ton Inverter AC at ₹34,990.',
-    typingDurationMs: 2000,
-    searchDurationMs: 2000,
-    foundDurationMs: 4500,
-    product: {
-      name: 'Xiaomi 55" 4K QLED Smart TV',
-      price: '₹29,999',
-      originalPrice: '₹54,999',
-      discount: '45% off',
-      tag: '4K QLED • Dolby Atmos • 120Hz',
-      rating: '4.8',
-      imageBg: 'from-amber-500 to-orange-600'
-    }
-  }
-};
+import { SCENARIOS, type ScenarioData } from '@/data/infinity';
+export { SCENARIOS, type ScenarioData };
 
 interface InfinityDemoProps {
   className?: string;
   videoSrc?: string;
   scenario?: ScenarioData;
+  isCompact?: boolean;
 }
 
 export default function InfinityDemo({
   className = '',
   videoSrc = '/sec1_bot.mp4',
-  scenario = SCENARIOS.juice
+  scenario = SCENARIOS.juice,
+  isCompact = false
 }: InfinityDemoProps) {
   const vidDesktopRef = useRef<HTMLVideoElement>(null);
   const vidMobileRef = useRef<HTMLVideoElement>(null);
@@ -202,6 +134,105 @@ export default function InfinityDemo({
       isMounted = false;
     };
   }, [scenario]);
+
+  // ── Compact Mode for Products Grid Cards ──
+  if (isCompact) {
+    return (
+      <div className={`relative w-full h-full p-2 sm:p-3 md:p-5 flex items-center justify-center overflow-hidden bg-gray-50/50 ${className}`}>
+        <div className="w-full max-w-[420px] min-h-[320px] sm:min-h-[340px] md:min-h-[360px] flex flex-col justify-between bg-white rounded-2xl sm:rounded-3xl border border-gray-200 shadow-md overflow-hidden my-auto">
+          {/* 1. Header */}
+          <div className="px-3.5 sm:px-4 py-2 sm:py-2.5 bg-gradient-to-r from-[#2874F0] via-[#246adb] to-[#1a5bc7] text-white flex items-center justify-between shadow-sm shrink-0">
+            <div className="flex items-center gap-2 min-w-0">
+              <div className="w-6 h-6 rounded-md bg-[#FFE11B] text-[#2874F0] flex items-center justify-center font-extrabold text-xs shrink-0 shadow-2xs">
+                <ShoppingBag className="w-3.5 h-3.5 text-[#2874F0]" />
+              </div>
+              <div className="min-w-0">
+                <div className="flex items-center gap-1">
+                  <span className="font-bold text-[11px] sm:text-xs text-white truncate">VyorKart Assistant</span>
+                  <span className="text-[#FFE11B] text-[10px] font-black italic">Plus✦</span>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center gap-1 px-2 py-0.5 bg-white/10 rounded-full text-[9px] text-white font-medium shrink-0">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>Live</span>
+            </div>
+          </div>
+
+          {/* 2. Chat Stream */}
+          <div className="p-2.5 sm:p-3 flex-1 flex flex-col gap-2 justify-end text-xs bg-gradient-to-b from-white to-slate-50/50 overflow-hidden min-h-[190px] sm:min-h-[210px]">
+            {step >= 2 && (
+              <motion.div
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-[#E7F8E8] border border-emerald-100 rounded-xl rounded-tr-xs p-2 sm:p-2.5 self-end max-w-[92%] text-gray-900 text-[10.5px] sm:text-[11px] font-medium flex items-end gap-1.5 shadow-2xs"
+              >
+                <span className="break-words line-clamp-2">{scenario.userText}</span>
+                <CheckCheck className="w-3 h-3 text-[#2874F0] shrink-0" />
+              </motion.div>
+            )}
+
+            {step === 2 && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="bg-white border border-[#2874F0]/20 rounded-xl px-2.5 py-1.5 self-start text-gray-700 shadow-xs flex items-center gap-1.5 text-[10px]"
+              >
+                <Sparkles className="w-3 h-3 text-[#2874F0] animate-spin shrink-0" />
+                <span className="text-gray-600 truncate">Searching 10M+ catalogs...</span>
+              </motion.div>
+            )}
+
+            {step >= 3 && (
+              <motion.div
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-white border border-gray-200/90 rounded-xl p-2.5 self-start max-w-full text-gray-900 shadow-xs text-[10.5px] sm:text-[11px]"
+              >
+                <p className="text-gray-800 font-medium line-clamp-2 leading-relaxed">
+                  {assistantTyped}
+                </p>
+
+                {step >= 4 && (
+                  <div className="mt-1.5 sm:mt-2 bg-slate-50 border border-gray-200 rounded-lg p-1.5 sm:p-2 flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-md bg-gradient-to-tr ${scenario.product.imageBg} flex items-center justify-center text-white shrink-0 shadow-xs`}>
+                        <ShoppingBag className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+                      </div>
+                      <div className="min-w-0">
+                        <h4 className="font-bold text-[9.5px] sm:text-[10px] text-gray-900 truncate">{scenario.product.name}</h4>
+                        <span className="text-[8.5px] sm:text-[9px] text-[#388e3c] font-bold">{scenario.product.price} ({scenario.product.discount})</span>
+                      </div>
+                    </div>
+                    <button className="px-2.5 py-1 bg-[#FB641B] text-white text-[9px] font-bold rounded-md shrink-0">
+                      Buy
+                    </button>
+                  </div>
+                )}
+              </motion.div>
+            )}
+          </div>
+
+          {/* 3. Search input bar */}
+          <div className="p-2 sm:p-2.5 bg-[#F1F3F6]/80 border-t border-gray-200 flex gap-1.5 sm:gap-2 items-center shrink-0">
+            <div className="flex-1 bg-white border border-gray-300 rounded-full h-7.5 sm:h-8 px-2.5 sm:px-3 flex items-center justify-between">
+              <div className="flex items-center gap-1.5 flex-1 overflow-hidden">
+                <Search className="w-3 h-3 text-[#2874F0] shrink-0" />
+                <span className="text-gray-800 text-[9.5px] sm:text-[10px] truncate">
+                  {step === 0 && <span className="text-gray-400">Ask any product query...</span>}
+                  {step === 1 && userTyped}
+                  {step >= 2 && <span className="text-gray-400">Ask another query...</span>}
+                </span>
+              </div>
+            </div>
+            <div className="w-6.5 h-6.5 sm:w-7 sm:h-7 rounded-full bg-[#2874F0] text-white flex items-center justify-center text-[10px] font-bold shrink-0 shadow-xs">
+              ↵
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div

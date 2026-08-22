@@ -6,20 +6,17 @@ const testimonials = [
   {
     quote: "Working with Vyor felt like having an elite internal strike team. They absorbed feedback call-by-call, refined the flow through multiple iterations, and delivered a PoC our stakeholders could test—and love—within the same sprint.",
     author: "Neeraj Agrawal",
-    role: "Assistant Vice President",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+    avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG-XgtqODBCL5qwkIULMLp3ItZ5m0dlglw7qgZZKgrsQ&s=10"
   },
   {
     quote: "The POC developed by Vyor effectively demonstrated how natural language queries can eliminate the need for SQL scripting, significantly simplifying data access and analysis. Their solution showcased impressive capabilities.",
     author: "Amit Pingle",
-    role: "Head of Innovation",
-    avatar: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+    avatar: "https://plus.unsplash.com/premium_photo-1682089804117-cea5d901647f?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8aW5kaWFuJTIwYnVzaW5lc3NtYW58ZW58MHx8MHx8fDA%3D"
   },
   {
     quote: "Vyor has performed an outstanding work to explore this ability to automatically translate natural language intention into a contextualized SQL script. Vyor's ability to learn fast a totally new context is remarkable.",
     author: "Arnaud De-Gayffier",
-    role: "Digital Transformation",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+    avatar: "https://plus.unsplash.com/premium_photo-1661964243697-734d7bd664ff?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW5kaWFuJTIwd29tZW58ZW58MHx8MHx8fDA%3D"
   }
 ];
 
@@ -49,7 +46,7 @@ export function InsightsAndResources() {
             {
               category: "Blog",
               title: "Introduction Customer service has become the linchpin of brand loyalty and revenue growth....",
-              image: "https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&q=80&w=800"
+              image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800"
             },
             {
               category: "Case Study",
@@ -104,13 +101,12 @@ export function Testimonials() {
         <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
             <AnimatedSection key={i} delay={i * 0.15}>
-              <div className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-md transition-all duration-300 h-full flex flex-col">
-                <p className="text-gray-600 text-sm leading-relaxed flex-1">"{t.quote}"</p>
-                <div className="mt-6 flex items-center gap-3">
+              <div className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-md transition-all duration-300 h-full flex flex-col justify-between">
+                <p className="text-gray-600 text-sm leading-relaxed flex-1 mb-6">"{t.quote}"</p>
+                <div className="flex items-center gap-3">
                   <img src={t.avatar} alt={t.author} className="w-10 h-10 rounded-full object-cover" />
                   <div>
                     <p className="font-semibold text-sm text-black">{t.author}</p>
-                    <p className="text-gray-400 text-xs">{t.role}</p>
                   </div>
                 </div>
               </div>
