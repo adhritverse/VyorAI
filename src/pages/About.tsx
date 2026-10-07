@@ -32,7 +32,7 @@ const founders = [
         name: "Hritik Jaiswal",
         role: "FOUNDER & CEO",
         bio: "Visionary leader focused on the intersection of neural networks and autonomous workflows.",
-        image: "/image copy.png",
+        image: "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=512",
         linkedin: "https://www.linkedin.com/in/hritik-jaiswal-vyorai/"
     },
     {
@@ -46,7 +46,7 @@ const founders = [
         name: "Dr. Dipti Chauhan",
         role: "TECHNICAL ADVISOR",
         bio: "Expert advisor bringing deep technical insights and guidance to shape Vyor's strategic direction.",
-        image: "/image.png",
+        image: "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=512",
         linkedin: "https://www.linkedin.com/in/dr-dipti-chauhan-59803434/"
     }
 ];
