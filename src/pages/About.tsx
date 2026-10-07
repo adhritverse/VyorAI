@@ -32,7 +32,7 @@ const founders = [
         name: "Hritik Jaiswal",
         role: "FOUNDER & CEO",
         bio: "Visionary leader focused on the intersection of neural networks and autonomous workflows.",
-        image: "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=512",
+        image: "/image copy.png",
         linkedin: "https://www.linkedin.com/in/hritik-jaiswal-vyorai/"
     },
     {
@@ -46,7 +46,7 @@ const founders = [
         name: "Dr. Dipti Chauhan",
         role: "TECHNICAL ADVISOR",
         bio: "Expert advisor bringing deep technical insights and guidance to shape Vyor's strategic direction.",
-        image: "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=512",
+        image: "/image.png",
         linkedin: "https://www.linkedin.com/in/dr-dipti-chauhan-59803434/"
     }
 ];
@@ -122,7 +122,7 @@ export default function About() {
                                         <img 
                                             src={founder.image} 
                                             alt={founder.name}
-                                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                                            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
                                         />
                                     </div>
                                     <div className="flex flex-col flex-grow">
