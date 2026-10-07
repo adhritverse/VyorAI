@@ -122,7 +122,7 @@ export default function About() {
                                         <img 
                                             src={founder.image} 
                                             alt={founder.name}
-                                            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                                         />
                                     </div>
                                     <div className="flex flex-col flex-grow">
