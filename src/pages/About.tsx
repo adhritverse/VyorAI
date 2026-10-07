@@ -32,13 +32,22 @@ const founders = [
         name: "Hritik Jaiswal",
         role: "FOUNDER & CEO",
         bio: "Visionary leader focused on the intersection of neural networks and autonomous workflows.",
-        image: "https://vyor-ai.vercel.app/_next/image?url=%2FFounder.png&w=1920&q=75"
+        image: "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=512",
+        linkedin: "https://www.linkedin.com/in/hritik-jaiswal-vyorai/"
     },
     {
         name: "Rishabh Kushwah",
         role: "CO-FOUNDER",
         bio: "Strategic architect driving the global scaling of Vyor's core intelligence infrastructure.",
-        image: "https://vyor-ai.vercel.app/_next/image?url=%2FCo-Founder.png&w=1920&q=75"
+        image: "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=512",
+        linkedin: "https://www.linkedin.com/in/rishabh-kushwah-a819b4296/"
+    },
+    {
+        name: "Dr. Dipti Chauhan",
+        role: "TECHNICAL ADVISOR",
+        bio: "Expert advisor bringing deep technical insights and guidance to shape Vyor's strategic direction.",
+        image: "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=512",
+        linkedin: "https://www.linkedin.com/in/dr-dipti-chauhan-59803434/"
     }
 ];
 
@@ -105,7 +114,7 @@ export default function About() {
                         <h2 className="text-4xl font-bold tracking-tight text-black">Meet the Founders</h2>
                     </AnimatedSection>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
                         {founders.map((founder, idx) => (
                             <AnimatedSection key={idx} delay={idx * 0.2}>
                                 <div className="group relative h-full flex flex-col p-8 rounded-[2rem] bg-white border border-gray-100 hover:border-vyor-purple/20 transition-all duration-300 shadow-sm hover:shadow-xl">
@@ -120,7 +129,7 @@ export default function About() {
                                         <h3 className="text-3xl font-bold mb-2 text-black">{founder.name}</h3>
                                         <p className="text-vyor-purple font-bold uppercase tracking-widest text-xs mb-6">{founder.role}</p>
                                         <p className="text-gray-500 leading-relaxed mb-8 flex-grow">{founder.bio}</p>
-                                        <a href="#" className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-vyor-purple transition-colors font-bold group/link">
+                                        <a href={founder.linkedin} target={founder.linkedin !== "#" ? "_blank" : undefined} rel={founder.linkedin !== "#" ? "noopener noreferrer" : undefined} className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-vyor-purple transition-colors font-bold group/link">
                                             <Linkedin className="w-4 h-4" />
                                             Connect
                                             <ArrowUpRight className="w-3 h-3 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
