@@ -26,11 +26,19 @@ const values = [
     }
 ];
 
-const founders = [
+interface TeamMember {
+    name: string;
+    role: string;
+    edu?: string;
+    bio: string;
+    image: string;
+    linkedin: string;
+}
+
+const founders: TeamMember[] = [
     {
         name: "Hritik Jaiswal",
         role: "Founder & CEO, VYORAI",
-  
         edu: "PIEMR, Indore",
         bio: "Visionary leader focused on the intersection of neural networks and autonomous workflows, shaping Vyor's core architecture and long-term vision.",
         image: "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=512",
@@ -39,7 +47,6 @@ const founders = [
     {
         name: "Rishabh Kushwah",
         role: "Co-Founder & CTO, VYORAI",
-     
         edu: "PIEMR, Indore",
         bio: "Strategic architect driving the global scaling of Vyor's core intelligence infrastructure, real-time engines, and deep engineering systems.",
         image: "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=512",
@@ -47,11 +54,10 @@ const founders = [
     }
 ];
 
-const leadershipTeam = [
+const leadershipTeam: TeamMember[] = [
     {
         name: "Akshay Gour",
         role: "Chief Financial Officer (CFO)",
-        badge: "Executive",
         edu: "IIM Mumbai",
         bio: "Steering financial strategy, fiscal governance, and capital allocation for sustainable enterprise scale.",
         image: "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=512",
@@ -60,7 +66,6 @@ const leadershipTeam = [
     {
         name: "Shikha Goyal",
         role: "Chief Operating Officer (COO), VYORAI",
-        badge: "Executive",
         edu: "IIT Madras",
         bio: "Orchestrating operational excellence, cross-functional execution, and global organizational scaling.",
         image: "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=512",
@@ -69,7 +74,6 @@ const leadershipTeam = [
     {
         name: "Dr. Dipti Chauhan",
         role: "Technical Advisor, VYORAI",
-        badge: "Advisor",
         edu: "",
         bio: "Expert advisor bringing deep technical insights and academic rigor to shape Vyor's research frontier.",
         image: "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=512",
@@ -172,14 +176,9 @@ export default function About() {
                                         {/* Info */}
                                         <div className="flex flex-col justify-between flex-grow">
                                             <div>
-                                                <div className="flex items-center justify-between gap-2 mb-1.5">
-                                                    <h3 className="text-2xl font-semibold text-neutral-900 tracking-tight">
-                                                        {member.name}
-                                                    </h3>
-                                                    <span className="text-[10px] font-semibold tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-vyor-purple/10 text-vyor-purple">
-                                                        {member.badge}
-                                                    </span>
-                                                </div>
+                                                <h3 className="text-2xl font-semibold text-neutral-900 tracking-tight mb-1.5">
+                                                    {member.name}
+                                                </h3>
                                                 <p className="text-xs font-semibold text-vyor-purple tracking-wide uppercase mb-3">
                                                     {member.role}
                                                 </p>
@@ -236,11 +235,6 @@ export default function About() {
                                                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                                             />
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                            <div className="absolute top-3 right-3">
-                                                <span className="text-[10px] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md text-neutral-700 shadow-sm border border-black/5">
-                                                    {member.badge}
-                                                </span>
-                                            </div>
                                         </div>
 
                                         {/* Info */}
