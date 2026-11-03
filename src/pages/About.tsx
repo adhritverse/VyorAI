@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Target, Zap, Globe, Users, Linkedin, ArrowUpRight, GraduationCap, Sparkles } from 'lucide-react';
+import { Target, Zap, Globe, Users, GraduationCap, Sparkles } from 'lucide-react';
 import SharedSections from '../components/SharedSections';
 import AnimatedSection from '../components/AnimatedSection';
 
@@ -60,7 +60,7 @@ const leadershipTeam: TeamMember[] = [
         role: "Chief Financial Officer (CFO)",
         edu: "IIM Mumbai",
         bio: "Steering financial strategy, fiscal governance, and capital allocation for sustainable enterprise scale.",
-        image: "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=512",
+        image: "/Akshay Gour.png",
         linkedin: "#"
     },
     {
@@ -68,7 +68,7 @@ const leadershipTeam: TeamMember[] = [
         role: "Chief Operating Officer (COO), VYORAI",
         edu: "IIT Madras",
         bio: "Orchestrating operational excellence, cross-functional execution, and global organizational scaling.",
-        image: "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=512",
+        image: "/shikha-goyal.jpg",
         linkedin: "#"
     },
     {
@@ -135,10 +135,13 @@ export default function About() {
             </section>
 
             {/* Meet the Team - Apple UI/UX Inspired Leadership Section */}
-            <section className="py-28 relative z-10 bg-[#fbfbfd] border-b border-gray-100">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <section className="py-28 relative z-10 bg-gradient-to-b from-[#fbfbfd] via-white to-[#fbfbfd] border-b border-gray-100">
+                {/* Subtle ambient blur glow */}
+                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-vyor-purple/5 blur-[140px] pointer-events-none rounded-full" />
+
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <AnimatedSection className="mb-20 text-center">
-                        <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white border border-neutral-200/80 text-neutral-600 text-[11px] font-semibold uppercase tracking-wider mb-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+                        <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/80 backdrop-blur-md border border-neutral-200/70 text-neutral-600 text-[11px] font-semibold uppercase tracking-wider mb-5 shadow-[0_2px_8px_rgba(0,0,0,0.03)]">
                             <Sparkles className="w-3 h-3 text-vyor-purple" />
                             Leadership
                         </div>
@@ -156,27 +159,26 @@ export default function About() {
                             <span className="text-[11px] font-semibold uppercase tracking-widest text-neutral-400">
                                 Executive Leadership
                             </span>
-                            <div className="h-px bg-neutral-200/80 flex-grow" />
+                            <div className="h-px bg-neutral-200/70 flex-grow" />
                         </div>
 
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                             {founders.map((member, idx) => (
                                 <AnimatedSection key={member.name} delay={idx * 0.15}>
-                                    <div className="group relative h-full flex flex-col md:flex-row gap-7 p-7 md:p-8 rounded-[32px] bg-white border border-neutral-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_48px_rgba(0,0,0,0.08)] hover:border-vyor-purple/30 transition-all duration-500 hover:-translate-y-1">
+                                    <div className="group relative h-full flex flex-col sm:flex-row gap-6 p-6 rounded-[28px] bg-white border border-neutral-100 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(124,58,237,0.08)] hover:border-vyor-purple/20 transition-all duration-400 hover:-translate-y-1">
                                         {/* Avatar Container */}
-                                        <div className="w-full md:w-44 md:h-44 aspect-square rounded-[24px] overflow-hidden bg-neutral-100 shrink-0 relative ring-1 ring-black/5">
+                                        <div className="w-full sm:w-44 sm:h-52 aspect-[3/4] sm:aspect-auto rounded-[20px] overflow-hidden bg-neutral-100 shrink-0 relative">
                                             <img 
                                                 src={member.image} 
                                                 alt={member.name}
-                                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                                                className="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
                                             />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                         </div>
 
                                         {/* Info */}
                                         <div className="flex flex-col justify-between flex-grow">
                                             <div>
-                                                <h3 className="text-2xl font-semibold text-neutral-900 tracking-tight mb-1.5">
+                                                <h3 className="text-2xl font-semibold text-neutral-900 tracking-tight mb-1">
                                                     {member.name}
                                                 </h3>
                                                 <p className="text-xs font-semibold text-vyor-purple tracking-wide uppercase mb-3">
@@ -184,28 +186,15 @@ export default function About() {
                                                 </p>
                                                 
                                                 {member.edu && (
-                                                    <div className="inline-flex items-center gap-1.5 text-[11px] font-medium text-neutral-600 bg-neutral-100/90 px-3 py-1 rounded-full mb-4 border border-neutral-200/60">
+                                                    <div className="inline-flex items-center gap-1.5 text-[11px] font-medium text-neutral-600 bg-neutral-100 px-3 py-1 rounded-full mb-3.5 border border-neutral-200/60">
                                                         <GraduationCap className="w-3.5 h-3.5 text-vyor-purple" />
-                                                        <span>Edu: {member.edu}</span>
+                                                        <span>{member.edu}</span>
                                                     </div>
                                                 )}
 
                                                 <p className="text-neutral-500 text-sm leading-relaxed font-normal">
                                                     {member.bio}
                                                 </p>
-                                            </div>
-
-                                            <div className="pt-6 mt-4 border-t border-neutral-100 flex items-center justify-between">
-                                                <a 
-                                                    href={member.linkedin} 
-                                                    target={member.linkedin !== "#" ? "_blank" : undefined} 
-                                                    rel={member.linkedin !== "#" ? "noopener noreferrer" : undefined}
-                                                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium text-neutral-700 bg-neutral-100 hover:bg-neutral-900 hover:text-white transition-all duration-300 group/link"
-                                                >
-                                                    <Linkedin className="w-3.5 h-3.5" />
-                                                    <span>Connect</span>
-                                                    <ArrowUpRight className="w-3 h-3 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
-                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -220,21 +209,20 @@ export default function About() {
                             <span className="text-[11px] font-semibold uppercase tracking-widest text-neutral-400">
                                 Leadership & Advisory
                             </span>
-                            <div className="h-px bg-neutral-200/80 flex-grow" />
+                            <div className="h-px bg-neutral-200/70 flex-grow" />
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {leadershipTeam.map((member, idx) => (
                                 <AnimatedSection key={member.name} delay={idx * 0.15}>
-                                    <div className="group relative h-full flex flex-col p-7 rounded-[30px] bg-white border border-neutral-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_44px_rgba(0,0,0,0.07)] hover:border-vyor-purple/30 transition-all duration-500 hover:-translate-y-1">
-                                        {/* Avatar Container */}
-                                        <div className="w-full aspect-[4/3] rounded-[22px] overflow-hidden bg-neutral-100 mb-6 relative ring-1 ring-black/5">
+                                    <div className="group relative h-full flex flex-col p-6 rounded-[28px] bg-white border border-neutral-100 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(124,58,237,0.08)] hover:border-vyor-purple/20 transition-all duration-400 hover:-translate-y-1">
+                                        {/* Avatar Container with rounded elegant frame */}
+                                        <div className="w-full aspect-[4/4.5] rounded-[20px] overflow-hidden bg-neutral-100 mb-5 relative">
                                             <img 
                                                 src={member.image} 
                                                 alt={member.name}
-                                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                                                className="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
                                             />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                         </div>
 
                                         {/* Info */}
@@ -247,28 +235,15 @@ export default function About() {
                                             </p>
 
                                             {member.edu && (
-                                                <div className="inline-flex items-center gap-1.5 text-[11px] font-medium text-neutral-600 bg-neutral-100/90 px-3 py-1 rounded-full mb-3.5 border border-neutral-200/60 w-fit">
+                                                <div className="inline-flex items-center gap-1.5 text-[11px] font-medium text-neutral-600 bg-neutral-100 px-3 py-1 rounded-full mb-3.5 border border-neutral-200/60 w-fit">
                                                     <GraduationCap className="w-3.5 h-3.5 text-vyor-purple" />
-                                                    <span>Edu: {member.edu}</span>
+                                                    <span>{member.edu}</span>
                                                 </div>
                                             )}
 
-                                            <p className="text-neutral-500 text-sm leading-relaxed font-normal mb-6 flex-grow">
+                                            <p className="text-neutral-500 text-sm leading-relaxed font-normal">
                                                 {member.bio}
                                             </p>
-
-                                            <div className="pt-5 border-t border-neutral-100">
-                                                <a 
-                                                    href={member.linkedin} 
-                                                    target={member.linkedin !== "#" ? "_blank" : undefined} 
-                                                    rel={member.linkedin !== "#" ? "noopener noreferrer" : undefined}
-                                                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium text-neutral-700 bg-neutral-100 hover:bg-neutral-900 hover:text-white transition-all duration-300 group/link"
-                                                >
-                                                    <Linkedin className="w-3.5 h-3.5" />
-                                                    <span>Connect</span>
-                                                    <ArrowUpRight className="w-3 h-3 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
-                                                </a>
-                                            </div>
                                         </div>
                                     </div>
                                 </AnimatedSection>
